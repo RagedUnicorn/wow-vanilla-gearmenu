@@ -1,6 +1,6 @@
 --[[
   GearMenu - A WoW 1.12.1 Addon to manage quick itemswitching
-  Copyright (C) 2016 Michael Wiesendanger <michael.wiesendanger@gmail.com>
+  Copyright (C) 2017 Michael Wiesendanger <michael.wiesendanger@gmail.com>
 
   This file is part of GearMenu.
 
