@@ -1,0 +1,293 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Include file="GM_Templates.xml"/>
+
+  <!-- MainFrame -->
+  <Frame name="GM_MainFrame" toplevel="true" frameStrata="LOW" enableMouse="true" movable="true" parent="UIParent" hidden="false">
+    <Size>
+      <AbsDimension x="292" y="54"/>
+    </Size>
+    <Anchors>
+      <Anchor point="TOPLEFT" relativeTo="UIParent" relativePoint="BOTTOMLEFT">
+        <Offset>
+          <AbsDimension x="200" y="400"/>
+        </Offset>
+      </Anchor>
+    </Anchors>
+    <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+      <BackgroundInsets>
+        <AbsInset left="4" right="4" top="4" bottom="4"/>
+      </BackgroundInsets>
+      <TileSize>
+        <AbsValue val="16"/>
+      </TileSize>
+      <EdgeSize>
+        <AbsValue val="16"/>
+      </EdgeSize>
+    </Backdrop>
+
+    <Frames>
+      <!-- item slot 1 begin -->
+      <CheckButton name="GM_Slot1" inherits="GM_ItemButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="8" y="-8"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </CheckButton>
+      <Frame parent="GM_Slot1" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_Slot1" inherits="GM_QueueFrameTemplate"/>
+      <!-- item slot 1 end -->
+
+      <!-- item slot 2 begin -->
+      <CheckButton name="GM_Slot2" inherits="GM_ItemButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="48" y="-8"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </CheckButton>
+      <Frame parent="GM_Slot2" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_Slot2" inherits="GM_QueueFrameTemplate"/>
+      <!-- item slot 2 end -->
+
+      <!-- item slot 3 begin -->
+      <CheckButton name="GM_Slot3" inherits="GM_ItemButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="88" y="-8"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </CheckButton>
+      <Frame parent="GM_Slot3" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_Slot3" inherits="GM_QueueFrameTemplate"/>
+      <!-- item slot 3 end -->
+
+      <!-- item slot 4 begin -->
+      <CheckButton name="GM_Slot4" inherits="GM_ItemButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="128" y="-8"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </CheckButton>
+      <Frame parent="GM_Slot4" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_Slot4" inherits="GM_QueueFrameTemplate"/>
+      <!-- item slot 4 end -->
+
+      <!-- item slot 5 begin -->
+      <CheckButton name="GM_Slot5" inherits="GM_ItemButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="168" y="-8"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </CheckButton>
+      <Frame parent="GM_Slot5" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_Slot5" inherits="GM_QueueFrameTemplate"/>
+      <!-- item slot 5 end -->
+
+      <!-- item slot 6 begin -->
+      <CheckButton name="GM_Slot6" inherits="GM_ItemButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="208" y="-8"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </CheckButton>
+      <Frame parent="GM_Slot6" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_Slot6" inherits="GM_QueueFrameTemplate"/>
+      <!-- item slot 6 end -->
+
+      <!-- item slot 7 begin -->
+      <CheckButton name="GM_Slot7" inherits="GM_ItemButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="248" y="-8"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </CheckButton>
+      <Frame parent="GM_Slot7" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_Slot7" inherits="GM_QueueFrameTemplate"/>
+      <!-- item slot 7 end -->
+
+      <!-- drag button for slotframe -->
+      <Button name="GM_DragButton" inherits="GM_DragButtonTemplate">
+        <Anchors>
+          <Anchor point="BOTTOMRIGHT">
+            <Offset>
+              <AbsDimension x="-2" y="2"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Button>
+    </Frames>
+    <Scripts>
+      <OnLoad>
+        gm.OnLoad()
+      </OnLoad>
+      <OnEvent>
+        gm.OnEvent()
+      </OnEvent>
+    </Scripts>
+  </Frame>
+
+  <!-- GearMenuFrame -->
+  <Frame name="GM_SlotFrame" frameStrata="MEDIUM" parent="UIParent">
+    <Size>
+      <AbsDimension x="52" y="0"/>
+    </Size>
+    <Anchors>
+      <Anchor point="TOPLEFT" relativeTo="GM_MainFrame" relativePoint="TOPLEFT"/>
+    </Anchors>
+    <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+      <BackgroundInsets>
+        <AbsInset left="4" right="4" top="4" bottom="4"/>
+      </BackgroundInsets>
+      <TileSize>
+        <AbsValue val="16"/>
+      </TileSize>
+      <EdgeSize>
+        <AbsValue val="16"/>
+      </EdgeSize>
+    </Backdrop>
+    <Layers>
+      <Layer level="OVERLAY">
+        <Texture name="GM_Dock_TOPRIGHT" file="Interface\Tooltips\UI-Tooltip-Border" alphaMode="ADD" hidden="true">
+          <Size>
+            <AbsDimension x="16" y="16"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPRIGHT"/>
+          </Anchors>
+          <TexCoords left="0.625" right="0.75" top="0" bottom="1"/>
+        </Texture>
+        <Texture name="GM_Dock_TOPLEFT" file="Interface\Tooltips\UI-Tooltip-Border" alphaMode="ADD" hidden="true">
+          <Size>
+            <AbsDimension x="16" y="16"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT"/>
+          </Anchors>
+          <TexCoords left="0.5" right="0.625" top="0" bottom="1"/>
+        </Texture>
+        <Texture name="GM_Dock_BOTTOMLEFT" file="Interface\Tooltips\UI-Tooltip-Border" alphaMode="ADD" hidden="true">
+          <Size>
+            <AbsDimension x="16" y="16"/>
+          </Size>
+          <Anchors>
+            <Anchor point="BOTTOMLEFT"/>
+          </Anchors>
+          <TexCoords left="0.75" right="0.875" top="0" bottom="1"/>
+        </Texture>
+        <Texture name="GM_Dock_BOTTOMRIGHT" file="Interface\Tooltips\UI-Tooltip-Border" alphaMode="ADD" hidden="true">
+          <Size>
+            <AbsDimension x="16" y="16"/>
+          </Size>
+          <Anchors>
+            <Anchor point="BOTTOMRIGHT"/>
+          </Anchors>
+          <TexCoords left="0.875" right="1" top="0" bottom="1"/>
+        </Texture>
+      </Layer>
+    </Layers>
+    <Frames>
+      <!-- item containers begin -->
+      <CheckButton name="GM_MenuItem1" inherits="GM_MenuItemTemplate" id="1"/>
+      <CheckButton name="GM_MenuItem2" inherits="GM_MenuItemTemplate" id="2"/>
+      <CheckButton name="GM_MenuItem3" inherits="GM_MenuItemTemplate" id="3"/>
+      <CheckButton name="GM_MenuItem4" inherits="GM_MenuItemTemplate" id="4"/>
+      <CheckButton name="GM_MenuItem5" inherits="GM_MenuItemTemplate" id="5"/>
+      <CheckButton name="GM_MenuItem6" inherits="GM_MenuItemTemplate" id="6"/>
+      <CheckButton name="GM_MenuItem7" inherits="GM_MenuItemTemplate" id="7"/>
+      <CheckButton name="GM_MenuItem8" inherits="GM_MenuItemTemplate" id="8"/>
+      <CheckButton name="GM_MenuItem9" inherits="GM_MenuItemTemplate" id="9"/>
+      <CheckButton name="GM_MenuItem10" inherits="GM_MenuItemTemplate" id="10"/>
+      <CheckButton name="GM_MenuItem11" inherits="GM_MenuItemTemplate" id="11"/>
+      <CheckButton name="GM_MenuItem12" inherits="GM_MenuItemTemplate" id="12"/>
+      <CheckButton name="GM_MenuItem13" inherits="GM_MenuItemTemplate" id="13"/>
+      <CheckButton name="GM_MenuItem14" inherits="GM_MenuItemTemplate" id="14"/>
+      <CheckButton name="GM_MenuItem15" inherits="GM_MenuItemTemplate" id="15"/>
+      <CheckButton name="GM_MenuItem16" inherits="GM_MenuItemTemplate" id="16"/>
+      <CheckButton name="GM_MenuItem17" inherits="GM_MenuItemTemplate" id="17"/>
+      <CheckButton name="GM_MenuItem18" inherits="GM_MenuItemTemplate" id="18"/>
+      <CheckButton name="GM_MenuItem19" inherits="GM_MenuItemTemplate" id="19"/>
+      <CheckButton name="GM_MenuItem20" inherits="GM_MenuItemTemplate" id="20"/>
+      <CheckButton name="GM_MenuItem21" inherits="GM_MenuItemTemplate" id="21"/>
+      <CheckButton name="GM_MenuItem22" inherits="GM_MenuItemTemplate" id="22"/>
+      <CheckButton name="GM_MenuItem23" inherits="GM_MenuItemTemplate" id="23"/>
+      <CheckButton name="GM_MenuItem24" inherits="GM_MenuItemTemplate" id="24"/>
+      <CheckButton name="GM_MenuItem25" inherits="GM_MenuItemTemplate" id="25"/>
+      <CheckButton name="GM_MenuItem26" inherits="GM_MenuItemTemplate" id="26"/>
+      <CheckButton name="GM_MenuItem27" inherits="GM_MenuItemTemplate" id="27"/>
+      <CheckButton name="GM_MenuItem28" inherits="GM_MenuItemTemplate" id="28"/>
+      <CheckButton name="GM_MenuItem29" inherits="GM_MenuItemTemplate" id="29"/>
+      <CheckButton name="GM_MenuItem30" inherits="GM_MenuItemTemplate" id="30"/>
+      <!-- item containers end -->
+
+      <!-- cooldown containers begin -->
+      <Frame parent="GM_MenuItem1" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem2" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem3" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem4" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem5" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem6" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem7" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem8" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem9" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem10" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem11" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem12" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem13" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem14" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem15" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem16" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem17" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem18" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem19" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem20" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem21" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem22" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem23" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem24" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem25" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem26" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem27" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem28" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem29" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_MenuItem30" inherits="GM_TimeFrameTemplate"/>
+      <!-- cooldown containers end -->
+    </Frames>
+  </Frame>
+
+  <!-- OnUpdate to process all timers -->
+  <Frame name="GM_TimerFrame" hidden="true">
+    <Scripts>
+      <OnUpdate>
+        GM_TimerFrame_OnUpdate()
+      </OnUpdate>
+    </Scripts>
+  </Frame>
+
+  <!-- Hidden GameTooltip for tooltip scanning -->
+  <GameTooltip name="GM_TooltipScan" inherits="GameTooltipTemplate" hidden="true">
+    <Scripts>
+      <OnLoad>
+        this:SetOwner(WorldFrame, "ANCHOR_NONE")
+      </OnLoad>
+    </Scripts>
+  </GameTooltip>
+</Ui>

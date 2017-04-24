@@ -1,0 +1,301 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <!-- Checkbutton template -->
+  <CheckButton name="GM_CheckButtonTemplate" inherits="UICheckButtonTemplate" virtual="true">
+    <Size>
+      <AbsDimension x="24" y="24"/>
+    </Size>
+    <Scripts>
+      <OnEnter>
+        GM_Tooltip_OnEnter()
+      </OnEnter>
+      <OnLeave>
+        GameTooltip:Hide()
+      </OnLeave>
+    </Scripts>
+  </CheckButton>
+
+  <!-- Navigationbutton for optionsframe -->
+  <Button name="GM_NavigationButtonTemplate" virtual="true">
+    <Size x="120" y="14"/>
+    <Layers>
+      <Layer level="OVERLAY">
+        <FontString name="$parentText" inherits="GameFontNormalSmall" justifyH="LEFT" justifyV="CENTER">
+          <Size x="120" y="14"/>
+          <Anchors>
+            <Anchor point="TOPLEFT">
+              <Offset x="3" y="0"/>
+            </Anchor>
+          </Anchors>
+        </FontString>
+      </Layer>
+      <Layer level="ARTWORK">
+        <Texture name="$parentTexture" file="Interface\AddOns\GearMenu\Assets\UI-Listbox-Highlight.tga" hidden="true">
+          <Size x="120" y="14"/>
+        </Texture>
+      </Layer>
+    </Layers>
+    <Scripts>
+      <OnLoad>
+        GM_Navigation_Button_OnLoad()
+      </OnLoad>
+      <OnClick>
+        GM_Navigation_Button_OnClick()
+      </OnClick>
+    </Scripts>
+    <HighlightTexture file="Interface\AddOns\GearMenu\Assets\UI-Listbox-Highlight.tga" alphaMode="ADD"/>
+  </Button>
+
+  <!-- Cell template for scrolllist -->
+  <Button name="GM_QuickChangeListCellTemplate" virtual="true">
+    <Size>
+      <AbsDimension x="150" y="24"/>
+    </Size>
+    <Layers>
+      <Layer level="ARTWORK">
+        <Texture name="$parentIcon">
+          <Size>
+            <AbsDimension x="22" y="22"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT">
+              <Offset>
+                <AbsDimension x="4" y="-1"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </Texture>
+        <FontString name="$parentName" font="GameFontHighlight" justifyH="LEFT">
+          <Size>
+            <AbsDimension x="150" y="22"/>
+          </Size>
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="$parentIcon" relativePoint="RIGHT">
+              <Offset>
+                <AbsDimension x="4" y="0"/>
+              </Offset>
+            </Anchor>
+            <Anchor point="RIGHT"/>
+          </Anchors>
+        </FontString>
+      </Layer>
+      <Layer level="BACKGROUND">
+        <Texture name="$parentHighlight" file="Interface\QuestFrame\UI-QuestLogTitleHighlight" hidden="true" alphaMode="ADD">
+          <Size>
+            <AbsDimension x="150" y="24"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+    </Layers>
+    <Scripts>
+      <OnEnter>
+        getglobal(this:GetName() .. "Highlight"):Show()
+      </OnEnter>
+      <OnLeave>
+        if not this.selectedItem then
+          getglobal(this:GetName() .. "Highlight"):Hide()
+        end
+      </OnLeave>
+    </Scripts>
+  </Button>
+
+  <!-- Cell template for scrolllist -->
+  <Button name="GM_QuickChangeRuleListCellTemplate" virtual="true">
+    <Size>
+      <AbsDimension x="375" y="24"/>
+    </Size>
+    <Layers>
+      <Layer level="ARTWORK">
+        <Texture name="$parentIconLeft">
+          <Size>
+            <AbsDimension x="22" y="22"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT">
+              <Offset>
+                <AbsDimension x="4" y="-1"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </Texture>
+        <FontString name="$parentNameLeft" font="GameFontHighlight" justifyH="LEFT">
+          <Size>
+            <AbsDimension x="150" y="22"/>
+          </Size>
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="$parentIconLeft" relativePoint="RIGHT">
+              <Offset>
+                <AbsDimension x="4" y="0"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <Texture name="$parentIconRight">
+          <Size>
+            <AbsDimension x="22" y="22"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT">
+              <Offset>
+                <AbsDimension x="185" y="-1"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </Texture>
+        <FontString name="$parentNameRight" font="GameFontHighlight" justifyH="LEFT">
+          <Size>
+            <AbsDimension x="150" y="22"/>
+          </Size>
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="$parentIconRight" relativePoint="RIGHT">
+              <Offset>
+                <AbsDimension x="4" y="0"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+      </Layer>
+      <Layer level="BACKGROUND">
+        <Texture name="$parentHighlight" file="Interface\QuestFrame\UI-QuestLogTitleHighlight" hidden="true" alphaMode="ADD">
+          <Size>
+            <AbsDimension x="375" y="24"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+    </Layers>
+    <Scripts>
+      <OnEnter>
+        getglobal(this:GetName() .. "Highlight"):Show()
+      </OnEnter>
+      <OnLeave>
+        if not this.selectedItem then
+          getglobal(this:GetName() .. "Highlight"):Hide()
+        end
+      </OnLeave>
+    </Scripts>
+  </Button>
+
+  <!-- Move button template -->
+  <Button name="GM_DragButtonTemplate" virtual="true">
+    <Size>
+      <AbsDimension x="12" y="12"/>
+    </Size>
+    <NormalTexture file="Interface\AddOns\GearMenu\Assets\UI-Button-Drag" alphaMode="ADD"/>
+    <HighlightTexture file="Interface\AddOns\GearMenu\Assets\UI-Button-Drag" alphaMode="ADD"/>
+    <Scripts>
+      <OnLoad>
+        this:SetFrameLevel(this:GetFrameLevel() + 2)
+      </OnLoad>
+      <OnMouseDown>
+        GM_DragButton_OnMouseDown()
+      </OnMouseDown>
+      <OnMouseUp>
+        GM_DragButton_OnMouseUp()
+      </OnMouseUp>
+    </Scripts>
+  </Button>
+
+  <!-- Slot button template -->
+  <CheckButton name="GM_ItemButtonTemplate" inherits="ActionButtonTemplate" virtual="true">
+    <NormalTexture name="$parentNormalTexture" file="Interface\Buttons\UI-Quickslot2">
+      <Size>
+        <AbsDimension x="64" y="64"/>
+      </Size>
+      <Anchors>
+        <Anchor point="CENTER">
+          <Offset>
+            <AbsDimension x="0" y="-1"/>
+          </Offset>
+        </Anchor>
+      </Anchors>
+    </NormalTexture>
+    <!-- overwrite pushed texture with normale texture -->
+    <PushedTexture name="$parentPushedTexture" file="Interface\Buttons\UI-Quickslot2">
+      <Size>
+        <AbsDimension x="64" y="64"/>
+      </Size>
+      <Anchors>
+        <Anchor point="CENTER">
+          <Offset>
+            <AbsDimension x="0" y="-1"/>
+          </Offset>
+        </Anchor>
+      </Anchors>
+    </PushedTexture>
+    <Scripts>
+      <OnLoad>
+        this:RegisterForClicks("RightButtonUp", "LeftButtonUp")
+        this:RegisterForDrag("LeftButton")
+      </OnLoad>
+      <OnEnter>
+        GM_ItemButton_OnEnter()
+      </OnEnter>
+      <OnClick>
+        GM_ItemButton_OnClick("itemButtonClick", arg1)
+      </OnClick>
+      <OnLeave>
+        GM_ItemButton_OnLeave()
+      </OnLeave>
+      <OnReceiveDrag>
+        GM_ItemButton_OnReceiveDrag()
+      </OnReceiveDrag>
+      <OnDragStart>
+        GM_ItemButton_OnDragStart()
+      </OnDragStart>
+    </Scripts>
+  </CheckButton>
+
+  <!-- Menu item template -->
+  <CheckButton name="GM_MenuItemTemplate" inherits="ActionButtonTemplate" virtual="true">
+    <Scripts>
+      <OnClick>
+        GM_GearMenuItem_OnClick()
+      </OnClick>
+      <OnEnter>
+        GM_GearMenuItem_OnEnter()
+      </OnEnter>
+      <OnLeave>
+        GM_GearMenuItem_OnLeave()
+      </OnLeave>
+    </Scripts>
+  </CheckButton>
+
+  <!-- Cooldown time text template -->
+  <Frame name="GM_TimeFrameTemplate" enableMouse="false" virtual="true">
+    <Size>
+      <AbsDimension x="36" y="12"/>
+    </Size>
+    <Anchors>
+      <Anchor point="BOTTOMRIGHT"/>
+    </Anchors>
+    <Layers>
+      <Layer level="OVERLAY">
+        <FontString name="$parentTime" inherits="GameFontHighlight" justifyH="CENTER"/>
+      </Layer>
+    </Layers>
+  </Frame>
+
+  <!-- Combat queue inset template -->
+  <Frame name="GM_QueueFrameTemplate" enableMouse="false" virtual="true">
+    <Size>
+      <AbsDimension x="18" y="18"/>
+    </Size>
+    <Anchors>
+      <Anchor point="TOPLEFT">
+        <Offset>
+          <AbsDimension x="-2" y="2"/>
+        </Offset>
+      </Anchor>
+    </Anchors>
+    <Layers>
+      <Layer level="OVERLAY">
+        <Texture name="$parentQueue"/>
+      </Layer>
+    </Layers>
+  </Frame>
+</Ui>

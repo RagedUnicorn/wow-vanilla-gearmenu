@@ -1,0 +1,23 @@
+<Bindings>
+  <Binding name="Slot 1" description="Use Slot1" header="GEARMENU">
+    GM_UseInventoryItem(1)
+  </Binding>
+  <Binding name="Slot 2" description="Use Slot2">
+    GM_UseInventoryItem(2)
+  </Binding>
+  <Binding name="Slot 3" description="Use Slot3">
+    GM_UseInventoryItem(3)
+  </Binding>
+  <Binding name="Slot 4" description="Use Slot4">
+    GM_UseInventoryItem(4)
+  </Binding>
+  <Binding name="Slot 5" description="Use Slot5">
+    GM_UseInventoryItem(5)
+  </Binding>
+  <Binding name="Slot 6" description="Use Slot6">
+    GM_UseInventoryItem(6)
+  </Binding>
+  <Binding name="Slot 7" description="Use Slot7">
+    GM_UseInventoryItem(7)
+  </Binding>
+</Bindings>

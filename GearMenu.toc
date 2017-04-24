@@ -1,0 +1,40 @@
+## Interface: 11200
+## Title: GearMenu
+## Author: Michael Wiesendanger <michael.wiesendanger@gmail.com>
+## Notes: Addon to manage usable gear
+## SavedVariables: GearMenuOptions
+## SavedVariablesPerCharacter: GearMenuOptions
+
+Code\GM_Core.lua
+Code\GM_Cmd.lua
+Code\GM_Constants.lua
+Code\GM_Common.lua
+Code\GM_Logger.lua
+Code\GM_Timer.lua
+Code\GM_Tooltip.lua
+Code\GM_Cooldown.lua
+Code\GM_CombatQueue.lua
+Code\GM_QuickChange.lua
+Code\GM_ItemManager.lua
+Code\GM_MainHand.lua
+Code\GM_OffHand.lua
+Code\GM_Waist.lua
+Code\GM_Feet.lua
+Code\GM_Head.lua
+Code\GM_UpperTrinket.lua
+Code\GM_LowerTrinket.lua
+# debug only
+Code\GM_Debug.lua
+
+Localization\enUS.lua
+Localization\deDE.lua
+
+# Gui
+Gui\GM_Gui.lua
+Gui\GM_NavigationMenu.lua
+Gui\GM_SlotsMenu.lua
+Gui\GM_GeneralMenu.lua
+Gui\GM_QuickChangeMenu.lua
+Gui\GM_Options.lua
+Gui\GM_Options.xml
+Gui\GM_Frame.xml
