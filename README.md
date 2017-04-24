@@ -1,4 +1,4 @@
-# Gearmenu
+# GearMenu
 
 ## What is GearMenu?
 

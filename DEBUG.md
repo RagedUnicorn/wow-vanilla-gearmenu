@@ -1,4 +1,4 @@
-# Gearmenu debug
+# GearMenu debug
 
 > instructions helping with debugging the GearMenu addon
 
