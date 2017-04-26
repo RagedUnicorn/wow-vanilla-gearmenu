@@ -5,9 +5,9 @@
 ## SavedVariables: GearMenuOptions
 ## SavedVariablesPerCharacter: GearMenuOptions
 
+Code\GM_Constants.lua
 Code\GM_Core.lua
 Code\GM_Cmd.lua
-Code\GM_Constants.lua
 Code\GM_Common.lua
 Code\GM_Logger.lua
 Code\GM_Timer.lua

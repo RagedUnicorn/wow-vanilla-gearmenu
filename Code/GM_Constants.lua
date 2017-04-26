@@ -73,7 +73,59 @@ GM_CONSTANTS = {
     },
     -- offHand
     [3] = {
-      ["type"] = {"INVTYPE_HOLDABLE", "INVTYPE_WEAPONOFFHAND", "INVTYPE_SHIELD", "INVTYPE_WEAPON"},
+      ["type"] = (function()
+        _, class = UnitClass("player")
+
+        if class == "ROGUE" then
+          --[[
+            e.g. possible itemids
+            INVTYPE_HOLDABLE - 4984
+
+            INVTYPE_WEAPONOFFHAND - 19866
+
+            INVTYPE_WEAPON - 19166
+          ]]--
+          return {"INVTYPE_HOLDABLE", "INVTYPE_WEAPONOFFHAND", "INVTYPE_WEAPON"}
+          --[[
+            e.g. possible itemids
+            INVTYPE_HOLDABLE - 4984
+          ]]--
+        elseif class == "MAGE" or class == "WARLOCK" or class == "PRIEST" or class == "DRUID" then
+          return {"INVTYPE_HOLDABLE"}
+          --[[
+            e.g. possible itemids
+            INVTYPE_HOLDABLE - 4984
+
+            INVTYPE_WEAPONOFFHAND - 19866
+
+            INVTYPE_WEAPON - 19166
+          ]]--
+        elseif  class == "HUNTER" then
+          return {"INVTYPE_WEAPONOFFHAND", "INVTYPE_WEAPON", "INVTYPE_HOLDABLE"}
+          --[[
+            e.g. possible itemids
+            INVTYPE_HOLDABLE - 4984
+
+            INVTYPE_SHIELD - 19862
+          ]]--
+        elseif class == "PALADIN" or class == "SHAMAN" then
+          return {"INVTYPE_HOLDABLE", "INVTYPE_SHIELD"}
+          --[[
+            e.g. possible itemids
+            INVTYPE_HOLDABLE - 4984
+
+            INVTYPE_SHIELD - 19862
+
+            INVTYPE_WEAPON - 19166
+
+            INVTYPE_WEAPONOFFHAND - 19866
+          ]]--
+        elseif class == "WARRIOR" then
+          return {"INVTYPE_HOLDABLE", "INVTYPE_SHIELD", "INVTYPE_WEAPON", "INVTYPE_WEAPONOFFHAND"}
+        else
+          return {}
+        end
+      end)(),
       ["name"] = "OffHand",
       ["slotID"] = {17}
     },
