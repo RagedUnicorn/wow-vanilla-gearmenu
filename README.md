@@ -18,6 +18,9 @@ GearMenu is based on the popular TrinketMenu Addon and its goal is to bring this
 | MainhandSlot      | Main-hand slot               |
 | SecondaryHandSlot | Secondary-hand/Off-hand slot |
 
+
+
+
 ## Features of GearMenu
 
 ### Item switch for certain slots
@@ -90,6 +93,19 @@ To show the configuration screen use `/gm opt` while ingame and `/gm info` for a
 ### Lock/Unlock Window
 
 ![](/Docs/gm_options_lock_window.gif)
+
+
+## Installation
+
+WoW-Addons are installed directly in your WoW directory:
+
+`[WoW-installation-directory]\Interface\AddOns`
+
+Make sure to get the newest version of the Addon from the releases tab:
+
+[GearMenu-Releases](https://github.com/RagedUnicorn/wow-gearmenu/releases)
+
+> Note: If the Addon is not showing up in your ingame Addonlist make sure that the Addon is named `GearMenu` in your Addons folder
 
 ## License
 
