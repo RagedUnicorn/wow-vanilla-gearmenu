@@ -1108,11 +1108,23 @@
             </Anchors>
             <Layers>
               <Layer level="OVERLAY">
+                <Texture file="Interface\AddOns\GearMenu\Assets\UI-Logo-RagedUnicorn">
+                  <Size>
+                    <AbsDimension x="128" y="128"/>
+                  </Size>
+                  <Anchors>
+                    <Anchor point="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="10" y="-10"/>
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                </Texture>
                 <FontString name="GM_AboutAuthor" inherits="GameFontNormalSmall">
                   <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                       <Offset>
-                        <AbsDimension x="10" y="-10"/>
+                        <AbsDimension x="10" y="-148"/>
                       </Offset>
                     </Anchor>
                   </Anchors>
@@ -1122,7 +1134,7 @@
                   <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                       <Offset>
-                        <AbsDimension x="10" y="-25"/>
+                        <AbsDimension x="10" y="-163"/>
                       </Offset>
                     </Anchor>
                   </Anchors>
@@ -1132,7 +1144,7 @@
                   <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                       <Offset>
-                        <AbsDimension x="10" y="-40"/>
+                        <AbsDimension x="10" y="-178"/>
                       </Offset>
                     </Anchor>
                   </Anchors>
@@ -1142,7 +1154,7 @@
                   <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                       <Offset>
-                        <AbsDimension x="10" y="-55"/>
+                        <AbsDimension x="10" y="-193"/>
                       </Offset>
                     </Anchor>
                   </Anchors>
