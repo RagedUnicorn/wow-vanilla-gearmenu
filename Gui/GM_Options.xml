@@ -1128,11 +1128,21 @@
                   </Anchors>
                   <Color r="1" g="1" b="1"/>
                 </FontString>
-                <FontString name="GM_AboutIssues" inherits="GameFontNormalSmall">
+                <FontString name="GM_AboutVersion" inherits="GameFontNormalSmall">
                   <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                       <Offset>
                         <AbsDimension x="10" y="-40"/>
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <Color r="1" g="1" b="1"/>
+                </FontString>
+                <FontString name="GM_AboutIssues" inherits="GameFontNormalSmall">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="10" y="-55"/>
                       </Offset>
                     </Anchor>
                   </Anchors>

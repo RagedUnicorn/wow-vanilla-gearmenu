@@ -29,7 +29,7 @@ GM_CONSTANTS = {
   ]]--
   ADDON_NAME = "GearMenu",
   ADDON_NAME_SHORT = "GM",
-  ADDON_VERSION = "0.0.1",
+  ADDON_VERSION = "1.0.0",
 
   --[[
     debug logging chatframes
@@ -166,6 +166,7 @@ GM_CONSTANTS = {
   ELEMENT_GM_SLOT_TITLE = "GM_TitleSlot",
   ELEMENT_GM_ABOUT_AUTHOR_LABEL = "GM_AboutAuthor",
   ELEMENT_GM_ABOUT_EMAIL_LABEL = "GM_AboutEmail",
+  ELEMENT_GM_ABOUT_VERSION_LABEL = "GM_AboutVersion",
   ELEMENT_GM_ABOUT_ISSUES_LABEL = "GM_AboutIssues",
   ELEMENT_GM_QUICK_CHANGE_DELAY_LABEL = "GM_DelayLabel",
   ELEMENT_GM_QUICK_CHANGE_UNIT_DELAY_LABEL = "GM_DelayUnitLabel",

@@ -72,6 +72,7 @@ local mWindows = {
       getglobal(GM_CONSTANTS.ELEMENT_GM_ABOUT_AUTHOR_LABEL):SetText(gm.L["author"])
       getglobal(GM_CONSTANTS.ELEMENT_GM_ABOUT_EMAIL_LABEL):SetText(gm.L["email"])
       getglobal(GM_CONSTANTS.ELEMENT_GM_ABOUT_ISSUES_LABEL):SetText(gm.L["issues"])
+      getglobal(GM_CONSTANTS.ELEMENT_GM_ABOUT_VERSION_LABEL):SetText(gm.L["version"])
     end
   }
 }
