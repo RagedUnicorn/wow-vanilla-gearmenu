@@ -24,7 +24,7 @@ Code\GM_Head.lua
 Code\GM_UpperTrinket.lua
 Code\GM_LowerTrinket.lua
 # debug only
-Code\GM_Debug.lua
+# Code\GM_Debug.lua
 
 Localization\enUS.lua
 Localization\deDE.lua
