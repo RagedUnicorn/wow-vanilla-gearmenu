@@ -1,5 +1,7 @@
 # GearMenu
 
+![](/Docs/gm_raged_unicorn_logo.png)
+
 ## What is GearMenu?
 
 GearMenu is based on the popular TrinketMenu Addon and its goal is to bring this functionality to other slots including trinkets. Its target is to assist the player in PvP but it has definitely some use in PvE as well.
