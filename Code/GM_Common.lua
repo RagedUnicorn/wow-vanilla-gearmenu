@@ -177,7 +177,7 @@ function me.SwitchItems(item, slotID)
     wow does not handle this properly
   ]]--
   if slotID == mod.offHand.id then
-    local _, _, wornType = mod.common.RetrieveItemInfo(mod.mainHand.id);
+    local _, _, wornType = mod.common.RetrieveItemInfo(mod.mainHand.id)
 
     if wornType == "INVTYPE_2HWEAPON" and (item.itemSlotType == "INVTYPE_SHIELD"
       or item.itemSlotType == "INVTYPE_WEAPON" or item.itemSlotType == "INVTYPE_WEAPONOFFHAND"

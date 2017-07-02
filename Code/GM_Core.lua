@@ -130,13 +130,13 @@ function me.Initialize()
   math.randomseed(GetTime())
 
   -- register item
-  me.itemManager.RegisterItem(me.mainHand.moduleName);
-  me.itemManager.RegisterItem(me.offHand.moduleName);
-  me.itemManager.RegisterItem(me.waist.moduleName);
-  me.itemManager.RegisterItem(me.feet.moduleName);
-  me.itemManager.RegisterItem(me.head.moduleName);
-  me.itemManager.RegisterItem(me.upperTrinket.moduleName);
-  me.itemManager.RegisterItem(me.lowerTrinket.moduleName);
+  me.itemManager.RegisterItem(me.mainHand.moduleName)
+  me.itemManager.RegisterItem(me.offHand.moduleName)
+  me.itemManager.RegisterItem(me.waist.moduleName)
+  me.itemManager.RegisterItem(me.feet.moduleName)
+  me.itemManager.RegisterItem(me.head.moduleName)
+  me.itemManager.RegisterItem(me.upperTrinket.moduleName)
+  me.itemManager.RegisterItem(me.lowerTrinket.moduleName)
 
   -- update all registered worn items
   me.itemManager.UpdateWornItems()

@@ -90,7 +90,7 @@ function me.TooltipUpdate()
     end
   else
     if GearMenuOptions.smallTooltips then
-      local itemLink = GetInventoryItemLink("player", tooltipSlot);
+      local itemLink = GetInventoryItemLink("player", tooltipSlot)
 
       -- if the player has nothing equiped in this slot abort
       if not itemLink then return end

@@ -51,28 +51,28 @@ function me.InitializeDropdownMenu()
   moduleName = mod.itemManager.FindModuleForPosition(position)
 
   button = me.CreateDropdownButton(mod.mainHand.tag, mod.mainHand.id, me.DropDownMenuCallback)
-  UIDropDownMenu_AddButton(button);
+  UIDropDownMenu_AddButton(button)
 
   button = me.CreateDropdownButton(mod.offHand.tag, mod.offHand.id, me.DropDownMenuCallback)
-  UIDropDownMenu_AddButton(button);
+  UIDropDownMenu_AddButton(button)
 
   button = me.CreateDropdownButton(mod.waist.tag, mod.waist.id, me.DropDownMenuCallback)
-  UIDropDownMenu_AddButton(button);
+  UIDropDownMenu_AddButton(button)
 
   button = me.CreateDropdownButton(mod.feet.tag, mod.feet.id, me.DropDownMenuCallback)
-  UIDropDownMenu_AddButton(button);
+  UIDropDownMenu_AddButton(button)
 
   button = me.CreateDropdownButton(mod.head.tag, mod.head.id, me.DropDownMenuCallback)
-  UIDropDownMenu_AddButton(button);
+  UIDropDownMenu_AddButton(button)
 
   button = me.CreateDropdownButton(mod.upperTrinket.tag, mod.upperTrinket.id, me.DropDownMenuCallback)
-  UIDropDownMenu_AddButton(button);
+  UIDropDownMenu_AddButton(button)
 
   button = me.CreateDropdownButton(mod.lowerTrinket.tag, mod.lowerTrinket.id, me.DropDownMenuCallback)
-  UIDropDownMenu_AddButton(button);
+  UIDropDownMenu_AddButton(button)
 
   button = me.CreateDropdownButton("None", 0, me.DropDownMenuCallback)
-  UIDropDownMenu_AddButton(button);
+  UIDropDownMenu_AddButton(button)
 
   if (UIDropDownMenu_GetSelectedID(getglobal(GM_CONSTANTS.ELEMENT_GM_OPT_SLOT .. position)) == nil) then
     if moduleName then

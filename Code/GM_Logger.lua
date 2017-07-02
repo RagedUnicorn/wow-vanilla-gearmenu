@@ -243,5 +243,5 @@ function me.PrintUserError(msg)
 
   UIErrorsFrame:AddMessage(msg, GM_CONSTANTS.INTERFACE_COLORS_RED.r,
     GM_CONSTANTS.INTERFACE_COLORS_RED.g, GM_CONSTANTS.INTERFACE_COLORS_RED.b,
-    ChatTypeInfo["SYSTEM"], displayTime);
+    ChatTypeInfo["SYSTEM"], displayTime)
 end

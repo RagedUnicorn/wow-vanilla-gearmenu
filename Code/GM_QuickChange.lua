@@ -95,7 +95,7 @@ end
 function me.CheckItemUse(module)
   -- wait a bit then check if there is a startime for the cooldown on the item
   local checkItemUseStatusCallback = function ()
-    local start, duration, enable = GetInventoryItemCooldown("player", mod[module].id);
+    local start, duration, enable = GetInventoryItemCooldown("player", mod[module].id)
     -- 1 meaning item has an onUse effect
     if enable == 1 and start ~= 0 then
       -- inform quick change about used item

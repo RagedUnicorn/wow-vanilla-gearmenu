@@ -282,7 +282,7 @@ function me.InitializeDropdownMenu()
 
   for i = 1, table.getn(GM_CONSTANTS.CATEGORIES) do
     button = me.CreateDropdownButton(GM_CONSTANTS.CATEGORIES[i].name, i, me.DropDownMenuCallback)
-    UIDropDownMenu_AddButton(button);
+    UIDropDownMenu_AddButton(button)
   end
 
   if (UIDropDownMenu_GetSelectedID(getglobal(GM_CONSTANTS.ELEMENT_GM_CHOOSE_CATEGORY)) == nil) then

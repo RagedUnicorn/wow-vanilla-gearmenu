@@ -224,7 +224,7 @@
                 </Anchors>
                 <Scripts>
                   <OnShow>
-                      UIDropDownMenu_Initialize(this, gm.slotsMenu.InitializeDropdownMenu);
+                      UIDropDownMenu_Initialize(this, gm.slotsMenu.InitializeDropdownMenu)
                   </OnShow>
                 </Scripts>
               </Button>
@@ -238,7 +238,7 @@
                 </Anchors>
                 <Scripts>
                   <OnShow>
-                      UIDropDownMenu_Initialize(this, gm.slotsMenu.InitializeDropdownMenu);
+                      UIDropDownMenu_Initialize(this, gm.slotsMenu.InitializeDropdownMenu)
                   </OnShow>
                 </Scripts>
               </Button>
@@ -252,7 +252,7 @@
                 </Anchors>
                 <Scripts>
                   <OnShow>
-                      UIDropDownMenu_Initialize(this, gm.slotsMenu.InitializeDropdownMenu);
+                      UIDropDownMenu_Initialize(this, gm.slotsMenu.InitializeDropdownMenu)
                   </OnShow>
                 </Scripts>
               </Button>
@@ -266,7 +266,7 @@
                 </Anchors>
                 <Scripts>
                   <OnShow>
-                      UIDropDownMenu_Initialize(this, gm.slotsMenu.InitializeDropdownMenu);
+                      UIDropDownMenu_Initialize(this, gm.slotsMenu.InitializeDropdownMenu)
                   </OnShow>
                 </Scripts>
               </Button>
@@ -280,7 +280,7 @@
                 </Anchors>
                 <Scripts>
                   <OnShow>
-                      UIDropDownMenu_Initialize(this, gm.slotsMenu.InitializeDropdownMenu);
+                      UIDropDownMenu_Initialize(this, gm.slotsMenu.InitializeDropdownMenu)
                   </OnShow>
                 </Scripts>
               </Button>
@@ -294,7 +294,7 @@
                 </Anchors>
                 <Scripts>
                   <OnShow>
-                      UIDropDownMenu_Initialize(this, gm.slotsMenu.InitializeDropdownMenu);
+                      UIDropDownMenu_Initialize(this, gm.slotsMenu.InitializeDropdownMenu)
                   </OnShow>
                 </Scripts>
               </Button>
@@ -308,7 +308,7 @@
                 </Anchors>
                 <Scripts>
                   <OnShow>
-                      UIDropDownMenu_Initialize(this, gm.slotsMenu.InitializeDropdownMenu);
+                      UIDropDownMenu_Initialize(this, gm.slotsMenu.InitializeDropdownMenu)
                   </OnShow>
                 </Scripts>
               </Button>
@@ -616,7 +616,7 @@
                         </Anchors>
                         <Scripts>
                           <OnShow>
-                              UIDropDownMenu_Initialize(this, gm.quickChangeMenu.InitializeDropdownMenu);
+                              UIDropDownMenu_Initialize(this, gm.quickChangeMenu.InitializeDropdownMenu)
                           </OnShow>
                         </Scripts>
                       </Button>
