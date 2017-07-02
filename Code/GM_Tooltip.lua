@@ -62,9 +62,6 @@ end
 ]]--
 function me.BuildTooltipForOption(line1, line2)
   local tooltip = getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP)
-  if tooltip ~= nil then
-    mod.logger.LogError(me.tag, "tooltip is not nil")
-  end
 
   GameTooltip_SetDefaultAnchor(tooltip, this)
 
