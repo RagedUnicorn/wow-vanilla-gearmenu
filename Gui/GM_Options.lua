@@ -30,7 +30,8 @@ end
 
 function me.InitOptionsMenu()
   -- set version title
-  getglobal(GM_CONSTANTS.ELEMENT_GM_OPTIONS_TITLE):SetText(GM_CONSTANTS.ADDON_NAME .. " " .. GM_CONSTANTS.ADDON_VERSION)
+  getglobal(GM_CONSTANTS.ELEMENT_GM_OPTIONS_TITLE):SetText(GM_CONSTANTS.ADDON_NAME ..
+    " " .. GM_CONSTANTS.ADDON_VERSION)
 end
 
 --[[
@@ -68,20 +69,20 @@ function QuickChangeScrollFrameVerticalScroll()
   local pre, maxScroll, scroll, toScroll
 
   pre = pre or 20
-  maxScroll = getglobal(this:GetName().."_Child"):GetHeight()-100
+  maxScroll = getglobal(this:GetName() .. "_Child"):GetHeight() - 100
 
 	if spec then
     maxScroll = maxScroll + 100
   end
 
-	scroll = this:GetVerticalScroll()
-	toScroll = (scroll - (pre*arg1))
+  scroll = this:GetVerticalScroll()
+  toScroll = (scroll - (pre*arg1))
 
-	if toScroll < 0 or maxScroll < 0 then
-		this:SetVerticalScroll(0)
-	elseif toScroll > maxScroll then
-		this:SetVerticalScroll(maxScroll)
-	else
-		this:SetVerticalScroll(toScroll)
-	end
+  if toScroll < 0 or maxScroll < 0 then
+    this:SetVerticalScroll(0)
+  elseif toScroll > maxScroll then
+    this:SetVerticalScroll(maxScroll)
+  else
+    this:SetVerticalScroll(toScroll)
+  end
 end
