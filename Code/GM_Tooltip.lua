@@ -60,7 +60,7 @@ end
   @param {string} line1
   @param {string} line2
 ]]--
-function me.BuildTooltipForOptions(line1, line2)
+function me.BuildTooltipForOption(line1, line2)
   GameTooltip_SetDefaultAnchor(GameTooltip, this)
 
   GameTooltip:AddLine(line1)

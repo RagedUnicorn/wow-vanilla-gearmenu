@@ -45,7 +45,7 @@ function GM_Tooltip_OnEnter()
 
   for i = 1, table.getn(mOptions) do
     if name == GM_CONSTANTS.ELEMENT_GM_Opt .. mOptions[i][1] then
-      mod.tooltip.BuildTooltipForOptions(mOptions[i][2], mOptions[i][3])
+      mod.tooltip.BuildTooltipForOption(mOptions[i][2], mOptions[i][3])
     end
   end
 end
