@@ -61,12 +61,17 @@ end
   @param {string} line2
 ]]--
 function me.BuildTooltipForOption(line1, line2)
-  GameTooltip_SetDefaultAnchor(GameTooltip, this)
+  local tooltip = getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP)
+  if tooltip ~= nil then
+    mod.logger.LogError(me.tag, "tooltip is not nil")
+  end
 
-  GameTooltip:AddLine(line1)
-  GameTooltip:AddLine(line2, .8, .8, .8, 1)
+  GameTooltip_SetDefaultAnchor(tooltip, this)
 
-  GameTooltip:Show()
+  tooltip:AddLine(line1)
+  tooltip:AddLine(line2, .8, .8, .8, 1)
+
+  tooltip:Show()
 end
 
 --[[
@@ -75,8 +80,10 @@ end
 function me.TooltipUpdate()
   if GearMenuOptions.disableTooltips then return end
 
+  local tooltip = getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP)
+
   local cooldown = GetContainerItemCooldown(tooltipBag, tooltipSlot)
-  GameTooltip:ClearLines()
+  tooltip:ClearLines()
 
   if tooltipType == TOOLTIP_TYPE_BAG then
     if GearMenuOptions.smallTooltips then
@@ -84,9 +91,9 @@ function me.TooltipUpdate()
       local _, _, color, id = string.find(itemLink, "^|c([|%a%d]+)|Hitem:(%d+)")
       local _, _, name = string.find(itemLink, "%[([%a%s%d',-:]+)%]")
 
-      GameTooltip:AddLine("|c" .. color .. name .. "|h|r")
+      tooltip:AddLine("|c" .. color .. name .. "|h|r")
     else
-      GameTooltip:SetBagItem(tooltipBag, tooltipSlot)
+      tooltip:SetBagItem(tooltipBag, tooltipSlot)
     end
   else
     if GearMenuOptions.smallTooltips then
@@ -98,13 +105,13 @@ function me.TooltipUpdate()
       local _, _, color, id = string.find(itemLink, "^|c([|%a%d]+)|Hitem:(%d+)")
       local _, _, name = string.find(itemLink, "%[([%a%s%d',-:]+)%]")
 
-      GameTooltip:AddLine("|c" .. color .. name .. "|h|r")
+      tooltip:AddLine("|c" .. color .. name .. "|h|r")
     else
-      GameTooltip:SetInventoryItem("player", tooltipSlot)
+      tooltip:SetInventoryItem("player", tooltipSlot)
     end
   end
 
-  GameTooltip:Show()
+  tooltip:Show()
 end
 
 --[[
@@ -113,5 +120,5 @@ end
 function me.TooltipClear()
   mod.logger.LogDebug(me.tag, "Cleared Tooltip")
   mod.timer.StopTimer("TooltipUpdate")
-  GameTooltip:Hide()
+  getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP):Hide()
 end

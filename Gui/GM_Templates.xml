@@ -9,7 +9,7 @@
         GM_Tooltip_OnEnter()
       </OnEnter>
       <OnLeave>
-        GameTooltip:Hide()
+        GM_Tooltip_OnLeave()
       </OnLeave>
     </Scripts>
   </CheckButton>

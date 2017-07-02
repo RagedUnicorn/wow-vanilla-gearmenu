@@ -153,6 +153,7 @@ GM_CONSTANTS = {
     elements
   ]]--
   ELEMENT_CHATFRAME = "ChatFrame",
+  ELEMENT_GM_TOOLTIP = "GM_Tooltip",
   ELEMENT_GM_TIMER_FRAME = "GM_TimerFrame",
   ELEMENT_GM_OPTIONS_TITLE = "GM_OptionsTitle",
   ELEMENT_GM_Opt = "GM_Opt",

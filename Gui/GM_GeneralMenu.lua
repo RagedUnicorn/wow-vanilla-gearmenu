@@ -50,6 +50,13 @@ function GM_Tooltip_OnEnter()
   end
 end
 
+--[[
+  hide options tooltip onleave
+]]--
+function GM_Tooltip_OnLeave()
+  getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP):Hide()
+end
+
 function GM_LockWindowOption_OnShow()
   -- load status from config-object
   if GearMenuOptions.windowLocked then

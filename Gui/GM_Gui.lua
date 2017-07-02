@@ -41,7 +41,7 @@ end
   hovering itemslot for worn item
 ]]--
 function GM_ItemButton_OnEnter()
-  GameTooltip_SetDefaultAnchor(GameTooltip, this)
+  GameTooltip_SetDefaultAnchor(getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP), this)
 
   local position = mod.common.ExtractPositionFromName(this:GetName())
   local module = mod.itemManager.FindModuleForPosition(position)
@@ -134,7 +134,7 @@ end
   hovering itemslot for bagged items
 ]]--
 function GM_GearMenuItem_OnEnter()
-  GameTooltip_SetDefaultAnchor(GameTooltip, this)
+  GameTooltip_SetDefaultAnchor(getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP), this)
   mod.tooltip.BuildTooltipForBaggedItems(this:GetID(), me.BaggedItems)
 end
 

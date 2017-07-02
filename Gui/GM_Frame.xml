@@ -282,8 +282,8 @@
     </Scripts>
   </Frame>
 
-  <!-- Hidden GameTooltip for tooltip scanning -->
-  <GameTooltip name="GM_TooltipScan" inherits="GameTooltipTemplate" hidden="true">
+  <!-- gametooltip -->
+  <GameTooltip name="GM_Tooltip" inherits="GameTooltipTemplate">
     <Scripts>
       <OnLoad>
         this:SetOwner(WorldFrame, "ANCHOR_NONE")
