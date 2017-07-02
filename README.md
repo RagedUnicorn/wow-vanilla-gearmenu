@@ -37,7 +37,7 @@ Remember the error message you get when you try to switch your one-handed weapon
 
 ### CombatQueue
 
-Certain items cannot be switched while the player is in combat. Weapons will be switched immediately whether the player is in combat or not. Other items that cannot be switched in combat will be enqueue in the CombatQueue and switched as soon as possible. This is especially useful in PvP when you leave combat for a short time.
+Certain items cannot be switched while the player is in combat. Weapons will be switched immediately whether the player is in combat or not. Other items that cannot be switched in combat will be enqueued in the CombatQueue and switched as soon as possible. This is especially useful in PvP when you leave combat for a short time.
 
 ![](/Docs/gm_combatqueue.gif)
 
