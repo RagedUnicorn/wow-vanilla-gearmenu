@@ -32,7 +32,8 @@ local mOptions = {
   {"ShowCooldowns", gm.L["showcooldowns"], gm.L["showcooldownstooltip"]},
   {"ShowKeyBindings", gm.L["showkeybindings"], gm.L["showkeybindingstooltip"]},
   {"DisableTooltips", gm.L["showtooltips"], gm.L["showtooltipstooltip"]},
-  {"SmallTooltips", gm.L["smalltooltips"], gm.L["smalltooltipstooltip"]}
+  {"SmallTooltips", gm.L["smalltooltips"], gm.L["smalltooltipstooltip"]},
+  {"DisableDragAndDrop", gm.L["disabledraganddrop"], gm.L["disabledraganddroptooltip"]}
 }
 
 --[[
@@ -152,6 +153,24 @@ end
 function GM_Opt_SmallTooltipsOption_OnShow()
   -- load status from config-object
   if GearMenuOptions.smallTooltips then
+    this:SetChecked(true)
+  else
+    this:SetChecked(false)
+  end
+end
+
+function GM_Opt_DisableDragAndDropOption_OnClick()
+  local enabled = this:GetChecked()
+
+  if enabled == 1 then
+    GearMenuOptions.disableDragAndDrop = true
+  else
+    GearMenuOptions.disableDragAndDrop = false
+  end
+end
+
+function GM_Opt_DisableDragAndDropOption_OnShow()
+  if GearMenuOptions.disableDragAndDrop then
     this:SetChecked(true)
   else
     this:SetChecked(false)

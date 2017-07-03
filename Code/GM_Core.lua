@@ -35,6 +35,7 @@ GearMenuOptions = {
   ["showCooldowns"] = true,
   ["disableTooltips"] = false,
   ["smallTooltips"] = false,
+  ["disableDragAndDrop"] = false,
   ["modules"] = {
     ["mainHand"] = 1,
     ["offHand"] = 2,

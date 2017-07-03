@@ -39,6 +39,8 @@ if (GetLocale() == "deDE") then
   gm.L["showtooltipstooltip"] = "Deaktiviere Kurzinfo für markierte Items."
   gm.L["smalltooltips"] = "Zeige kleine Kurzinfo"
   gm.L["smalltooltipstooltip"] = "Zeige nur den Titel des markierten Items anstatt die ganze Kurzinfo."
+  gm.L["disabledraganddrop"] = "Deaktiviere Drag and Drop"
+  gm.L["disabledraganddroptooltip"] = "Deaktiviere Drag and Drop für Items."
 
   -- quick change tab
   gm.L["rulelistlabel"] = "Regeln:"

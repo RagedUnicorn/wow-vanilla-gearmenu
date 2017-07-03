@@ -406,6 +406,23 @@
                   </OnShow>
                 </Scripts>
               </CheckButton>
+              <CheckButton name="GM_OptDisableDragAndDrop" inherits="GM_CheckButtonTemplate">
+                <Anchors>
+                  <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
+                    <Offset>
+                      <AbsDimension x="10" y="-160"/>
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnClick>
+                    GM_Opt_DisableDragAndDropOption_OnClick()
+                  </OnClick>
+                  <OnShow>
+                    GM_Opt_DisableDragAndDropOption_OnShow()
+                  </OnShow>
+                </Scripts>
+              </CheckButton>
             </Frames>
             <Scripts>
               <OnShow>

@@ -106,6 +106,9 @@ end
   the current item without overwriting the cursor.
 ]]--
 function GM_ItemButton_OnReceiveDrag()
+  -- abort if drag and drop is disabled
+  if GearMenuOptions.disableDragAndDrop then return end
+
   local position = mod.common.ExtractPositionFromName(this:GetName())
   local module = mod.itemManager.FindModuleForPosition(position)
 
@@ -124,6 +127,9 @@ end
   (only useful for fast trinketswitch or putting an item in the bag)
 ]]--
 function GM_ItemButton_OnDragStart()
+  -- abort if drag and drop is disabled
+  if GearMenuOptions.disableDragAndDrop then return end
+
   local position = mod.common.ExtractPositionFromName(this:GetName())
   local module = mod.itemManager.FindModuleForPosition(position)
 

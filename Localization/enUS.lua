@@ -38,6 +38,8 @@ gm.L["showtooltips"] = "Disable Tooltips"
 gm.L["showtooltipstooltip"] = "Disable tooltips for hovering over items."
 gm.L["smalltooltips"] = "Display small Tooltips"
 gm.L["smalltooltipstooltip"] = "Show only the title of the item that is currently hovered instead of the full tooltip."
+gm.L["disabledraganddrop"] = "Disable Drag and Drop"
+gm.L["disabledraganddroptooltip"] = "Disable Drag and Drop for items."
 
 -- quick change tab
 gm.L["rulelistlabel"] = "Rules:"
