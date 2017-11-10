@@ -30,7 +30,7 @@ me.tag = "Logger"
   error - 1
   event - 0
 ]]--
-me.logLevel = 4
+me.logLevel = 1
 me.debug = 4
 me.info = 3
 me.warn = 2
