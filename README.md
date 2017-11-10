@@ -94,6 +94,11 @@ To show the configuration screen use `/gm opt` while ingame and `/gm info` for a
 
 ![](/Docs/gm_options_lock_window.gif)
 
+### Filter Items by Quality
+
+Not interested to see items with a quality level below a certain level? Filter them out and only items that meet your set level will be considered to be displayed in GearMenu.
+
+![](/Docs/gm_options_filter_item_quality.gif)
 
 ## Installation
 
