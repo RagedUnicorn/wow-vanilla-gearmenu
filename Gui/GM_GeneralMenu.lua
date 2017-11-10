@@ -188,3 +188,74 @@ function GM_InitGeneralMenu()
     end
   end
 end
+
+--[[
+  create a dropwdownbutton for item quality filter selection
+  @param {string} text
+  @param {string} value
+  @param {function} callback
+  @return {table} button
+]]--
+function me.CreateDropdownButton(text, value, callback)
+  local button = {}
+
+  button.text = text
+  button.value = value
+  button.func = callback
+
+  return button
+end
+
+--[[
+  initialize dropdownmenus for item quality filter
+]]--
+function me.InitializeDropdownMenu()
+  local button, itemQualityFilter
+
+  itemQualityFilter = GearMenuOptions.filterItemQuality
+
+  if itemQualityFilter == nil then
+    mod.logger.LogWarn(me.tag, "Invalid item quality filter - resetting to default value")
+    GearMenuOptions.filterItemQuality = 5
+  end
+
+  button = me.CreateDropdownButton(gm.L["item_quality_poor"],
+    GM_CONSTANTS.ITEMQUALITY.poor, me.DropDownMenuCallback)
+  UIDropDownMenu_AddButton(button)
+
+  button = me.CreateDropdownButton(gm.L["item_quality_common"],
+    GM_CONSTANTS.ITEMQUALITY.common, me.DropDownMenuCallback)
+  UIDropDownMenu_AddButton(button)
+
+  button = me.CreateDropdownButton(gm.L["item_quality_uncommon"],
+    GM_CONSTANTS.ITEMQUALITY.uncommon, me.DropDownMenuCallback)
+  UIDropDownMenu_AddButton(button)
+
+  button = me.CreateDropdownButton(gm.L["item_quality_rare"],
+    GM_CONSTANTS.ITEMQUALITY.rare, me.DropDownMenuCallback)
+  UIDropDownMenu_AddButton(button)
+
+  button = me.CreateDropdownButton(gm.L["item_quality_epic"],
+    GM_CONSTANTS.ITEMQUALITY.epic, me.DropDownMenuCallback)
+  UIDropDownMenu_AddButton(button)
+
+  button = me.CreateDropdownButton(gm.L["item_quality_legendary"],
+    GM_CONSTANTS.ITEMQUALITY.legendary, me.DropDownMenuCallback)
+  UIDropDownMenu_AddButton(button)
+
+  if (UIDropDownMenu_GetSelectedID(getglobal(GM_CONSTANTS.ELEMENT_GM_OPT_FILTER_ITEM_QUALITY)) == nil) then
+    UIDropDownMenu_SetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_GM_OPT_FILTER_ITEM_QUALITY), itemQualityFilter)
+  end
+end
+
+--[[
+  callback for optionsmenu dropdowns
+]]
+function me.DropDownMenuCallback()
+  local currentValue = UIDropDownMenu_GetSelectedValue(getglobal(UIDROPDOWNMENU_OPEN_MENU))
+
+  -- update addon setting
+  GearMenuOptions.filterItemQuality = this.value
+  -- UIDROPDOWNMENU_OPEN_MENU is the currently open dropdown menu
+  UIDropDownMenu_SetSelectedValue(getglobal(UIDROPDOWNMENU_OPEN_MENU), this.value)
+end

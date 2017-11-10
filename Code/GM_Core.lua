@@ -36,6 +36,19 @@ GearMenuOptions = {
   ["disableTooltips"] = false,
   ["smallTooltips"] = false,
   ["disableDragAndDrop"] = false,
+  --[[
+    Itemquality to filter items by their quality. Everything that is below the settings value
+    will not be considered a valid item to display when building the itemcontextmenu.
+    By default all items are allowed
+
+    0 Poor (gray)
+    1 Common (white)
+    2 Uncommon (green)
+    3 Rare (blue)
+    4 Epic (purple)
+    5 Legendary (orange)
+  ]]--
+  ["filterItemQuality"] = 0,
   ["modules"] = {
     ["mainHand"] = 1,
     ["offHand"] = 2,

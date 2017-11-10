@@ -41,6 +41,13 @@ if (GetLocale() == "deDE") then
   gm.L["smalltooltipstooltip"] = "Zeige nur den Titel des markierten Items anstatt die ganze Kurzinfo."
   gm.L["disabledraganddrop"] = "Deaktiviere Drag and Drop"
   gm.L["disabledraganddroptooltip"] = "Deaktiviere Drag and Drop für Items."
+  gm.L["filteritemquality"] = "Filtere Gegenstandsqualität:"
+  gm.L["item_quality_poor"] = "Arm (Grau)"
+  gm.L["item_quality_common"] = "Gewöhnlich (Weiss)"
+  gm.L["item_quality_uncommon"] = "Ungewöhnlich (Grün)"
+  gm.L["item_quality_rare"] = "Selten (Blau)"
+  gm.L["item_quality_epic"] = "Episch (Violet)"
+  gm.L["item_quality_legendary"] = "Legendär (Orange)"
 
   -- quick change tab
   gm.L["rulelistlabel"] = "Regeln:"

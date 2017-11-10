@@ -46,7 +46,7 @@ local mWindows = {
     ["position"] = 2,
     ["active"] = false,
     ["init"] = function()
-      return false
+      getglobal(GM_CONSTANTS.ELEMENT_GM_FILTER_ITEM_QUALITY_TITLE):SetText(gm.L["filteritemquality"])
     end
   },
   [3] = {

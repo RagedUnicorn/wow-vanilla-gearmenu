@@ -159,12 +159,14 @@ GM_CONSTANTS = {
   ELEMENT_GM_Opt = "GM_Opt",
   ELEMENT_GM_SLOT = "GM_Slot",
   ELEMENT_GM_OPT_SLOT = "GM_OptSlot",
+  ELEMENT_GM_OPT_FILTER_ITEM_QUALITY = "GM_OptFilterItemQuality",
   ELEMENT_GM_MENU_ITEM = "GM_MenuItem",
   ELEMENT_GM_SLOT_FRAME = "GM_SlotFrame",
   ELEMENT_GM_MAIN_FRAME = "GM_MainFrame",
   ELEMENT_GM_OPTIONS_FRAME = "GM_OptionsFrame",
   ELEMENT_GM_MOVE_BUTTON = "GM_DragButton",
   ELEMENT_GM_SLOT_TITLE = "GM_TitleSlot",
+  ELEMENT_GM_FILTER_ITEM_QUALITY_TITLE = "GM_TitleFilterItemQuality",
   ELEMENT_GM_ABOUT_AUTHOR_LABEL = "GM_AboutAuthor",
   ELEMENT_GM_ABOUT_EMAIL_LABEL = "GM_AboutEmail",
   ELEMENT_GM_ABOUT_VERSION_LABEL = "GM_AboutVersion",
@@ -199,5 +201,14 @@ GM_CONSTANTS = {
   INTERFACE_SLOT_WIDTH = 42,
   -- itemmenu
   INTERFACE_ITEM_MENU_DEFAULT_POSITION = 0,
-  INTERFACE_ITEM_MENU_MARGIN_BOTTOM = 48
+  INTERFACE_ITEM_MENU_MARGIN_BOTTOM = 48,
+
+  ITEMQUALITY = {
+    poor = 0,
+    common = 1,
+    uncommon = 2,
+    rare = 3,
+    epic = 4,
+    legendary = 5
+  }
 }

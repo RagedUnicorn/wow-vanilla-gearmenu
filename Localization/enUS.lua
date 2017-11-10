@@ -40,6 +40,13 @@ gm.L["smalltooltips"] = "Display small Tooltips"
 gm.L["smalltooltipstooltip"] = "Show only the title of the item that is currently hovered instead of the full tooltip."
 gm.L["disabledraganddrop"] = "Disable Drag and Drop"
 gm.L["disabledraganddroptooltip"] = "Disable Drag and Drop for items."
+gm.L["filteritemquality"] = "Filter Item Quality:"
+gm.L["item_quality_poor"] = "Poor (Grey)"
+gm.L["item_quality_common"] = "Common (White)"
+gm.L["item_quality_uncommon"] = "Uncommon (Green)"
+gm.L["item_quality_rare"] = "Rare (Blau)"
+gm.L["item_quality_epic"] = "Epic (Purple)"
+gm.L["item_quality_legendary"] = "Legendary (Orange)"
 
 -- quick change tab
 gm.L["rulelistlabel"] = "Rules:"

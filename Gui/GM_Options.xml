@@ -319,6 +319,20 @@
             <Anchors>
               <Anchor point="TOPLEFT"/>
             </Anchors>
+            <Layers>
+              <Layer level="BACKGROUND">
+                <FontString name="GM_TitleFilterItemQuality" inherits="GameFontNormalSmall" text="test">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="10" y="-190"/>
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <Color r="1" g="1" b="1"/>
+                </FontString>
+              </Layer>
+            </Layers>
             <Frames>
               <!-- content GM_CONTENT_GENERAL -->
               <CheckButton name="GM_OptLockWindow" inherits="GM_CheckButtonTemplate">
@@ -423,6 +437,20 @@
                   </OnShow>
                 </Scripts>
               </CheckButton>
+              <Button name="GM_OptFilterItemQuality" inherits="UIDropDownMenuTemplate">
+                <Anchors>
+                  <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
+                    <Offset>
+                      <AbsDimension x="-5" y="-210"/>
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnShow>
+                    UIDropDownMenu_Initialize(this, gm.generalMenu.InitializeDropdownMenu)
+                  </OnShow>
+                </Scripts>
+              </Button>
             </Frames>
             <Scripts>
               <OnShow>
