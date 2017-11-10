@@ -29,7 +29,7 @@ GM_CONSTANTS = {
   ]]--
   ADDON_NAME = "GearMenu",
   ADDON_NAME_SHORT = "GM",
-  ADDON_VERSION = "1.0.0",
+  ADDON_VERSION = "1.0.1",
 
   --[[
     debug logging chatframes
