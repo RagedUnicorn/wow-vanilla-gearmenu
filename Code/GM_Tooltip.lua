@@ -67,7 +67,7 @@ function me.BuildTooltipForOption(line1, line2)
 
   tooltip:AddLine(line1)
   tooltip:AddLine(line2, .8, .8, .8, 1)
-  -- set explicit backdrop color fixing dispaly issue for first shown tooltip
+  -- set explicit backdrop color fixing display issue for first shown tooltip
   tooltip:SetBackdropColor(0, 0, 0, .7)
 
   tooltip:Show()
@@ -110,7 +110,7 @@ function me.TooltipUpdate()
     end
   end
 
-  -- set explicit backdrop color fixing dispaly issue for first shown tooltip
+  -- set explicit backdrop color fixing display issue for first shown tooltip
   tooltip:SetBackdropColor(0, 0, 0, .7)
 
   tooltip:Show()
