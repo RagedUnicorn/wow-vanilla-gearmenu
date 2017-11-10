@@ -255,7 +255,7 @@ function me.DropDownMenuCallback()
   local currentValue = UIDropDownMenu_GetSelectedValue(getglobal(UIDROPDOWNMENU_OPEN_MENU))
 
   -- update addon setting
-  GearMenuOptions.filterItemQuality = this.value
+  GearMenuOptions.filterItemQuality = tonumber(this.value)
   -- UIDROPDOWNMENU_OPEN_MENU is the currently open dropdown menu
   UIDropDownMenu_SetSelectedValue(getglobal(UIDROPDOWNMENU_OPEN_MENU), this.value)
 end
