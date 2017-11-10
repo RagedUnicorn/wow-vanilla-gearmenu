@@ -148,7 +148,7 @@
                       </Offset>
                     </Anchor>
                   </Anchors>
-                  <Color r="1.0" g="1.0" b="0.0"/>
+                  <Color r="1" g="1" b="1"/>
                 </FontString>
                 <FontString name="GM_TitleSlot2" inherits="GameFontHighlight">
                   <Anchors>
@@ -158,7 +158,7 @@
                       </Offset>
                     </Anchor>
                   </Anchors>
-                  <Color r="1.0" g="1.0" b="0.0"/>
+                  <Color r="1" g="1" b="1"/>
                 </FontString>
                 <FontString name="GM_TitleSlot3" inherits="GameFontHighlight">
                   <Anchors>
@@ -168,7 +168,7 @@
                       </Offset>
                     </Anchor>
                   </Anchors>
-                  <Color r="1.0" g="1.0" b="0.0"/>
+                  <Color r="1" g="1" b="1"/>
                 </FontString>
                 <FontString name="GM_TitleSlot4" inherits="GameFontHighlight">
                   <Anchors>
@@ -178,7 +178,7 @@
                       </Offset>
                     </Anchor>
                   </Anchors>
-                  <Color r="1.0" g="1.0" b="0.0"/>
+                  <Color r="1" g="1" b="1"/>
                 </FontString>
                 <FontString name="GM_TitleSlot5" inherits="GameFontHighlight">
                   <Anchors>
@@ -188,7 +188,7 @@
                       </Offset>
                     </Anchor>
                   </Anchors>
-                  <Color r="1.0" g="1.0" b="0.0"/>
+                  <Color r="1" g="1" b="1"/>
                 </FontString>
                 <FontString name="GM_TitleSlot6" inherits="GameFontHighlight">
                   <Anchors>
@@ -198,7 +198,7 @@
                       </Offset>
                     </Anchor>
                   </Anchors>
-                  <Color r="1.0" g="1.0" b="0.0"/>
+                  <Color r="1" g="1" b="1"/>
                 </FontString>
                 <FontString name="GM_TitleSlot7" inherits="GameFontHighlight">
                   <Anchors>
@@ -208,7 +208,7 @@
                       </Offset>
                     </Anchor>
                   </Anchors>
-                  <Color r="1.0" g="1.0" b="0.0"/>
+                  <Color r="1" g="1" b="1"/>
                 </FontString>
               </Layer>
             </Layers>
