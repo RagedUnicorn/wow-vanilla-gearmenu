@@ -44,7 +44,7 @@ gm.L["filteritemquality"] = "Filter Item Quality:"
 gm.L["item_quality_poor"] = "Poor (Grey)"
 gm.L["item_quality_common"] = "Common (White)"
 gm.L["item_quality_uncommon"] = "Uncommon (Green)"
-gm.L["item_quality_rare"] = "Rare (Blau)"
+gm.L["item_quality_rare"] = "Rare (Blue)"
 gm.L["item_quality_epic"] = "Epic (Purple)"
 gm.L["item_quality_legendary"] = "Legendary (Orange)"
 
