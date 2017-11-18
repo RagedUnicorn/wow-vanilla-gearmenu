@@ -321,7 +321,7 @@
             </Anchors>
             <Layers>
               <Layer level="BACKGROUND">
-                <FontString name="GM_TitleFilterItemQuality" inherits="GameFontNormalSmall" text="test">
+                <FontString name="GM_TitleFilterItemQuality" inherits="GameFontNormalSmall">
                   <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                       <Offset>
