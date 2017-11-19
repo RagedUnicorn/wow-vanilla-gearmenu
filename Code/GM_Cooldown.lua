@@ -24,7 +24,7 @@ mod.cooldown = me
 
 me.tag = "Cooldown"
 -- table of used items and their respective cooldown
-local mItemsUsed = {}
+local itemsUsed = {}
 
 --[[
   update cooldowns
@@ -32,7 +32,7 @@ local mItemsUsed = {}
 function me.CooldownUpdate()
   local inv, bag, slot, start, duration, itemID, remain
 
-  for i in mItemsUsed do
+  for i in itemsUsed do
     start, itemID = nil
     inv, bag, slot = watch[i].inv, watch[i].bag, watch[i].slot
 
@@ -54,26 +54,26 @@ function me.CooldownUpdate()
     elseif bag then
       start, duration = GetContainerItemCooldown(bag, slot)
     else
-      mItemsUsed[i] = nil
+      itemsUsed[i] = nil
     end
 
-    if start and mItemsUsed[i] < 3 then
-      mItemsUsed[i] = mItemsUsed[i] + 1 -- count for 3 seconds before seeing if this is a real cooldown
+    if start and itemsUsed[i] < 3 then
+      itemsUsed[i] = itemsUsed[i] + 1 -- count for 3 seconds before seeing if this is a real cooldown
     elseif start then
       if start > 0 then
         remain = duration - (GetTime() - start)
-        if mItemsUsed[i] < 5 then
+        if itemsUsed[i] < 5 then
           if remain > 29 then
-            mItemsUsed[i] = 30 -- first actual cooldown greater than 30 seconds, tag it for 30 + 0 notify
+            itemsUsed[i] = 30 -- first actual cooldown greater than 30 seconds, tag it for 30 + 0 notify
           elseif remain > 5 then
-            mItemsUsed[i] = 5 -- first actual cooldown less than 30 but greater than 5, tag for 0 notify
+            itemsUsed[i] = 5 -- first actual cooldown less than 30 but greater than 5, tag for 0 notify
           end
         end
       end
 
       -- no cooldown has started - remove from used items
       if start == 0 then
-        mItemsUsed[i] = nil
+        itemsUsed[i] = nil
       end
     end
   end

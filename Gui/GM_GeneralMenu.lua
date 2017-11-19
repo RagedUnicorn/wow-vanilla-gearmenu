@@ -27,7 +27,7 @@ me.tag = "GeneralMenu"
 --[[
   private
 ]]
-local mOptions = {
+local options = {
   {"LockWindow", gm.L["lockwindow"], gm.L["lockwindowtooltip"]},
   {"ShowCooldowns", gm.L["showcooldowns"], gm.L["showcooldownstooltip"]},
   {"ShowKeyBindings", gm.L["showkeybindings"], gm.L["showkeybindingstooltip"]},
@@ -44,9 +44,9 @@ function GM_Tooltip_OnEnter()
 
   if not name then return end
 
-  for i = 1, table.getn(mOptions) do
-    if name == GM_CONSTANTS.ELEMENT_GM_Opt .. mOptions[i][1] then
-      mod.tooltip.BuildTooltipForOption(mOptions[i][2], mOptions[i][3])
+  for i = 1, table.getn(options) do
+    if name == GM_CONSTANTS.ELEMENT_GM_Opt .. options[i][1] then
+      mod.tooltip.BuildTooltipForOption(options[i][2], options[i][3])
     end
   end
 end
@@ -180,10 +180,10 @@ end
 function GM_InitGeneralMenu()
   local item
 
-  for i = 1, table.getn(mOptions) do
-    item = getglobal(GM_CONSTANTS.ELEMENT_GM_Opt .. mOptions[i][1] .. "Text")
+  for i = 1, table.getn(options) do
+    item = getglobal(GM_CONSTANTS.ELEMENT_GM_Opt .. options[i][1] .. "Text")
     if item then
-      item:SetText(mOptions[i][2])
+      item:SetText(options[i][2])
       item:SetTextColor(.95, .95, .95)
     end
   end

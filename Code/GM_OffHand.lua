@@ -30,26 +30,26 @@ me.timer = "UpdateWornOffHand"
 --[[
   private variables
 ]]--
-local mDisabled = false
+local slotDisabled = false
 -- default position, use 0 for disabling
-local mPosition = 2
+local slotPosition = 2
 
 
 function me.SetPosition(position)
-  mPosition = position
+  slotPosition = position
   GearMenuOptions.modules[me.moduleName] = position
 end
 
 function me.GetPosition()
-  return mPosition
+  return slotPosition
 end
 
 function me.SetDisabled(disabled)
-  mDisabled = disabled
+  slotDisabled = disabled
 end
 
 function me.GetDisabled()
-  return mDisabled
+  return slotDisabled
 end
 
 --[[
@@ -57,14 +57,14 @@ end
 ]]--
 function me.UpdateWornItem()
   -- abort when item is disabled
-  if mDisabled then return end
+  if slotDisabled then return end
 
   mod.logger.LogDebug(me.tag, "Update worn item")
 
-  getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. mPosition .. "Icon"):SetTexture(mod.common.RetrieveItemInfo(me.id))
-  getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. mPosition .. "Icon"):SetDesaturated(0)
-  getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. mPosition):SetChecked(0)
-  mod.cooldown.UpdateCooldownForWornItem(me.id, mPosition)
+  getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. slotPosition .. "Icon"):SetTexture(mod.common.RetrieveItemInfo(me.id))
+  getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. slotPosition .. "Icon"):SetDesaturated(0)
+  getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. slotPosition):SetChecked(0)
+  mod.cooldown.UpdateCooldownForWornItem(me.id, slotPosition)
 end
 
 --[[

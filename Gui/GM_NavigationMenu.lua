@@ -24,7 +24,7 @@ mod.navigationMenu = me
 
 me.tag = "NavigationMenu"
 
-local mWindows = {
+local navigationEntries = {
   [1] = {
     ["name"] = "Slots",
     ["text"] = gm.L["navigationslots"],
@@ -84,14 +84,14 @@ function GM_LeftNavigationMenu_OnLoad()
   local frames = { this:GetChildren() }
 
   -- reset tab buttons and content frame
-  for i = 1, table.getn(mWindows) do
-    mWindows[i].active = false
+  for i = 1, table.getn(navigationEntries) do
+    navigationEntries[i].active = false
 
     -- reset navigation highlight
     getglobal(GM_CONSTANTS.ELEMENT_GM_NAVIGATION_BUTTON .. i .. "Texture"):Hide()
     getglobal(GM_CONSTANTS.ELEMENT_GM_NAVIGATION_BUTTON .. i .. "Text"):SetTextColor(0.94, 0.76, 0, 1)
     -- hide content frame
-    getglobal(GM_CONSTANTS.ELEMENT_GM_CONTENT .. mWindows[i].name):Hide()
+    getglobal(GM_CONSTANTS.ELEMENT_GM_CONTENT .. navigationEntries[i].name):Hide()
   end
 
   for _, framechild in ipairs(frames) do
@@ -103,32 +103,32 @@ function GM_LeftNavigationMenu_OnLoad()
   end
 
   -- set first content window active
-  getglobal(GM_CONSTANTS.ELEMENT_GM_CONTENT .. mWindows[1].name):Show()
-  mWindows[1].init()
+  getglobal(GM_CONSTANTS.ELEMENT_GM_CONTENT .. navigationEntries[1].name):Show()
+  navigationEntries[1].init()
 end
 
 function GM_Navigation_Button_OnClick()
   local name = this:GetName()
   local position = mod.common.ExtractPositionFromName(name)
 
-  if not mWindows[position].active then
-    for i = 1, table.getn(mWindows) do
+  if not navigationEntries[position].active then
+    for i = 1, table.getn(navigationEntries) do
       if i == position then
-        mWindows[i].active = true
+        navigationEntries[i].active = true
         -- set navigation button active
         getglobal(name .. "Texture"):Show()
         getglobal(name .. "Text"):SetTextColor(1, 1, 1, 1)
         -- set content frame active
-        getglobal(GM_CONSTANTS.ELEMENT_GM_CONTENT .. mWindows[i].name):Show()
-        mWindows[i].init()
+        getglobal(GM_CONSTANTS.ELEMENT_GM_CONTENT .. navigationEntries[i].name):Show()
+        navigationEntries[i].init()
       else
-        mWindows[i].active = false
+        navigationEntries[i].active = false
 
         -- reset navigation highlight
         getglobal(GM_CONSTANTS.ELEMENT_GM_NAVIGATION_BUTTON .. i .. "Texture"):Hide()
         getglobal(GM_CONSTANTS.ELEMENT_GM_NAVIGATION_BUTTON .. i .. "Text"):SetTextColor(0.94, 0.76, 0, 1)
         -- hide content frame
-        getglobal(GM_CONSTANTS.ELEMENT_GM_CONTENT .. mWindows[i].name):Hide()
+        getglobal(GM_CONSTANTS.ELEMENT_GM_CONTENT .. navigationEntries[i].name):Hide()
       end
     end
   else
@@ -140,5 +140,5 @@ function GM_Navigation_Button_OnLoad()
   local name = this:GetName()
   local position = mod.common.ExtractPositionFromName(name)
 
-  getglobal(name .."Text"):SetText(mWindows[position].text)
+  getglobal(name .."Text"):SetText(navigationEntries[position].text)
 end

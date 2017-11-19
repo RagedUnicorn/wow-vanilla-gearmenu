@@ -25,15 +25,15 @@ mod.quickChangeMenu = me
 me.tag = "QuickChangeMenu"
 
 -- id's of the selected item
-local mChangeFromSelectedItem = 0
-local mChangeToSelectedItem = 0
-local mQuickChangeRuleSelectedPos = nil
-local mQuickChangeDelay = 0
-local mEditDelayFocus = false
+local changeFromSelectedItem = 0
+local changeToSelectedItem = 0
+local quickChangeRuleSelectedPos = nil
+local quickChangeDelay = 0
+local editDelayFocus = false
 
 -- saved lists for left and right quick change scrolllists
-local mChangeFromItemList = {}
-local mChangeToItemList = {}
+local changeFromItemList = {}
+local changeToItemList = {}
 
 function GM_QuickChangeRulesListUpdate()
   local offset = FauxScrollFrame_GetOffset(GM_QuickChangeRuleScrollFrame) + this:GetID()
@@ -78,7 +78,7 @@ end
 function GM_QuickChangeRuleListCell_OnClick()
   local idx = FauxScrollFrame_GetOffset(GM_QuickChangeRuleScrollFrame) + this:GetID()
 
-  mQuickChangeRuleSelectedPos = idx
+  quickChangeRuleSelectedPos = idx
   -- clear all current highlighting
   me.ClearCellList(GM_CONSTANTS.ELEMENT_GM_QUICK_CHANGE_RULE_CELL, 5)
 
@@ -94,8 +94,8 @@ function GM_ChangeFromList_Update(itemType)
   end
 
   itemList = mod.common.GetItemsByType(itemType, true)
-  mChangeFromItemList = me.FilterDuplicateItems(itemList)
-  FauxScrollFrame_Update(GM_QuickChange_ChangeFromScrollFrame, mChangeFromItemList and table.getn(mChangeFromItemList) or 0, 9, 24)
+  changeFromItemList = me.FilterDuplicateItems(itemList)
+  FauxScrollFrame_Update(GM_QuickChange_ChangeFromScrollFrame, changeFromItemList and table.getn(changeFromItemList) or 0, 9, 24)
   -- clear highlighted cells on scroll
   me.ClearCellList(GM_CONSTANTS.ELEMENT_GM_CHANGE_FROM_CELL, 9, true)
   offset = FauxScrollFrame_GetOffset(GM_QuickChange_ChangeFromScrollFrame)
@@ -107,14 +107,14 @@ function GM_ChangeFromList_Update(itemType)
 
     local idx = offset + i
 
-    if idx <= table.getn(mChangeFromItemList) then
-      itemIcon:SetTexture(mChangeFromItemList[idx].texture)
-      itemName:SetText(mChangeFromItemList[idx].name)
-      r, g, b = GetItemQualityColor(mChangeFromItemList[idx].quality)
+    if idx <= table.getn(changeFromItemList) then
+      itemIcon:SetTexture(changeFromItemList[idx].texture)
+      itemName:SetText(changeFromItemList[idx].name)
+      r, g, b = GetItemQualityColor(changeFromItemList[idx].quality)
       itemName:SetTextColor(r, g, b)
       itemIcon:SetVertexColor(1, 1, 1)
 
-      if mChangeFromSelectedItem == mChangeFromItemList[idx].id then
+      if changeFromSelectedItem == changeFromItemList[idx].id then
         -- reapply highlight after scrolling
         getglobal(GM_CONSTANTS.ELEMENT_GM_CHANGE_FROM_CELL .. i .. "Highlight"):Show()
         item.selectedItem = true
@@ -135,8 +135,8 @@ function GM_ChangeToList_Update(itemType)
   end
 
   itemList = mod.common.GetItemsByType(itemType, true)
-  mChangeToItemList = me.FilterDuplicateItems(itemList)
-  FauxScrollFrame_Update(GM_QuickChange_ChangeToScrollFrame, mChangeToItemList and table.getn(mChangeToItemList) or 0, 9, 24)
+  changeToItemList = me.FilterDuplicateItems(itemList)
+  FauxScrollFrame_Update(GM_QuickChange_ChangeToScrollFrame, changeToItemList and table.getn(changeToItemList) or 0, 9, 24)
   -- clear highlighted cells on scroll
   me.ClearCellList(GM_CONSTANTS.ELEMENT_GM_CHANGE_TO_CELL, 9, true)
   offset = FauxScrollFrame_GetOffset(GM_QuickChange_ChangeToScrollFrame)
@@ -148,14 +148,14 @@ function GM_ChangeToList_Update(itemType)
 
     local idx = offset + i
 
-    if idx <= table.getn(mChangeToItemList) then
-      itemIcon:SetTexture(mChangeToItemList[idx].texture)
-      itemName:SetText(mChangeToItemList[idx].name)
-      r, g, b = GetItemQualityColor(mChangeToItemList[idx].quality)
+    if idx <= table.getn(changeToItemList) then
+      itemIcon:SetTexture(changeToItemList[idx].texture)
+      itemName:SetText(changeToItemList[idx].name)
+      r, g, b = GetItemQualityColor(changeToItemList[idx].quality)
       itemName:SetTextColor(r, g, b)
       itemIcon:SetVertexColor(1, 1, 1)
 
-      if mChangeToSelectedItem == mChangeToItemList[idx].id then
+      if changeToSelectedItem == changeToItemList[idx].id then
         -- reapply highlight after scrolling
         getglobal(GM_CONSTANTS.ELEMENT_GM_CHANGE_TO_CELL .. i .. "Highlight"):Show()
         item.selectedItem = true
@@ -175,10 +175,10 @@ function GM_ChangeFromListCell_OnClick()
   me.ClearCellList(GM_CONSTANTS.ELEMENT_GM_CHANGE_FROM_CELL, 9)
 
   -- match clicked id with position in itemList
-  local itemName = mChangeFromItemList[idx].name
-  local itemID = mChangeFromItemList[idx].id
+  local itemName = changeFromItemList[idx].name
+  local itemID = changeFromItemList[idx].id
 
-  mChangeFromSelectedItem = mChangeFromItemList[idx].id
+  changeFromSelectedItem = changeFromItemList[idx].id
   this.selectedItem = true
   getglobal(this:GetName() .. "Highlight"):Show()
 end
@@ -190,10 +190,10 @@ function GM_ChangeToListCell_OnClick()
   me.ClearCellList(GM_CONSTANTS.ELEMENT_GM_CHANGE_TO_CELL, 9)
 
   -- match clicked id with position in itemList
-  local itemName = mChangeToItemList[idx].name
-  local itemID = mChangeToItemList[idx].id
+  local itemName = changeToItemList[idx].name
+  local itemID = changeToItemList[idx].id
 
-  mChangeToSelectedItem = mChangeToItemList[idx].id
+  changeToSelectedItem = changeToItemList[idx].id
 
   this.selectedItem = true
   getglobal(this:GetName() .. "Highlight"):Show()
@@ -201,21 +201,21 @@ end
 
 function GM_AddQuickChangeRule_OnClick()
   -- check for selected items
-  if mChangeFromSelectedItem == 0 or mChangeToSelectedItem == 0 then
+  if changeFromSelectedItem == 0 or changeToSelectedItem == 0 then
     mod.logger.PrintUserError(gm.L["quick_change_item_select_missing"])
     return
   end
 
-  mod.quickChange.AddQuickChangeRule(mChangeFromSelectedItem, mChangeToSelectedItem, mQuickChangeDelay)
+  mod.quickChange.AddQuickChangeRule(changeFromSelectedItem, changeToSelectedItem, quickChangeDelay)
   getglobal(GM_CONSTANTS.ELEMENT_GM_QUICK_CHANGE_ADD_RULE):SetText("0")
   me.ClearCellList(GM_CONSTANTS.ELEMENT_GM_CHANGE_FROM_CELL, 9)
   me.ClearCellList(GM_CONSTANTS.ELEMENT_GM_CHANGE_TO_CELL, 9)
 end
 
 function GM_DeleteQuickChangeRule_OnClick()
-  if mQuickChangeRuleSelectedPos ~= nil then
-    mod.logger.LogDebug(me.tag, "Removing position " .. mQuickChangeRuleSelectedPos .. " from QuickChange rules")
-    mod.quickChange.RemoveQuickChangeRule(mQuickChangeRuleSelectedPos)
+  if quickChangeRuleSelectedPos ~= nil then
+    mod.logger.LogDebug(me.tag, "Removing position " .. quickChangeRuleSelectedPos .. " from QuickChange rules")
+    mod.quickChange.RemoveQuickChangeRule(quickChangeRuleSelectedPos)
   else
     return nil
   end
@@ -224,28 +224,28 @@ end
 function GM_QuickChangeDelay_OnTextChanged()
   local delay = tonumber(this:GetText())
   -- set default to 0 sek delay
-  if delay == nil and not mEditDelayFocus then
+  if delay == nil and not editDelayFocus then
     this:SetText("0")
     delay = 0
   else
     this:SetText(tostring(delay))
   end
 
-  mQuickChangeDelay = delay or 0
+  quickChangeDelay = delay or 0
 end
 
 --[[
   track editbox for delay focus gained
 ]]--
 function GM_QuickChangeDelay_OnEditFocusGained()
-  mEditDelayFocus = true
+  editDelayFocus = true
 end
 
 --[[
   track editbox for delay focus lost
 ]]--
 function GM_QuickChangeDelay_OnEditFocusLost()
-  mEditDelayFocus = false
+  editDelayFocus = false
 end
 
 function GM_ItemList_OnShow()
