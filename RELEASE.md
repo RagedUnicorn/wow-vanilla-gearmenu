@@ -9,7 +9,7 @@
   * git tag v1.0.1
   * git push origin --tags
 * Draft new Github release with description
-  * Title should be the version e.g. V1.0.0
+  * Title should be the version e.g. v1.0.0
   * Short description of what was added newly
 * Prepare upload of downloadable version to the created release
   * Download full repository
