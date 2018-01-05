@@ -61,7 +61,7 @@ local errorChatFramePosition = nil
 local eventChatFramePosition = nil
 
 --[[
-  searching for a chatFrame with name GM_CONSTANTS.ADDON_CHATFRAME.
+  Searching for a chatFrame with name GM_CONSTANTS.ADDON_CHATFRAME.
   If it is able to find one messages will be logged to this specific window
   instead of cluttering the default window. This function is called during
   initialisation of the addon. If a debug ChatFrame is added at a later point
@@ -96,7 +96,8 @@ function me.InitializeLogging()
 end
 
 --[[
-  figures out where to log a message
+  Figures out where to log a message
+
   @param {number} type
   @param {string} tag
   @param {string} message
@@ -218,8 +219,9 @@ function me.LogEvent(tag, message)
 end
 
 --[[
-  print a colorized message to the default chatframe. The message will be printed even when
+  Print a colorized message to the default chatframe. The message will be printed even when
   logging is set to errors only
+
   @param {string} tag
   @param {string} msg
   @param {number} r
@@ -235,7 +237,8 @@ function me.Print(tag, msg, r, g, b)
 end
 
 --[[
-  display a message in the standard error frame
+  Display a message in the standard error frame
+
   @param {string} msg
 ]]--
 function me.PrintUserError(msg)

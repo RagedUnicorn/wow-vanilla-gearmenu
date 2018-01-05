@@ -27,7 +27,7 @@ me.tag = "Waist"
 me.timer = "UpdateWornWaist"
 
 --[[
-  private variables
+  Private variables
 ]]--
 local slotDisabled = false
 -- default position, use 0 for disabling
@@ -51,7 +51,7 @@ function me.GetDisabled()
 end
 
 --[[
-  update the currently worn item at inventory place {id}
+  Update the currently worn item at inventory place {id}
 ]]--
 function me.UpdateWornItem()
   -- abort when item is disabled
@@ -66,7 +66,8 @@ function me.UpdateWornItem()
 end
 
 --[[
-  retrieve all items from inventory bags matching type INVTYPE_WAIST
+  Retrieve all items from inventory bags matching type INVTYPE_WAIST
+
   @return {table}, {number}
 ]]--
 function me.GetItems()

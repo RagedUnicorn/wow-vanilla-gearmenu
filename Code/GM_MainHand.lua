@@ -28,7 +28,7 @@ me.tag = "MainHand"
 me.timer = "UpdateWornMainHand"
 
 --[[
-  private variables
+  Private variables
 ]]--
 local slotDisabled = false
 -- default position, use 0 for disabling
@@ -52,7 +52,7 @@ function me.GetDisabled()
 end
 
 --[[
-  update the currently worn item at inventory place {id}
+  Update the currently worn item at inventory place {id}
 ]]--
 function me.UpdateWornItem()
   -- abort when item is disabled
@@ -67,8 +67,9 @@ function me.UpdateWornItem()
 end
 
 --[[
-  retrieve all items from inventory bags matching any type of
+  Retrieve all items from inventory bags matching any type of
   INVTYPE_WEAPONMAINHAND, INVTYPE_2HWEAPON, INVTYPE_WEAPON
+
   @return {table}, {number}
 ]]--
 function me.GetItems()

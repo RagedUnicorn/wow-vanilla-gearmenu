@@ -25,7 +25,7 @@ mod.cmd = me
 me.tag = "Cmd"
 
 --[[
-  print cmd options for addon
+  Print cmd options for addon
 ]]--
 local function ShowInfoMessage()
   local show = gm.L["show"] .. GM_CONSTANTS.ADDON_NAME .. "\n"
@@ -41,7 +41,7 @@ local function ShowInfoMessage()
 end
 
 --[[
-  setup slash command handler
+  Setup slash command handler
 ]]--
 function me.SetupSlashCmdList()
   SLASH_GEARMENU1 = "/gm"

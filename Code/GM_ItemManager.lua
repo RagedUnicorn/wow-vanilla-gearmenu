@@ -20,7 +20,7 @@
 
 
 --[[
-  itemmanager manages all items. All itemslots muss register to work properly
+  Itemmanager manages all items. All itemslots muss register to work properly
 ]]--
 local mod = gm
 local me = {}
@@ -31,7 +31,8 @@ me.tag = "ItemManager"
 local items = {}
 
 --[[
-  register an item to the itemManager
+  Register an item to the itemManager
+
   @param {string} name
 ]]--
 function me.RegisterItem(name)
@@ -40,7 +41,8 @@ function me.RegisterItem(name)
 end
 
 --[[
-  unregister an item from the itemManager
+  Unregister an item from the itemManager
+
   @param {string} name
 ]]--
 function me.UnregisterItem(name)
@@ -49,7 +51,7 @@ function me.UnregisterItem(name)
 end
 
 --[[
-  calls UpdateWornItem for all registered items
+  Calls UpdateWornItem for all registered items
 ]]--
 function me.UpdateWornItems()
   for key, value in pairs(items) do
@@ -58,7 +60,8 @@ function me.UpdateWornItems()
 end
 
 --[[
-  retrieve all currently registered items
+  Retrieve all currently registered items
+
   @return {table}
 ]]--
 function me.GetAllRegisteredItems()
@@ -66,7 +69,8 @@ function me.GetAllRegisteredItems()
 end
 
 --[[
-  returns the module that is placed at the passed position or nil if none could be found
+  Returns the module that is placed at the passed position or nil if none could be found
+
   @param {number} position
   @return {string | nil}
 ]]--
@@ -82,7 +86,8 @@ function me.FindModuleForPosition(position)
 end
 
 --[[
-  returns the item that matches the passed itemSlot id or nil if none could be found
+  Returns the item that matches the passed itemSlot id or nil if none could be found
+
   @param {number} position
   @return {string | nil}
 ]]
@@ -97,7 +102,7 @@ function me.FindItemForSlotID(id)
 end
 
 --[[
-  create timers for all registered items
+  Create timers for all registered items
 ]]--
 function me.CreateTimersForItems()
   for key, value in pairs(items) do
@@ -107,7 +112,7 @@ function me.CreateTimersForItems()
 end
 
 --[[
-  update cooldown for all registered items
+  Update cooldown for all registered items
 ]]--
 function me.UpdateCooldownForAllWornItems()
   for key, value in pairs(items) do
@@ -119,7 +124,8 @@ function me.UpdateCooldownForAllWornItems()
 end
 
 --[[
-  check if a position is already used in a slot
+  Check if a position is already used in a slot
+
   @param {number} id
   @return {boolean | nil}
     false when items is not used

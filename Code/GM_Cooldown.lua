@@ -27,7 +27,7 @@ me.tag = "Cooldown"
 local itemsUsed = {}
 
 --[[
-  update cooldowns
+  Update cooldowns
 ]]--
 function me.CooldownUpdate()
   local inv, bag, slot, start, duration, itemID, remain
@@ -84,7 +84,8 @@ function me.CooldownUpdate()
 end
 
 --[[
-  update cooldown for all bagged items
+  Update cooldown for all bagged items
+
   @param {number} numberOfItems
   @param {table} BaggedItems
 ]]--
@@ -102,7 +103,8 @@ function me.UpdateCooldownForBaggedItems(numberOfItems, BaggedItems)
 end
 
 --[[
-  update cooldown for a worn itemManager
+  Update cooldown for a worn itemManager
+
   @param {number} slotID
   @param {number} position
 ]]--

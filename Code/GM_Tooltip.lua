@@ -25,7 +25,7 @@ mod.tooltip = me
 me.tag = "Tooltip"
 
 --[[
-  private
+  Private
 ]]--
 local tooltipBag = 0
 local tooltipSlot = 0
@@ -74,7 +74,7 @@ function me.BuildTooltipForOption(line1, line2)
 end
 
 --[[
-  update the tooltip
+  Update the tooltip
 ]]--
 function me.TooltipUpdate()
   if GearMenuOptions.disableTooltips then return end
@@ -117,7 +117,7 @@ function me.TooltipUpdate()
 end
 
 --[[
-  remove tooltip after region leave
+  Remove tooltip after region leave
 ]]--
 function me.TooltipClear()
   mod.logger.LogDebug(me.tag, "Cleared Tooltip")

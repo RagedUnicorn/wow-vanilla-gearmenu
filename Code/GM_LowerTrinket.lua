@@ -28,7 +28,7 @@ me.tag = "LowerTrinket"
 me.timer = "UpdateLowerTrinket"
 
 --[[
-  private variables
+  Private variables
 ]]--
 local slotDisabled = false
 -- default position, use 0 for disabling
@@ -53,7 +53,7 @@ function me.GetDisabled()
 end
 
 --[[
-  update the currently worn item at inventory place {id}
+  Update the currently worn item at inventory place {id}
 ]]--
 function me.UpdateWornItem()
   -- abort when item is disabled
@@ -68,7 +68,8 @@ function me.UpdateWornItem()
 end
 
 --[[
-  retrieve all items from inventory bags matching type INVTYPE_TRINKET
+  Retrieve all items from inventory bags matching type INVTYPE_TRINKET
+
   @return {table}, {number}
 ]]--
 function me.GetItems()

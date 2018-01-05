@@ -235,14 +235,14 @@ function GM_QuickChangeDelay_OnTextChanged()
 end
 
 --[[
-  track editbox for delay focus gained
+  Track editbox for delay focus gained
 ]]--
 function GM_QuickChangeDelay_OnEditFocusGained()
   editDelayFocus = true
 end
 
 --[[
-  track editbox for delay focus lost
+  Track editbox for delay focus lost
 ]]--
 function GM_QuickChangeDelay_OnEditFocusLost()
   editDelayFocus = false
@@ -258,7 +258,8 @@ function GM_ItemList_OnShow()
 end
 
 --[[
-  create a dropwdownbutton for item slot selection
+  Create a dropwdownbutton for item slot selection
+
   @param {string} text
   @param {string} value
   @param {function} callback
@@ -275,7 +276,7 @@ function me.CreateDropdownButton(text, value, callback)
 end
 
 --[[
-  initialize dropdownmenus for quick change itemtypes
+  Initialize dropdownmenus for quick change itemtypes
 ]]--
 function me.InitializeDropdownMenu()
   local button
@@ -292,7 +293,7 @@ function me.InitializeDropdownMenu()
 end
 
 --[[
-  callback for optionsmenu dropdowns
+  Callback for optionsmenu dropdowns
 ]]
 function me.DropDownMenuCallback()
   -- UIDROPDOWNMENU_OPEN_MENU is the currently open dropdown menu
@@ -323,6 +324,7 @@ end
 
 --[[
   Filter retrieved itemlist by itemID
+
   @param {table} itemList
   @return {table}
 ]]--

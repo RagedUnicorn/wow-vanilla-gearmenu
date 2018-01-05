@@ -63,7 +63,7 @@ function me.ReflectLockState(locked)
 end
 
 --[[
-  scroll callback for quick change options screen
+  Scroll callback for quick change options screen
 ]]--
 function QuickChangeScrollFrameVerticalScroll()
   local pre, maxScroll, scroll, toScroll

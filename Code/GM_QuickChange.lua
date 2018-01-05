@@ -25,7 +25,8 @@ mod.quickChange = me
 me.tag = "QuickChange"
 
 --[[
-  save new quick change rule
+  Save new quick change rule
+
   @param (number) changeFromID
     item to switch from
   @param (number) changeToID
@@ -89,7 +90,8 @@ function me.UpdateQuickChange(slotID)
 end
 
 --[[
-  check if an items was successfully used before kicking off Quick Change
+  Check if an items was successfully used before kicking off Quick Change
+
   @param {string} module
 ]]--
 function me.CheckItemUse(module)
@@ -112,7 +114,8 @@ function me.CheckItemUse(module)
 end
 
 --[[
-  switch items for a found rule
+  Switch items for a found rule
+
   @param {table} rule
   @param {number} slotID
 ]]--

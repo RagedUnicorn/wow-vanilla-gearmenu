@@ -26,7 +26,8 @@ me.tag = "CombatQueue"
 local CombatQueueStore = {}
 
 --[[
-  getter for CombatQueueStore
+  Getter for CombatQueueStore
+
   @return {table}
 ]]--
 function me.GetCombatQueueStore()
@@ -34,8 +35,8 @@ function me.GetCombatQueueStore()
 end
 
 --[[
-  add item to combatQueue
-  there can only be one item per slot
+  Add item to combatQueue. There can only be one item per slot
+
   @param {string} itemID
   @param {number} slot
 ]]--
@@ -43,12 +44,14 @@ function me.AddToQueue(itemID, slot)
   if not itemID or not slot then return end
 
   CombatQueueStore[slot] = itemID
-  mod.logger.LogDebug(me.tag, "Added item with id " .. itemID .. " in slot " .. slot .. " to CombatQueueStore")
+  mod.logger.LogDebug(me.tag, "Added item with id " .. itemID .. " in slot "
+    .. slot .. " to CombatQueueStore")
   me.UpdateCombatQueue(slot)
 end
 
 --[[
-  remove item from combatQueue
+  Remove item from combatQueue
+
   @param {number} slot
 ]]--
 function me.RemoveFromQueue(slot)
@@ -64,13 +67,15 @@ function me.RemoveFromQueue(slot)
   end
 
   CombatQueueStore[slot] = nil
-  mod.logger.LogDebug(me.tag, "Removed item with id " .. itemID .. " in slot " .. slot .. " from CombatQueueStore")
+  mod.logger.LogDebug(me.tag, "Removed item with id " .. itemID .. " in slot "
+    .. slot .. " from CombatQueueStore")
   me.UpdateCombatQueue(slot)
 end
 
 --[[
-  update the queue and show small icons for items
-  or hide them if item was removed from queue
+  Update the queue and show small icons for items or hide them if item was removed
+  from queue
+
   @param {number} slot
 ]]--
 function me.UpdateCombatQueue(slot)
@@ -93,8 +98,8 @@ function me.UpdateCombatQueue(slot)
 end
 
 --[[
-  process through combat queue and equip item if there is one waiting in the queue
-  weapons will always be switched immediately because they can be changed while in combat
+  Process through combat queue and equip item if there is one waiting in the queue.
+  Weapons will always be switched immediately because they can be changed while in combat
 ]]--
 function me.ProcessQueue()
   -- retrieve all registered modules
@@ -114,7 +119,8 @@ function me.ProcessQueue()
 end
 
 --[[
-  process items in combatqueue
+  Process items in combatqueue
+
   @param {table} items
   @param {string} moduleName
 ]]--

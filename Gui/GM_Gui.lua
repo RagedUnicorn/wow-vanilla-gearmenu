@@ -38,7 +38,7 @@ function GM_DragButton_OnMouseDown()
 end
 
 --[[
-  hovering itemslot for worn item
+  Hovering itemslot for worn item
 ]]--
 function GM_ItemButton_OnEnter()
   GameTooltip_SetDefaultAnchor(getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP), this)
@@ -61,7 +61,8 @@ function GM_ItemButton_OnLeave()
 end
 
 --[[
-  manuall click on an itemslot
+  Manuall click on an itemslot
+
   @paran {string} name
     generic name that is not used
   @param {string} button
@@ -95,14 +96,14 @@ function GM_ItemButton_OnClick(name, button)
 end
 
 --[[
-  allow for drag an drop on itemslots
+  Allow for drag an drop on itemslots
 
-  with drag and drop it is not possible to figure out any information
-  about the item because GetCursorInfo() does not seem to exists. Normal item-
+  With drag and drop it is not possible to figure out any information
+  about the item because GetCursorInfo() does not seem to exist. Normal item-
   switches will work but not the edge case where an offhand item should be
   equiped while wearing a twohanded weapon.
 
-  another reason the switch will not work is because it is not possible to unequip
+  Another reason the switch will not work is because it is not possible to unequip
   the current item without overwriting the cursor.
 ]]--
 function GM_ItemButton_OnReceiveDrag()
@@ -123,7 +124,7 @@ function GM_ItemButton_OnReceiveDrag()
 end
 
 --[[
-  allow drag and drop from one itemslot to another
+  Allow drag and drop from one itemslot to another
   (only useful for fast trinketswitch or putting an item in the bag)
 ]]--
 function GM_ItemButton_OnDragStart()
@@ -137,7 +138,7 @@ function GM_ItemButton_OnDragStart()
 end
 
 --[[
-  hovering itemslot for bagged items
+  Hovering itemslot for bagged items
 ]]--
 function GM_GearMenuItem_OnEnter()
   GameTooltip_SetDefaultAnchor(getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP), this)
@@ -149,14 +150,14 @@ function GM_GearMenuItem_OnLeave()
 end
 
 --[[
-  timersframe onupdate callback
+  Timersframe onupdate callback
 ]]--
 function GM_TimerFrame_OnUpdate()
   mod.timer.TimersFrame_OnUpdate()
 end
 
 --[[
-  choosing an item in slotframe
+  Choosing an item in slotframe
 ]]--
 function GM_GearMenuItem_OnClick()
   -- item that should get equiped
@@ -170,7 +171,8 @@ function GM_GearMenuItem_OnClick()
 end
 
 --[[
-  callback for keybindings
+  Callback for keybindings
+
   @param {number} position
 ]]
 function GM_UseInventoryItem(position)
@@ -220,7 +222,7 @@ function GM_UseInventoryItem(position)
 end
 
 --[[
-  remove checked status from all buttons
+  Remove checked status from all buttons
 ]]
 function me.ReflectItemUse()
   for i = 1, GM_CONSTANTS.ADDON_SLOTS do
@@ -231,7 +233,7 @@ function me.ReflectItemUse()
 end
 
 --[[
-  build menu for item selection
+  Build menu for item selection
 ]]--
 function me.BuildMenu()
   -- clear out all item buttons
@@ -327,7 +329,7 @@ function me.BuildMenu()
 end
 
 --[[
-  close slot frame after a delay
+  Close slot frame after a delay
 ]]--
 function me.SlotFrameMouseOver()
   if (not MouseIsOver(getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME))) and (not MouseIsOver(getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_FRAME))) then
@@ -337,7 +339,7 @@ function me.SlotFrameMouseOver()
 end
 
 --[[
-  rearrange slotpositions after activating or deactivating a slot
+  Rearrange slotpositions after activating or deactivating a slot
 ]]--
 function me.RearrangeSlotPositions()
   local slots = {} -- table for visible slots
@@ -374,7 +376,8 @@ function me.RearrangeSlotPositions()
 end
 
 --[[
-  show slot
+  Show slot
+
   @param {number} position
 ]]--
 function me.ShowSlot(position)
@@ -386,7 +389,8 @@ function me.ShowSlot(position)
 end
 
 --[[
-  hide slot
+  Hide slot
+
   @param {number} position
 ]]--
 function me.HideSlot(position)
@@ -397,7 +401,7 @@ function me.HideSlot(position)
 end
 
 --[[
-  show keybindings for all registered items
+  Show keybindings for all registered items
 ]]--
 function me.ShowKeyBindings()
   for i = 1, GM_CONSTANTS.ADDON_SLOTS do
@@ -409,7 +413,7 @@ function me.ShowKeyBindings()
 end
 
 --[[
-  hide keybindings for all registered items
+  Hide keybindings for all registered items
 ]]--
 function me.HideKeyBindings()
   for i = 1, GM_CONSTANTS.ADDON_SLOTS do
@@ -419,7 +423,7 @@ function me.HideKeyBindings()
 end
 
 --[[
-  hide cooldowns for both bagged and worn items
+  Hide cooldowns for both bagged and worn items
 ]]--
 function me.HideCooldowns()
   -- hide slot cooldowns
@@ -436,7 +440,7 @@ function me.HideCooldowns()
 end
 
 --[[
-  show cooldowns for both bagged and worn items
+  Show cooldowns for both bagged and worn items
 ]]--
 function me.ShowCooldowns()
   -- show slot cooldowns

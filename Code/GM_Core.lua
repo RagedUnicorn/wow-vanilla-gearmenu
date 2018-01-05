@@ -27,7 +27,7 @@ gm.L = {}
 me.tag = "Core"
 
 --[[
-  saved addon variable
+  Saved addon variable
 ]]--
 GearMenuOptions = {
   ["windowLocked"] = true,
@@ -82,7 +82,7 @@ function me.OnLoad()
 end
 
 --[[
-  register addon events
+  Register addon events
 ]]--
 function me.RegisterEvents()
   -- register to player login event also fires on /reload
@@ -137,7 +137,7 @@ function me.OnEvent()
 end
 
 --[[
-  init function
+  Init function
 ]]--
 function me.Initialize()
   --setup random seed
@@ -177,7 +177,7 @@ end
 
 
 --[[
-  set SetSlotPositions on addon load
+  Set SetSlotPositions on addon load
 ]]--
 function me.SetSlotPositions()
   for key, value in pairs(GearMenuOptions.modules) do

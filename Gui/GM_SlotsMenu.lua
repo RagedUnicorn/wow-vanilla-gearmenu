@@ -25,7 +25,8 @@ mod.slotsMenu = me
 me.tag = "SlotsMenu"
 
 --[[
-  create a dropwdownbutton for item slot selection
+  Create a dropwdownbutton for item slot selection
+
   @param {string} text
   @param {string} value
   @param {function} callback
@@ -42,7 +43,7 @@ function me.CreateDropdownButton(text, value, callback)
 end
 
 --[[
-  initialize dropdownmenus for slotpositions
+  Initialize dropdownmenus for slotpositions
 ]]--
 function me.InitializeDropdownMenu()
   local button, position, moduleName
@@ -84,7 +85,7 @@ function me.InitializeDropdownMenu()
 end
 
 --[[
-  callback for optionsmenu dropdowns
+  Callback for optionsmenu dropdowns
 ]]
 function me.DropDownMenuCallback()
   local currentValue = UIDropDownMenu_GetSelectedValue(getglobal(UIDROPDOWNMENU_OPEN_MENU))

@@ -25,7 +25,7 @@ mod.generalMenu = me
 me.tag = "GeneralMenu"
 
 --[[
-  private
+  Private
 ]]
 local options = {
   {"LockWindow", gm.L["lockwindow"], gm.L["lockwindowtooltip"]},
@@ -37,7 +37,7 @@ local options = {
 }
 
 --[[
-  tooltip for options
+  Tooltip for options
 ]]--
 function GM_Tooltip_OnEnter()
   local name = this:GetName()
@@ -52,7 +52,7 @@ function GM_Tooltip_OnEnter()
 end
 
 --[[
-  hide options tooltip onleave
+  Hide options tooltip onleave
 ]]--
 function GM_Tooltip_OnLeave()
   getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP):Hide()
@@ -190,7 +190,8 @@ function GM_InitGeneralMenu()
 end
 
 --[[
-  create a dropwdownbutton for item quality filter selection
+  Create a dropwdownbutton for item quality filter selection
+
   @param {string} text
   @param {string} value
   @param {function} callback
@@ -207,7 +208,7 @@ function me.CreateDropdownButton(text, value, callback)
 end
 
 --[[
-  initialize dropdownmenus for item quality filter
+  Initialize dropdownmenus for item quality filter
 ]]--
 function me.InitializeDropdownMenu()
   local button, itemQualityFilter
@@ -249,7 +250,7 @@ function me.InitializeDropdownMenu()
 end
 
 --[[
-  callback for optionsmenu dropdowns
+  Callback for optionsmenu dropdowns
 ]]
 function me.DropDownMenuCallback()
   local currentValue = UIDropDownMenu_GetSelectedValue(getglobal(UIDROPDOWNMENU_OPEN_MENU))

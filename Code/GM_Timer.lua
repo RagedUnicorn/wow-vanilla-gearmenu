@@ -25,7 +25,7 @@ mod.timer = me
 me.tag = "Timer"
 
 --[[
-  private variables
+  Private variables
 ]]--
 local TimerPool = {}
 local Timers = {}
@@ -89,7 +89,7 @@ function me.StopTimer(name)
 end
 
 --[[
-  onUpdate callback from timersframe
+  OnUpdate callback from timersframe
 ]]--
 function me.TimersFrame_OnUpdate()
   local timerPool

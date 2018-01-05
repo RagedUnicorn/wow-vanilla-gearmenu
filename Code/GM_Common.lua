@@ -77,7 +77,8 @@ local slotName = {
 }
 
 --[[
-  retrieve itemInfo
+  Retrieve itemInfo
+
   @param {number} slotID
   @return {string}, {string}, {string}
 ]]--
@@ -95,7 +96,8 @@ function me.RetrieveItemInfo(slotID)
 end
 
 --[[
-  retrieve itemID from a specific slot
+  Retrieve itemID from a specific slot
+
   @param {number} slotID
   @return {string | nil}
 ]]--
@@ -111,7 +113,8 @@ function me.GetItemIDBySlot(slotID)
 end
 
 --[[
-  search for an itemID
+  Search for an itemID
+
   @param {number} itemID
   @param {bool} includeInventory
   @return {number}, {number}, {number}
@@ -135,7 +138,8 @@ function me.FindItemByID(itemID, includeInventory)
 end
 
 --[[
-  equip an item into a specific slot identified by it's id
+  Equip an item into a specific slot identified by it's id
+
   @param {table} item
   @param {number} slotID
 ]]--
@@ -167,7 +171,8 @@ function me.EquipItemByID(item, slotID)
 end
 
 --[[
-  switch to items from itemSlot and a bag position
+  Switch to items from itemSlot and a bag position
+
   @param {table} item
   @param {number} slotID
 ]]--
@@ -202,8 +207,9 @@ function me.SwitchItems(item, slotID)
 end
 
 --[[
-  unequip item in a specific slot. The item will be placed in the first
+  Unequip item in a specific slot. The item will be placed in the first
   free bagspace that is found. If no space is found the operation is cancelled
+
   @param {number} slotID
 ]]--
 function me.UnequipItemBySlotID(slotID)
@@ -228,7 +234,8 @@ function me.UnequipItemBySlotID(slotID)
 end
 
 --[[
-  check if a player is really dead and did not use fakedeath
+  Check if a player is really dead and did not use fakedeath
+
   @return {1 or nil}
     1   - dead or ghost
     nil - alive
@@ -258,7 +265,7 @@ end
 
 
 --[[
-  retrieve all items from inventory bags matching any type of
+  Retrieve all items from inventory bags matching any type of
     INVTYPE_TRINKET
     INVTYPE_WAIST
     INVTYPE_HOLDABLE
@@ -270,8 +277,10 @@ end
     INVTYPE_WEAPON
     INVTYPE_HEAD
     INVTYPE_FEET
-  depending on the type that is passed to the function. For available types see
+
+  Depending on the type that is passed to the function. For available types see
   constants CATEGORIES.
+
   @param {number} type
     see gm_constants categories for a reference
   @param {boolean} includeEquiped
