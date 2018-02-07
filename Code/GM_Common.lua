@@ -340,7 +340,7 @@ function me.GetItemsByType(type, includeEquiped)
         _, _, itemID, itemName = strfind(GetInventoryItemLink("player", GM_CONSTANTS.CATEGORIES[type].slotID[it]) or "", "item:(%d+).+%[(.+)%]")
         _, _, itemQuality, _, _, _, _, equipSlot, itemTexture = GetItemInfo(itemID or "")
 
-        if itemQuality >= GearMenuOptions.filterItemQuality then
+        if itemQuality and itemQuality >= GearMenuOptions.filterItemQuality then
           if not items[idx] then
             items[idx] = {}
           end

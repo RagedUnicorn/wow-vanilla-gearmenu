@@ -2,6 +2,7 @@
 ## Title: GearMenu
 ## Author: Michael Wiesendanger <michael.wiesendanger@gmail.com>
 ## Notes: Addon to manage usable gear
+## Notes-ruRU: Аддон для управления используемой экипировки.
 ## SavedVariables: GearMenuOptions
 ## SavedVariablesPerCharacter: GearMenuOptions
 
@@ -28,6 +29,7 @@ Code\GM_LowerTrinket.lua
 
 Localization\enUS.lua
 Localization\deDE.lua
+Localization\ruRU.lua
 
 # Gui
 Gui\GM_Gui.lua
