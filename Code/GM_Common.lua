@@ -338,25 +338,30 @@ function me.GetItemsByType(type, includeEquiped)
     for i = 1, table.getn(itemTypes) do
       for it = 1, table.getn(GM_CONSTANTS.CATEGORIES[type].slotID) do
         _, _, itemID, itemName = strfind(GetInventoryItemLink("player", GM_CONSTANTS.CATEGORIES[type].slotID[it]) or "", "item:(%d+).+%[(.+)%]")
-        _, _, itemQuality, _, _, _, _, equipSlot, itemTexture = GetItemInfo(itemID or "")
 
-        if itemQuality >= GearMenuOptions.filterItemQuality then
-          if not items[idx] then
-            items[idx] = {}
+        if itemID then
+          _, _, itemQuality, _, _, _, _, equipSlot, itemTexture = GetItemInfo(itemID or "")
+
+          if itemQuality and itemQuality >= GearMenuOptions.filterItemQuality then
+            if not items[idx] then
+              items[idx] = {}
+            end
+
+            items[idx].bag = i
+            items[idx].slot = j
+            items[idx].name = itemName
+            items[idx].texture = itemTexture
+            items[idx].id = itemID
+            items[idx].equipSlot = equipSlot
+            items[idx].quality = itemQuality
+
+            idx = idx + 1
+          else
+            mod.logger.LogDebug(me.tag, "Ignoring item because its quality is lower than setting - "
+              .. GearMenuOptions.filterItemQuality)
           end
-
-          items[idx].bag = i
-          items[idx].slot = j
-          items[idx].name = itemName
-          items[idx].texture = itemTexture
-          items[idx].id = itemID
-          items[idx].equipSlot = equipSlot
-          items[idx].quality = itemQuality
-
-          idx = idx + 1
         else
-          mod.logger.LogDebug(me.tag, "Ignoring item because its quality is lower than setting "
-            .. GearMenuOptions.filterItemQuality)
+          mod.logger.LogDebug(me.tag, "Ignoring slot because no item could be found")
         end
       end
     end
