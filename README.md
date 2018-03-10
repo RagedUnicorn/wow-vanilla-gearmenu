@@ -2,6 +2,18 @@
 
 ![](/Docs/gm_raged_unicorn_logo.png)
 
+## Installation
+
+WoW-Addons are installed directly in your WoW directory:
+
+`[WoW-installation-directory]\Interface\AddOns`
+
+Make sure to get the newest version of the Addon from the releases tab:
+
+[GearMenu-Releases](https://github.com/RagedUnicorn/wow-gearmenu/releases)
+
+> Note: If the Addon is not showing up in your ingame Addonlist make sure that the Addon is named `GearMenu` in your Addons folder
+
 ## What is GearMenu?
 
 GearMenu is based on the popular TrinketMenu Addon and its goal is to bring this functionality to other slots including trinkets. Its target is to assist the player in PvP but it has definitely some use in PvE as well.
@@ -17,8 +29,6 @@ GearMenu is based on the popular TrinketMenu Addon and its goal is to bring this
 | Trinket1Slot      | Second/Lower trinket slot    |
 | MainhandSlot      | Main-hand slot               |
 | SecondaryHandSlot | Secondary-hand/Off-hand slot |
-
-
 
 
 ## Features of GearMenu
@@ -99,18 +109,6 @@ To show the configuration screen use `/gm opt` while ingame and `/gm info` for a
 Not interested to see items with a quality level below a certain level? Filter them out and only items that meet your set level will be considered to be displayed in GearMenu.
 
 ![](/Docs/gm_options_filter_item_quality.gif)
-
-## Installation
-
-WoW-Addons are installed directly in your WoW directory:
-
-`[WoW-installation-directory]\Interface\AddOns`
-
-Make sure to get the newest version of the Addon from the releases tab:
-
-[GearMenu-Releases](https://github.com/RagedUnicorn/wow-gearmenu/releases)
-
-> Note: If the Addon is not showing up in your ingame Addonlist make sure that the Addon is named `GearMenu` in your Addons folder
 
 ## License
 
