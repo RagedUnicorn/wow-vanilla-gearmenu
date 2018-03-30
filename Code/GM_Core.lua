@@ -165,10 +165,10 @@ function me.Initialize()
   me.itemManager.CreateTimersForItems()
 
   -- create all timers
-  me.timer.CreateTimer("MenuMouseover", me.gui.SlotFrameMouseOver, .25, 1)
-  me.timer.CreateTimer("TooltipUpdate", me.tooltip.TooltipUpdate, 1, 1)
-  me.timer.CreateTimer("CooldownUpdate", me.cooldown.CooldownUpdate, 1, 1)
-  me.timer.CreateTimer("ReflectItemUse", me.gui.ReflectItemUse, .75, .75)
+  me.timer.CreateTimer("MenuMouseover", me.gui.SlotFrameMouseOver, .25, true)
+  me.timer.CreateTimer("TooltipUpdate", me.tooltip.TooltipUpdate, 1, true)
+  me.timer.CreateTimer("CooldownUpdate", me.cooldown.CooldownUpdate, 1, true)
+  me.timer.CreateTimer("ReflectItemUse", me.gui.ReflectItemUse, .75, true)
 
   me.SetSlotPositions()
   me.opt.ReflectLockState(GearMenuOptions.windowLocked)
