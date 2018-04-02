@@ -192,10 +192,10 @@
         this:SetFrameLevel(this:GetFrameLevel() + 2)
       </OnLoad>
       <OnMouseDown>
-        GM_DragButton_OnMouseDown()
+        gm.gui.DragButtonOnMouseDown()
       </OnMouseDown>
       <OnMouseUp>
-        GM_DragButton_OnMouseUp()
+        gm.gui.DragButtonOnMouseUp()
       </OnMouseUp>
     </Scripts>
   </Button>
@@ -233,19 +233,19 @@
         this:RegisterForDrag("LeftButton")
       </OnLoad>
       <OnEnter>
-        GM_ItemButton_OnEnter()
+        gm.gui.ItemButtonOnEnter()
       </OnEnter>
       <OnClick>
-        GM_ItemButton_OnClick("itemButtonClick", arg1)
+        gm.gui.ItemButtonOnClick("itemButtonClick", arg1)
       </OnClick>
       <OnLeave>
-        GM_ItemButton_OnLeave()
+        gm.gui.ItemButtonOnLeave()
       </OnLeave>
       <OnReceiveDrag>
-        GM_ItemButton_OnReceiveDrag()
+        gm.gui.ItemButtonOnReceiveDrag()
       </OnReceiveDrag>
       <OnDragStart>
-        GM_ItemButton_OnDragStart()
+        gm.gui.ItemButtonOnDragStart()
       </OnDragStart>
     </Scripts>
   </CheckButton>
@@ -254,13 +254,13 @@
   <CheckButton name="GM_MenuItemTemplate" inherits="ActionButtonTemplate" virtual="true">
     <Scripts>
       <OnClick>
-        GM_GearMenuItem_OnClick()
+        gm.gui.MenuItemOnClick()
       </OnClick>
       <OnEnter>
-        GM_GearMenuItem_OnEnter()
+        gm.gui.MenuItemOnEnter()
       </OnEnter>
       <OnLeave>
-        GM_GearMenuItem_OnLeave()
+        gm.gui.MenuItemOnLeave()
       </OnLeave>
     </Scripts>
   </CheckButton>

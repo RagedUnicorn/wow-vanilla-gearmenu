@@ -32,11 +32,11 @@ me.currentSlot = 0
 me.currentPosition = 0
 me.BaggedItems = {}
 
-function GM_DragButton_OnMouseUp()
+function me.DragButtonOnMouseDown()
   getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME):StopMovingOrSizing()
 end
 
-function GM_DragButton_OnMouseDown()
+function me.DragButtonOnMouseUp()
   if GearMenuOptions.windowLocked then return end
 
   getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME):StartMoving()
@@ -45,7 +45,7 @@ end
 --[[
   Hovering itemslot for worn item
 ]]--
-function GM_ItemButton_OnEnter()
+function me.ItemButtonOnEnter()
   GameTooltip_SetDefaultAnchor(getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP), this)
 
   local position = mod.common.ExtractPositionFromName(this:GetName())
@@ -61,7 +61,7 @@ function GM_ItemButton_OnEnter()
 end
 
 
-function GM_ItemButton_OnLeave()
+function me.ItemButtonOnLeave()
   mod.tooltip.TooltipClear()
 end
 
@@ -73,7 +73,7 @@ end
   @param {string} button
     clicked button RightButton | LeftButton
 ]]--
-function GM_ItemButton_OnClick(name, button)
+function me.ItemButtonOnClick(name, button)
   local name, module
 
   name = this:GetName()
@@ -111,7 +111,7 @@ end
   Another reason the switch will not work is because it is not possible to unequip
   the current item without overwriting the cursor.
 ]]--
-function GM_ItemButton_OnReceiveDrag()
+function me.ItemButtonOnReceiveDrag()
   -- abort if drag and drop is disabled
   if GearMenuOptions.disableDragAndDrop then return end
 
@@ -132,7 +132,7 @@ end
   Allow drag and drop from one itemslot to another
   (only useful for fast trinketswitch or putting an item in the bag)
 ]]--
-function GM_ItemButton_OnDragStart()
+function me.ItemButtonOnDragStart()
   -- abort if drag and drop is disabled
   if GearMenuOptions.disableDragAndDrop then return end
 
@@ -145,19 +145,19 @@ end
 --[[
   Hovering itemslot for bagged items
 ]]--
-function GM_GearMenuItem_OnEnter()
+function me.MenuItemOnEnter()
   GameTooltip_SetDefaultAnchor(getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP), this)
   mod.tooltip.BuildTooltipForBaggedItems(this:GetID(), me.BaggedItems)
 end
 
-function GM_GearMenuItem_OnLeave()
+function me.MenuItemOnLeave()
   mod.tooltip.TooltipClear()
 end
 
 --[[
   Choosing an item in slotframe
 ]]--
-function GM_GearMenuItem_OnClick()
+function me.MenuItemOnClick()
   -- item that should get equiped
   local item = {
     itemID = me.BaggedItems[this:GetID()].id,
@@ -173,7 +173,7 @@ end
 
   @param {number} position
 ]]
-function GM_UseInventoryItem(position)
+function me.UseInventoryItem(position)
   local module = mod.itemManager.FindModuleForPosition(position)
 
   if module == nil then
