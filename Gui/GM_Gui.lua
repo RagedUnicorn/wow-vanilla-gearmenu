@@ -33,13 +33,15 @@ me.currentPosition = 0
 me.BaggedItems = {}
 
 function me.DragButtonOnMouseDown()
-  getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME):StopMovingOrSizing()
+  if GearMenuOptions.windowLocked then return end
+
+  getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME):StartMoving()
 end
 
 function me.DragButtonOnMouseUp()
   if GearMenuOptions.windowLocked then return end
 
-  getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME):StartMoving()
+  getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME):StopMovingOrSizing()
 end
 
 --[[
