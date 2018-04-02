@@ -155,13 +155,6 @@ function GM_GearMenuItem_OnLeave()
 end
 
 --[[
-  Timersframe onupdate callback
-]]--
-function GM_TimerFrame_OnUpdate()
-  mod.timer.TimersFrame_OnUpdate()
-end
-
---[[
   Choosing an item in slotframe
 ]]--
 function GM_GearMenuItem_OnClick()

@@ -96,7 +96,7 @@ end
 --[[
   OnUpdate callback from timersframe
 ]]--
-function me.TimersFrame_OnUpdate()
+function me.TimersFrameOnUpdate()
   local timerPool
 
   for _, name in ipairs(Timers) do

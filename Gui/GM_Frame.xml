@@ -277,7 +277,7 @@
   <Frame name="GM_TimerFrame" hidden="true">
     <Scripts>
       <OnUpdate>
-        GM_TimerFrame_OnUpdate()
+        gm.timer.TimersFrameOnUpdate()
       </OnUpdate>
     </Scripts>
   </Frame>
