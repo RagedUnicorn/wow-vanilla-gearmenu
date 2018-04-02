@@ -204,23 +204,6 @@ function GM_UseInventoryItem(position)
   UseInventoryItem(mod[module].id) -- use item
   mod.quickChange.CheckItemUse(module)
 
-  if slot == mod.mainHand.id then
-    getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. mod.mainHand.GetPosition()):SetChecked(1)
-    mod.timer.StartTimer("UpdateWornMainHand")
-  elseif slot == mod.offHand.id then
-    getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. mod.offHand.GetPosition()):SetChecked(1)
-    mod.timer.StartTimer("UpdateWornOffHand")
-  elseif slot == mod.feet.id then
-    getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. mod.feet.GetPosition()):SetChecked(1)
-    mod.timer.StartTimer("UpdateWornFeet")
-  elseif slot == mod.waist.id then
-    getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. mod.waist.GetPosition()):SetChecked(1)
-    mod.timer.StartTimer("UpdateWornWaist")
-  elseif slot == mod.head.id then
-    getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. mod.head.GetPosition()):SetChecked(1)
-    mod.timer.StartTimer("UpdateWornHead")
-  end
-
   -- reflect item use
   getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. position):SetChecked(1)
   mod.timer.StartTimer("ReflectItemUse")

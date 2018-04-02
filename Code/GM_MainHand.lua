@@ -30,7 +30,6 @@ mod.mainHand = me
 me.id = 16
 me.moduleName = "mainHand"
 me.tag = "MainHand"
-me.timer = "UpdateWornMainHand"
 
 --[[
   Private variables

@@ -30,7 +30,6 @@ mod.feet = me
 me.id = 8
 me.moduleName = "feet"
 me.tag = "Feet"
-me.timer = "UpdateWornFeet"
 
 --[[
   Private variables

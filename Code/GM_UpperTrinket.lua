@@ -30,7 +30,6 @@ mod.upperTrinket = me
 me.id = 13
 me.moduleName = "upperTrinket"
 me.tag = "UpperTrinket"
-me.timer = "UpdateUpperTrinket"
 
 --[[
   Private variables

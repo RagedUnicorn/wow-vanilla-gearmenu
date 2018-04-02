@@ -29,7 +29,6 @@ mod.waist = me
 me.id = 6
 me.moduleName = "waist"
 me.tag = "Waist"
-me.timer = "UpdateWornWaist"
 
 --[[
   Private variables

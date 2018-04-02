@@ -161,8 +161,6 @@ function me.Initialize()
   me.itemManager.UpdateWornItems()
   -- show keybindings for all registered items
   me.gui.ShowKeyBindings()
-  -- create timers for all registered items
-  me.itemManager.CreateTimersForItems()
 
   -- create all timers
   me.timer.CreateTimer("MenuMouseover", me.gui.SlotFrameMouseOver, .25, true)

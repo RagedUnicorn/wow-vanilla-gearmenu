@@ -30,7 +30,6 @@ mod.offHand = me
 me.id = 17
 me.moduleName = "offHand"
 me.tag = "OffHand"
-me.timer = "UpdateWornOffHand"
 
 --[[
   Private variables

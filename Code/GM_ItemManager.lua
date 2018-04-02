@@ -107,16 +107,6 @@ function me.FindItemForSlotID(id)
 end
 
 --[[
-  Create timers for all registered items
-]]--
-function me.CreateTimersForItems()
-  for key, value in pairs(items) do
-    mod.timer.CreateTimer(mod[value].timer, mod[value].UpdateWornItem, .75)
-  end
-  mod.logger.LogInfo(me.tag, "Created timers for registered items")
-end
-
---[[
   Update cooldown for all registered items
 ]]--
 function me.UpdateCooldownForAllWornItems()

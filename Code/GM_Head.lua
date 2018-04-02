@@ -30,7 +30,6 @@ mod.head = me
 me.id = 1
 me.moduleName = "head"
 me.tag = "Head"
-me.timer = "UpdateWornHead"
 
 --[[
   Private variables

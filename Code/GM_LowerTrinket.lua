@@ -30,7 +30,6 @@ mod.lowerTrinket = me
 me.id = 14
 me.moduleName = "lowerTrinket"
 me.tag = "LowerTrinket"
-me.timer = "UpdateLowerTrinket"
 
 --[[
   Private variables
