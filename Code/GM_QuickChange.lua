@@ -81,16 +81,16 @@ end
 ]]--
 function me.UpdateQuickChange(slotID)
   for i = 1, table.getn(GearMenuOptions.QuickChangeRules) do
-      for it = 1, table.getn(GearMenuOptions.QuickChangeRules[i].slotID) do
-        if slotID == GearMenuOptions.QuickChangeRules[i].slotID[it] then
-          local itemID = mod.common.GetItemIDBySlot(slotID)
+    for it = 1, table.getn(GearMenuOptions.QuickChangeRules[i].slotID) do
+      if slotID == GearMenuOptions.QuickChangeRules[i].slotID[it] then
+        local itemID = mod.common.GetItemIDBySlot(slotID)
 
-          if tonumber(itemID) == GearMenuOptions.QuickChangeRules[i].changeFromID then
-            -- found a quick change rule that matches - prepare for switching
-            me.SwitchItems(GearMenuOptions.QuickChangeRules[i], slotID)
-          end
+        if tonumber(itemID) == GearMenuOptions.QuickChangeRules[i].changeFromID then
+          -- found a quick change rule that matches - prepare for switching
+          me.SwitchItems(GearMenuOptions.QuickChangeRules[i], slotID)
         end
       end
+    end
   end
 end
 
@@ -143,5 +143,4 @@ function me.SwitchItems(rule, slotID)
     -- start a timer before switching the item. An immediate change is blocked by the ui
     mod.timer.StartTimer(timerName) -- default delay
   end
-
 end

@@ -86,7 +86,6 @@ function me.TooltipUpdate()
 
   local tooltip = getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP)
 
-  local cooldown = GetContainerItemCooldown(tooltipBag, tooltipSlot)
   tooltip:ClearLines()
 
   if tooltipType == TOOLTIP_TYPE_BAG then
@@ -117,7 +116,6 @@ function me.TooltipUpdate()
 
   -- set explicit backdrop color fixing display issue for first shown tooltip
   tooltip:SetBackdropColor(0, 0, 0, .7)
-
   tooltip:Show()
 end
 

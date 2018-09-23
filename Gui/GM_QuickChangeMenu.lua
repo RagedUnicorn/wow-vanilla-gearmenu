@@ -179,10 +179,6 @@ function GM_ChangeFromListCell_OnClick()
   -- clear all current highlighting
   me.ClearCellList(GM_CONSTANTS.ELEMENT_GM_CHANGE_FROM_CELL, 9)
 
-  -- match clicked id with position in itemList
-  local itemName = changeFromItemList[idx].name
-  local itemID = changeFromItemList[idx].id
-
   changeFromSelectedItem = changeFromItemList[idx].id
   this.selectedItem = true
   getglobal(this:GetName() .. "Highlight"):Show()
@@ -193,10 +189,6 @@ function GM_ChangeToListCell_OnClick()
 
   -- clear all current highlighting
   me.ClearCellList(GM_CONSTANTS.ELEMENT_GM_CHANGE_TO_CELL, 9)
-
-  -- match clicked id with position in itemList
-  local itemName = changeToItemList[idx].name
-  local itemID = changeToItemList[idx].id
 
   changeToSelectedItem = changeToItemList[idx].id
 

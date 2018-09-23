@@ -137,7 +137,7 @@ function GM_Navigation_Button_OnClick()
       end
     end
   else
-    return -- abort nothing todo
+    return -- abort no work left
   end
 end
 

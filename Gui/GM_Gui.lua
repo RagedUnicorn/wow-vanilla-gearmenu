@@ -84,7 +84,6 @@ function me.ItemButtonOnClick(name, button)
   if button == "RightButton" then
     -- rightclick
     local slotID = mod[module].id
-    local itemID = mod.common.GetItemIDBySlot(slotID)
 
     mod.combatQueue.RemoveFromQueue(slotID)
     -- reflect item not in use
