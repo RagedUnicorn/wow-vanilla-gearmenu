@@ -236,7 +236,7 @@
         gm.gui.ItemButtonOnEnter()
       </OnEnter>
       <OnClick>
-        gm.gui.ItemButtonOnClick("itemButtonClick", arg1)
+        gm.gui.ItemButtonOnClick(arg1)
       </OnClick>
       <OnLeave>
         gm.gui.ItemButtonOnLeave()

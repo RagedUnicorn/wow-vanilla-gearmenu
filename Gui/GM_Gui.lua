@@ -68,18 +68,14 @@ function me.ItemButtonOnLeave()
 end
 
 --[[
-  Manuall click on an itemslot
+  Manual click on an itemslot
 
-  @paran {string} name
-    generic name that is not used
   @param {string} button
     clicked button RightButton | LeftButton
 ]]--
-function me.ItemButtonOnClick(name, button)
-  local name, module
-
-  name = this:GetName()
-  module = mod.itemManager.FindModuleForPosition(mod.common.ExtractPositionFromName(name))
+function me.ItemButtonOnClick(button)
+  local name = this:GetName()
+  local module = mod.itemManager.FindModuleForPosition(mod.common.ExtractPositionFromName(name))
 
   if button == "RightButton" then
     -- rightclick
