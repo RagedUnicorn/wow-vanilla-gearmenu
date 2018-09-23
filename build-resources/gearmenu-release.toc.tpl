@@ -1,4 +1,4 @@
-# THIS FILE IS AUTO-GENERATED. ALL CHANGES ARE OVERWRITTEN
+${addon.comment.generated.toc}
 
 ## Interface: 11200
 ## Title: GearMenu
@@ -29,9 +29,6 @@ Code\GM_Feet.lua
 Code\GM_Head.lua
 Code\GM_UpperTrinket.lua
 Code\GM_LowerTrinket.lua
-
-# debug only
-Code\GM_Debug.lua
 
 Localization\enUS.lua
 Localization\deDE.lua

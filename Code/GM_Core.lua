@@ -175,7 +175,7 @@ function me.Initialize()
 
   -- show welcome message
   DEFAULT_CHAT_FRAME:AddMessage(
-    string.format(GM_CONSTANTS.ADDON_NAME .. gm.L["help"], GM_CONSTANTS.ADDON_VERSION))
+    string.format(GM_ENVIRONMENT.ADDON_NAME .. gm.L["help"], GM_ENVIRONMENT.ADDON_VERSION))
 end
 
 

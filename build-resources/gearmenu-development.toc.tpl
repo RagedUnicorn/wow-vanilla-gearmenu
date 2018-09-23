@@ -1,4 +1,4 @@
-# THIS FILE IS AUTO-GENERATED. ALL CHANGES ARE OVERWRITTEN
+${addon.comment.generated.toc}
 
 ## Interface: 11200
 ## Title: GearMenu

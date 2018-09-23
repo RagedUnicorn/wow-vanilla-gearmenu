@@ -30,13 +30,6 @@ BINDING_HEADER_GEARMENU = "GearMenu"
 
 GM_CONSTANTS = {
   --[[
-    addon
-  ]]--
-  ADDON_NAME = "GearMenu",
-  ADDON_NAME_SHORT = "GM",
-  ADDON_VERSION = "1.0.1",
-
-  --[[
     debug logging chatframes
   ]]--
   ADDON_CHATFRAME = "gm_chatframe",

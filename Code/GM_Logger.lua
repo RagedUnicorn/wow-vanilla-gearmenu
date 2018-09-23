@@ -35,7 +35,7 @@ me.tag = "Logger"
   error - 1
   event - 0
 ]]--
-me.logLevel = 1
+me.logLevel = GM_ENVIRONMENT.LOG_LEVEL
 me.debug = 4
 me.info = 3
 me.warn = 2
@@ -43,7 +43,7 @@ me.error = 1
 me.event = 0
 
 -- log events
-me.logEvent = false
+me.logEvent = GM_ENVIRONMENT.LOG_EVENT
 --[[
   force logs to be logged to default chatframe. This does not stop other functionality
   from logging to different windows
@@ -160,7 +160,7 @@ end
 ]]--
 function me.LogToCustomChatFrame(position, tag, message, color)
   getglobal("ChatFrame" .. position):AddMessage(color ..
-    GM_CONSTANTS.ADDON_NAME_SHORT .. ":" .. tag .. " - " .. message)
+    GM_ENVIRONMENT.ADDON_NAME_SHORT .. ":" .. tag .. " - " .. message)
 end
 
 --[[
@@ -170,7 +170,7 @@ end
 ]]--
 function me.LogToDefaultChatFrame(tag, message, color)
   DEFAULT_CHAT_FRAME:AddMessage(color ..
-    GM_CONSTANTS.ADDON_NAME_SHORT .. ":" .. tag .. " - " .. message)
+    GM_ENVIRONMENT.ADDON_NAME_SHORT .. ":" .. tag .. " - " .. message)
 end
 
 --[[

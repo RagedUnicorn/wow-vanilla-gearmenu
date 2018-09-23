@@ -60,5 +60,5 @@ gm.L["deleterule"] = "Delete Rule"
 -- about tab
 gm.L["author"] = "Author: Michael Wiesendanger"
 gm.L["email"] = "E-Mail: michael.wiesendanger@gmail.com"
-gm.L["version"] = "Version: " .. GM_CONSTANTS.ADDON_VERSION
+gm.L["version"] = "Version: " .. GM_ENVIRONMENT.ADDON_VERSION
 gm.L["issues"] = "Issues: https://github.com/RagedUnicorn/wow-gearmenu/issues"

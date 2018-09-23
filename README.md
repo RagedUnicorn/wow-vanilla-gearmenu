@@ -110,6 +110,30 @@ Not interested to see items with a quality level below a certain level? Filter t
 
 ![](/Docs/gm_options_filter_item_quality.gif)
 
+## Development
+
+### Switching between Environments
+
+Switching between development and release can be achieved with maven.
+
+```
+mvn generate-resources -Dgenerate.sources.overwrite=true -P development
+```
+
+This generates and overwrites `GM_Environment.lua` and `GearMenu.toc`. You need to specifically specify that you want to overwrite to files to prevent data loss. It is also possible to omit the profile because development is the default profile that will be used.
+
+Switching to release can be done as such:
+
+```
+mvn generate-resources -Dgenerate.sources.overwrite=true -P release
+```
+
+In this case it is mandatory to add the release profile.
+
+**Note:** Switching environments has the effect changing certain files to match an expected value depending on the environment. To be more specific this means that as an example test and debug files are not included when switching to release. It also means that variables such as loglevel change to match the environment.
+
+As to not change those files all the time the repository should always stay in the development environment. Do not commit `GearMenu.toc` and `GM_Environment.lua` in their release state. Changes to those files should always be done inside `build-resources` and their respective template files marked with `.tpl`.
+
 ## License
 
 MIT License

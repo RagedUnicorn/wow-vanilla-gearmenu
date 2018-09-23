@@ -33,12 +33,12 @@ me.tag = "Cmd"
   Print cmd options for addon
 ]]--
 local function ShowInfoMessage()
-  local show = gm.L["show"] .. GM_CONSTANTS.ADDON_NAME .. "\n"
-  local hide = gm.L["hide"] .. GM_CONSTANTS.ADDON_NAME .. "\n"
+  local show = gm.L["show"] .. GM_ENVIRONMENT.ADDON_NAME .. "\n"
+  local hide = gm.L["hide"] .. GM_ENVIRONMENT.ADDON_NAME .. "\n"
   local opt = gm.L["opt"]
   local reload = gm.L["reload"]
 
-  DEFAULT_CHAT_FRAME:AddMessage(GM_CONSTANTS.ADDON_NAME .. ":\n")
+  DEFAULT_CHAT_FRAME:AddMessage(GM_ENVIRONMENT.ADDON_NAME .. ":\n")
   DEFAULT_CHAT_FRAME:AddMessage(show)
   DEFAULT_CHAT_FRAME:AddMessage(hide)
   DEFAULT_CHAT_FRAME:AddMessage(opt)
