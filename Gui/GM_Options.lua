@@ -76,7 +76,7 @@ function QuickChangeScrollFrameVerticalScroll()
   pre = pre or 20
   maxScroll = getglobal(this:GetName() .. "_Child"):GetHeight() - 100
 
-	if spec then
+  if spec then
     maxScroll = maxScroll + 100
   end
 
