@@ -134,6 +134,20 @@ In this case it is mandatory to add the release profile.
 
 As to not change those files all the time the repository should always stay in the development environment. Do not commit `GearMenu.toc` and `GM_Environment.lua` in their release state. Changes to those files should always be done inside `build-resources` and their respective template files marked with `.tpl`.
 
+### Packaging the Addon
+
+To package the addon use the `package` phase.
+
+```
+mvn package -P development
+```
+
+This generates an addon package for development. For generating a release package the release profile can be used.
+
+```
+mvn package -P release
+```
+
 ## License
 
 MIT License

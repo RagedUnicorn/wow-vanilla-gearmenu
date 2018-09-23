@@ -1,0 +1,34 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+  <id>release</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <fileSets>
+    <fileSet>
+      <directory>${basedir}</directory>
+      <includes>
+        <include>README.md</include>
+        <include>LICENSE</include>
+        <include>Code/*.lua</include>
+        <include>Gui/*.lua</include>
+        <include>Gui/*.xml</include>
+        <include>Assets/*.blp</include>
+        <include>Assets/*.tga</include>
+      </includes>
+      <excludes>
+        <exclude>Code/GM_Debug.lua</exclude>
+      </excludes>
+    </fileSet>
+  </fileSets>
+  <files>
+    <file>
+      <source>build-resources/gearmenu-release.toc.tpl</source>
+      <outputDirectory>./</outputDirectory>
+      <filtered>true</filtered>
+      <destName>GearMenu.toc</destName>
+    </file>
+  </files>
+</assembly>
