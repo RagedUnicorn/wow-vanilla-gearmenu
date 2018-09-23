@@ -148,6 +148,19 @@ This generates an addon package for development. For generating a release packag
 mvn package -P release
 ```
 
+### Deploy a Release
+
+Before creating a new release update `addon.tag.version` in `pom.xml`. Afterwards to create a new release and deploy to GitHub the `deploy` profile has to be used.
+
+```
+# switch environment to release
+mvn generate-resources -Dgenerate.sources.overwrite=true -P release
+# deploy release to GitHub
+mvn package -P deploy
+```
+
+For this to work an oauth token for GitHub is required and has to be configured in your `.m2` settings file.
+
 ## License
 
 MIT License

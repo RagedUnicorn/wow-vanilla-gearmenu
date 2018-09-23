@@ -56,6 +56,35 @@
         <package.appendAssemblyId>false</package.appendAssemblyId>
         <generate.sources.skip>true</generate.sources.skip>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.ragedunicorn.tools.maven</groupId>
+            <artifactId>github-release-maven-plugin</artifactId>
+            <version>1.0.0</version>
+            <executions>
+              <execution>
+                <id>default-cli</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>github-release</goal>
+                </goals>
+                <configuration>
+                  <owner>ragedunicorn</owner>
+                  <repository>wow-gearmenu</repository>
+                  <server>github-oauth</server>
+                  <tagName>${addon.tag.version}</tagName>
+                  <name>${addon.tag.version}</name>
+                  <releaseNotes>${basedir}/build-resources/release-notes.md</releaseNotes>
+                  <assets>
+                    <asset>${basedir}/target/${addon.name}.zip</asset>
+                  </assets>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
   </profiles>
 
