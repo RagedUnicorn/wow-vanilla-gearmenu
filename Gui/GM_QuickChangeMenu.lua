@@ -32,7 +32,7 @@ me.tag = "QuickChangeMenu"
 -- id's of the selected item
 local changeFromSelectedItem = 0
 local changeToSelectedItem = 0
-local quickChangeRuleSelectedPos = nil
+local quickChangeRuleSelectedPos
 local quickChangeDelay = 0
 local editDelayFocus = false
 

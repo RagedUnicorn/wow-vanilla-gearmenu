@@ -58,12 +58,12 @@ me.colors.debug = "|cff7413d9"  -- magenta
 me.colors.event = "|cff1cdb4f"  -- green
 
 -- log chatframes
-local addonChatFramePosition = nil
-local debugChatFramePosition = nil
-local infoChatFramePosition = nil
-local warnChatFramePosition = nil
-local errorChatFramePosition = nil
-local eventChatFramePosition = nil
+local addonChatFramePosition
+local debugChatFramePosition
+local infoChatFramePosition
+local warnChatFramePosition
+local errorChatFramePosition
+local eventChatFramePosition
 
 --[[
   Searching for a chatFrame with name GM_CONSTANTS.ADDON_CHATFRAME.
