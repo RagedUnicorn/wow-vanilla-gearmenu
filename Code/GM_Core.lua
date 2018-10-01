@@ -147,6 +147,9 @@ end
 function me.Initialize()
   --setup random seed
   math.randomseed(GetTime())
+  me.logger.LogDebug(me.tag, "Initialize addon")
+
+  me.SetupConfiguration()
 
   -- register item
   me.itemManager.RegisterItem(me.mainHand.moduleName)
@@ -178,7 +181,6 @@ function me.Initialize()
     string.format(GM_ENVIRONMENT.ADDON_NAME .. gm.L["help"], GM_ENVIRONMENT.ADDON_VERSION))
 end
 
-
 --[[
   Set SetSlotPositions on addon load
 ]]--
@@ -204,4 +206,53 @@ function me.SetSlotPositions()
 
   -- reflect items that are worn
   me.itemManager.UpdateWornItems()
+end
+
+--[[
+  Set default values if property is nil. This might happen after an addon upgrade
+]]--
+function me.SetupConfiguration()
+  if GearMenuOptions.windowLocked == nil then
+    GearMenuOptions.windowLocked = true
+  end
+
+  if GearMenuOptions.showKeyBindings == nil then
+    GearMenuOptions.showKeyBindings = true
+  end
+
+  if GearMenuOptions.showCooldowns == nil then
+    GearMenuOptions.showCooldowns = true
+  end
+
+  if GearMenuOptions.disableTooltips == nil then
+    GearMenuOptions.disableTooltips = false
+  end
+
+  if GearMenuOptions.smallTooltips == nil then
+    GearMenuOptions.smallTooltips = false
+  end
+
+  if GearMenuOptions.disableDragAndDrop == nil then
+    GearMenuOptions.disableDragAndDrop = false
+  end
+
+  if GearMenuOptions.filterItemQuality == nil then
+    GearMenuOptions.filterItemQuality = 0
+  end
+
+  if GearMenuOptions.modules == nil then
+    GearMenuOptions.modules = {
+      ["mainHand"] = 1,
+      ["offHand"] = 2,
+      ["waist"] = 3,
+      ["feet"] = 4,
+      ["head"] = 5,
+      ["upperTrinket"] = 6,
+      ["lowerTrinket"] = 7
+    }
+  end
+
+  if GearMenuOptions.QuickChangeRules == nil then
+    GearMenuOptions.QuickChangeRules = {}
+  end
 end
