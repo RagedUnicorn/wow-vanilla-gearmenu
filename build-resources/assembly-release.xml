@@ -17,6 +17,7 @@
         <include>Gui/*.xml</include>
         <include>Assets/*.blp</include>
         <include>Assets/*.tga</include>
+        <include>Localization/*.lua</include>
       </includes>
       <excludes>
         <exclude>Code/GM_Debug.lua</exclude>
