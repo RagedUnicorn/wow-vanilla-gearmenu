@@ -139,13 +139,25 @@ As to not change those files all the time the repository should always stay in t
 To package the addon use the `package` phase.
 
 ```
+# switch environment to development
+mvn generate-resources -Dgenerate.sources.overwrite=true -P development
+# package development
 mvn package -P development
 ```
 
 This generates an addon package for development. For generating a release package the release profile can be used.
 
 ```
+# switch environment to release
+mvn generate-resources -Dgenerate.sources.overwrite=true -P release
+# package release
 mvn package -P release
+```
+
+**Note:** Instead of switching the environment before packaging it is also possible to explicitly overwrite the files during packaging
+
+```
+mvn package -Dgenerate.sources.overwrite=true -P release
 ```
 
 ### Deploy a Release
