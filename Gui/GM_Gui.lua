@@ -32,6 +32,14 @@ me.currentSlot = 0
 me.currentPosition = 0
 me.BaggedItems = {}
 
+function me.ShowMainFrame()
+  getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME):Show()
+end
+
+function me.HideMainFrame()
+  getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME):Hide()
+end
+
 function me.DragButtonOnMouseDown()
   if GearMenuOptions.windowLocked then return end
 

@@ -55,9 +55,9 @@ function me.SetupSlashCmdList()
     elseif msg == "opt" then
       mod.opt.InitOptionsMenu()
     elseif msg == "show" then
-      getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME):Show()
+      mod.gui.ShowMainFrame()
     elseif msg == "hide" then
-      getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME):Hide()
+      mod.gui.HideMainFrame()
     elseif msg == "rl" or msg == "reload" then
       ReloadUI()
     end
