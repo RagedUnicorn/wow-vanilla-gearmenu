@@ -54,7 +54,6 @@ function me.SetupSlashCmdList()
       ShowInfoMessage()
     elseif msg == "opt" then
       mod.opt.InitOptionsMenu()
-      getglobal(GM_CONSTANTS.ELEMENT_GM_OPTIONS_FRAME):Show()
     elseif msg == "show" then
       getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME):Show()
     elseif msg == "hide" then

@@ -37,6 +37,8 @@ function me.InitOptionsMenu()
   -- set version title
   getglobal(GM_CONSTANTS.ELEMENT_GM_OPTIONS_TITLE):SetText(GM_ENVIRONMENT.ADDON_NAME ..
     " " .. GM_ENVIRONMENT.ADDON_VERSION)
+  -- show optionsframe
+  getglobal(GM_CONSTANTS.ELEMENT_GM_OPTIONS_FRAME):Show()
 end
 
 --[[
