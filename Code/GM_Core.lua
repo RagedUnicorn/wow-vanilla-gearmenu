@@ -171,7 +171,7 @@ function me.Initialize()
   me.timer.CreateTimer("CooldownUpdate", me.cooldown.CooldownUpdate, 1, true)
   me.timer.CreateTimer("ReflectItemUse", me.gui.ReflectItemUse, .75, true)
 
-  me.SetSlotPositions()
+  me.gui.LoadSlotPositions()
   me.opt.ReflectLockState(GearMenuOptions.windowLocked)
 
   me.timer.StartTimer("CooldownUpdate")
@@ -179,33 +179,6 @@ function me.Initialize()
   -- show welcome message
   DEFAULT_CHAT_FRAME:AddMessage(
     string.format(GM_ENVIRONMENT.ADDON_NAME .. gm.L["help"], GM_ENVIRONMENT.ADDON_VERSION))
-end
-
---[[
-  Set SetSlotPositions on addon load
-]]--
-function me.SetSlotPositions()
-  for key, value in pairs(GearMenuOptions.modules) do
-    if value == 0 then
-      me[key].SetDisabled(true)
-    else
-      me[key].SetDisabled(false)
-    end
-
-    me[key].SetPosition(value)
-  end
-
-  for i = 1, GM_CONSTANTS.ADDON_SLOTS do
-    local active = me.itemManager.FindModuleForPosition(i)
-
-    if active == nil then
-      me.logger.LogDebug(me.tag, "Slot" .. i .. " is inactive")
-      me.gui.HideSlot(i)
-    end
-  end
-
-  -- reflect items that are worn
-  me.itemManager.UpdateWornItems()
 end
 
 --[[

@@ -325,6 +325,33 @@ function me.SlotFrameMouseOver()
 end
 
 --[[
+  Load slotpositions on addon load
+]]--
+function me.LoadSlotPositions()
+  for module, position in pairs(GearMenuOptions.modules) do
+    if position == 0 then
+      mod[module].SetDisabled(true)
+    else
+      mod[module].SetDisabled(false)
+    end
+
+    mod[module].SetPosition(position)
+  end
+
+  for i = 1, GM_CONSTANTS.ADDON_SLOTS do
+    local active = mod.itemManager.FindModuleForPosition(i)
+
+    if active == nil then
+      mod.logger.LogDebug(me.tag, "Slot" .. i .. " is inactive")
+      me.HideSlot(i)
+    end
+  end
+
+  -- reflect items that are worn
+  mod.itemManager.UpdateWornItems()
+end
+
+--[[
   Rearrange slotpositions after activating or deactivating a slot
 ]]--
 function me.RearrangeSlotPositions()
