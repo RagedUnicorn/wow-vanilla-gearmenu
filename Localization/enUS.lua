@@ -2,10 +2,11 @@ gm.L["name"] = "GearMenu"
 
 -- console
 gm.L["help"] = "|cFFFFFF00(%s)|r: Use |cFFFFFF00/gm|r or |cFFFFFF00/gearmenu|r for a list of options"
-gm.L["show"] = "|cFFFFFF00show|r - display "
-gm.L["hide"] = "|cFFFFFF00hide|r - hide "
+gm.L["show"] = "|cFFFFFF00show|r - display GearMenu"
+gm.L["hide"] = "|cFFFFFF00hide|r - hide GearMenu"
 gm.L["opt"] = "|cFFFFFF00opt|r - display Optionsmenu"
 gm.L["reload"] = "|cFFFFFF00reload|r - reload UI"
+gm.L["info_title"] = "|cFFFFFF00GearMenu:|r"
 
 -- user errors
 gm.L["unequip_failed"] = "Unable to find empty bagspace"
