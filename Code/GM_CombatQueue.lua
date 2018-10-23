@@ -89,7 +89,7 @@ function me.UpdateCombatQueue(slot)
   module = mod.itemManager.FindItemForSlotID(slot)
 
   itemID = CombatQueueStore[slot]
-  icon = getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. mod[module].GetPosition() .. "Queue")
+  icon = getglobal(GM_CONSTANTS.ELEMENT_SLOT .. mod[module].GetPosition() .. "Queue")
 
   if itemID then
     _, bag, slot = mod.common.FindItemByID(itemID)

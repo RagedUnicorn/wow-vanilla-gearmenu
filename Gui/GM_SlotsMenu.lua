@@ -80,11 +80,11 @@ function me.InitializeDropdownMenu()
   button = me.CreateDropdownButton("None", 0, me.DropDownMenuCallback)
   UIDropDownMenu_AddButton(button)
 
-  if (UIDropDownMenu_GetSelectedID(getglobal(GM_CONSTANTS.ELEMENT_GM_OPT_SLOT .. position)) == nil) then
+  if (UIDropDownMenu_GetSelectedID(getglobal(GM_CONSTANTS.ELEMENT_OPT_SLOT .. position)) == nil) then
     if moduleName then
-      UIDropDownMenu_SetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_GM_OPT_SLOT .. position), mod[moduleName].id)
+      UIDropDownMenu_SetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_OPT_SLOT .. position), mod[moduleName].id)
     else
-      UIDropDownMenu_SetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_GM_OPT_SLOT .. position), 0)
+      UIDropDownMenu_SetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_OPT_SLOT .. position), 0)
     end
   end
 end
@@ -111,7 +111,7 @@ function me.DropDownMenuCallback()
   end
 
   local _, _, slotPosition = strfind(getglobal(UIDROPDOWNMENU_OPEN_MENU):GetName(),
-    GM_CONSTANTS.ELEMENT_GM_OPT_SLOT .. "(%d+)")
+    GM_CONSTANTS.ELEMENT_OPT_SLOT .. "(%d+)")
 
   -- activate item
   if this.value ~= 0 then

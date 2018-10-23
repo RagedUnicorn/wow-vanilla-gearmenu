@@ -47,11 +47,11 @@ function GM_QuickChangeRulesListUpdate()
   FauxScrollFrame_Update(GM_QuickChangeRuleScrollFrame, rules and table.getn(rules) or 0, 5, 24)
 
   for i = 1, 5 do
-    local item = getglobal(GM_CONSTANTS.ELEMENT_GM_QUICK_CHANGE_RULE_CELL .. i)
-    local itemNameLeft = getglobal(GM_CONSTANTS.ELEMENT_GM_QUICK_CHANGE_RULE_CELL .. i .. "NameLeft")
-    local itemIconLeft = getglobal(GM_CONSTANTS.ELEMENT_GM_QUICK_CHANGE_RULE_CELL .. i .. "IconLeft")
-    local itemNameRight= getglobal(GM_CONSTANTS.ELEMENT_GM_QUICK_CHANGE_RULE_CELL .. i .. "NameRight")
-    local itemIconRight = getglobal(GM_CONSTANTS.ELEMENT_GM_QUICK_CHANGE_RULE_CELL .. i .. "IconRight")
+    local item = getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_CELL .. i)
+    local itemNameLeft = getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_CELL .. i .. "NameLeft")
+    local itemIconLeft = getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_CELL .. i .. "IconLeft")
+    local itemNameRight= getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_CELL .. i .. "NameRight")
+    local itemIconRight = getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_CELL .. i .. "IconRight")
 
     local idx = offset + i
 
@@ -85,7 +85,7 @@ function GM_QuickChangeRuleListCell_OnClick()
 
   quickChangeRuleSelectedPos = idx
   -- clear all current highlighting
-  me.ClearCellList(GM_CONSTANTS.ELEMENT_GM_QUICK_CHANGE_RULE_CELL, 5)
+  me.ClearCellList(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_CELL, 5)
 
   this.selectedItem = true
   getglobal(this:GetName() .. "Highlight"):Show()
@@ -95,20 +95,20 @@ function GM_ChangeFromList_Update(itemType)
   local itemList, offset
 
   if itemType == nil then
-    itemType = UIDropDownMenu_GetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_GM_CHOOSE_CATEGORY))
+    itemType = UIDropDownMenu_GetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_CHOOSE_CATEGORY))
   end
 
   itemList = mod.common.GetItemsByType(itemType, true)
   changeFromItemList = me.FilterDuplicateItems(itemList)
   FauxScrollFrame_Update(GM_QuickChange_ChangeFromScrollFrame, changeFromItemList and table.getn(changeFromItemList) or 0, 9, 24)
   -- clear highlighted cells on scroll
-  me.ClearCellList(GM_CONSTANTS.ELEMENT_GM_CHANGE_FROM_CELL, 9, true)
+  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_FROM_CELL, 9, true)
   offset = FauxScrollFrame_GetOffset(GM_QuickChange_ChangeFromScrollFrame)
 
   for i = 1, 9 do
-    local item = getglobal(GM_CONSTANTS.ELEMENT_GM_CHANGE_FROM_CELL .. i)
-    local itemName = getglobal(GM_CONSTANTS.ELEMENT_GM_CHANGE_FROM_CELL .. i .. "Name")
-    local itemIcon = getglobal(GM_CONSTANTS.ELEMENT_GM_CHANGE_FROM_CELL .. i .. "Icon")
+    local item = getglobal(GM_CONSTANTS.ELEMENT_CHANGE_FROM_CELL .. i)
+    local itemName = getglobal(GM_CONSTANTS.ELEMENT_CHANGE_FROM_CELL .. i .. "Name")
+    local itemIcon = getglobal(GM_CONSTANTS.ELEMENT_CHANGE_FROM_CELL .. i .. "Icon")
 
     local idx = offset + i
 
@@ -121,7 +121,7 @@ function GM_ChangeFromList_Update(itemType)
 
       if changeFromSelectedItem == changeFromItemList[idx].id then
         -- reapply highlight after scrolling
-        getglobal(GM_CONSTANTS.ELEMENT_GM_CHANGE_FROM_CELL .. i .. "Highlight"):Show()
+        getglobal(GM_CONSTANTS.ELEMENT_CHANGE_FROM_CELL .. i .. "Highlight"):Show()
         item.selectedItem = true
       end
 
@@ -136,20 +136,20 @@ function GM_ChangeToList_Update(itemType)
   local itemList, offset
 
   if itemType == nil then
-    itemType = UIDropDownMenu_GetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_GM_CHOOSE_CATEGORY))
+    itemType = UIDropDownMenu_GetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_CHOOSE_CATEGORY))
   end
 
   itemList = mod.common.GetItemsByType(itemType, true)
   changeToItemList = me.FilterDuplicateItems(itemList)
   FauxScrollFrame_Update(GM_QuickChange_ChangeToScrollFrame, changeToItemList and table.getn(changeToItemList) or 0, 9, 24)
   -- clear highlighted cells on scroll
-  me.ClearCellList(GM_CONSTANTS.ELEMENT_GM_CHANGE_TO_CELL, 9, true)
+  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL, 9, true)
   offset = FauxScrollFrame_GetOffset(GM_QuickChange_ChangeToScrollFrame)
 
   for i = 1, 9 do
-    local item = getglobal(GM_CONSTANTS.ELEMENT_GM_CHANGE_TO_CELL .. i)
-    local itemName = getglobal(GM_CONSTANTS.ELEMENT_GM_CHANGE_TO_CELL .. i .. "Name")
-    local itemIcon = getglobal(GM_CONSTANTS.ELEMENT_GM_CHANGE_TO_CELL .. i .. "Icon")
+    local item = getglobal(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL .. i)
+    local itemName = getglobal(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL .. i .. "Name")
+    local itemIcon = getglobal(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL .. i .. "Icon")
 
     local idx = offset + i
 
@@ -162,7 +162,7 @@ function GM_ChangeToList_Update(itemType)
 
       if changeToSelectedItem == changeToItemList[idx].id then
         -- reapply highlight after scrolling
-        getglobal(GM_CONSTANTS.ELEMENT_GM_CHANGE_TO_CELL .. i .. "Highlight"):Show()
+        getglobal(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL .. i .. "Highlight"):Show()
         item.selectedItem = true
       end
 
@@ -177,7 +177,7 @@ function GM_ChangeFromListCell_OnClick()
   local idx = FauxScrollFrame_GetOffset(GM_QuickChange_ChangeFromScrollFrame) + this:GetID()
 
   -- clear all current highlighting
-  me.ClearCellList(GM_CONSTANTS.ELEMENT_GM_CHANGE_FROM_CELL, 9)
+  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_FROM_CELL, 9)
 
   changeFromSelectedItem = changeFromItemList[idx].id
   this.selectedItem = true
@@ -188,7 +188,7 @@ function GM_ChangeToListCell_OnClick()
   local idx = FauxScrollFrame_GetOffset(GM_QuickChange_ChangeToScrollFrame) + this:GetID()
 
   -- clear all current highlighting
-  me.ClearCellList(GM_CONSTANTS.ELEMENT_GM_CHANGE_TO_CELL, 9)
+  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL, 9)
 
   changeToSelectedItem = changeToItemList[idx].id
 
@@ -204,9 +204,9 @@ function GM_AddQuickChangeRule_OnClick()
   end
 
   mod.quickChange.AddQuickChangeRule(changeFromSelectedItem, changeToSelectedItem, quickChangeDelay)
-  getglobal(GM_CONSTANTS.ELEMENT_GM_QUICK_CHANGE_ADD_RULE):SetText("0")
-  me.ClearCellList(GM_CONSTANTS.ELEMENT_GM_CHANGE_FROM_CELL, 9)
-  me.ClearCellList(GM_CONSTANTS.ELEMENT_GM_CHANGE_TO_CELL, 9)
+  getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_ADD_RULE):SetText("0")
+  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_FROM_CELL, 9)
+  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL, 9)
 end
 
 function GM_DeleteQuickChangeRule_OnClick()
@@ -246,8 +246,8 @@ function GM_QuickChangeDelay_OnEditFocusLost()
 end
 
 function GM_ItemList_OnShow()
-  if (UIDropDownMenu_GetSelectedID(getglobal(GM_CONSTANTS.ELEMENT_GM_CHOOSE_CATEGORY)) ~= nil) then
-    local currentValue = UIDropDownMenu_GetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_GM_CHOOSE_CATEGORY))
+  if (UIDropDownMenu_GetSelectedID(getglobal(GM_CONSTANTS.ELEMENT_CHOOSE_CATEGORY)) ~= nil) then
+    local currentValue = UIDropDownMenu_GetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_CHOOSE_CATEGORY))
 
     GM_ChangeFromList_Update(currentValue)
     GM_ChangeToList_Update(currentValue)
@@ -283,9 +283,9 @@ function me.InitializeDropdownMenu()
     UIDropDownMenu_AddButton(button)
   end
 
-  if (UIDropDownMenu_GetSelectedID(getglobal(GM_CONSTANTS.ELEMENT_GM_CHOOSE_CATEGORY)) == nil) then
+  if (UIDropDownMenu_GetSelectedID(getglobal(GM_CONSTANTS.ELEMENT_CHOOSE_CATEGORY)) == nil) then
     -- set initial state
-    UIDropDownMenu_SetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_GM_CHOOSE_CATEGORY), GM_CONSTANTS.CATEGORY_TRINKET)
+    UIDropDownMenu_SetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_CHOOSE_CATEGORY), GM_CONSTANTS.CATEGORY_TRINKET)
   end
 end
 

@@ -33,30 +33,30 @@ me.currentPosition = 0
 me.BaggedItems = {}
 
 function me.ShowMainFrame()
-  getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME):Show()
+  getglobal(GM_CONSTANTS.ELEMENT_MAIN_FRAME):Show()
 end
 
 function me.HideMainFrame()
-  getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME):Hide()
+  getglobal(GM_CONSTANTS.ELEMENT_MAIN_FRAME):Hide()
 end
 
 function me.DragButtonOnMouseDown()
   if GearMenuOptions.windowLocked then return end
 
-  getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME):StartMoving()
+  getglobal(GM_CONSTANTS.ELEMENT_MAIN_FRAME):StartMoving()
 end
 
 function me.DragButtonOnMouseUp()
   if GearMenuOptions.windowLocked then return end
 
-  getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME):StopMovingOrSizing()
+  getglobal(GM_CONSTANTS.ELEMENT_MAIN_FRAME):StopMovingOrSizing()
 end
 
 --[[
   Hovering itemslot for worn item
 ]]--
 function me.ItemButtonOnEnter()
-  GameTooltip_SetDefaultAnchor(getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP), this)
+  GameTooltip_SetDefaultAnchor(getglobal(GM_CONSTANTS.ELEMENT_TOOLTIP), this)
 
   local position = mod.common.ExtractPositionFromName(this:GetName())
   local module = mod.itemManager.FindModuleForPosition(position)
@@ -151,7 +151,7 @@ end
   Hovering itemslot for bagged items
 ]]--
 function me.MenuItemOnEnter()
-  GameTooltip_SetDefaultAnchor(getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP), this)
+  GameTooltip_SetDefaultAnchor(getglobal(GM_CONSTANTS.ELEMENT_TOOLTIP), this)
   mod.tooltip.BuildTooltipForBaggedItems(this:GetID(), me.BaggedItems)
 end
 
@@ -170,7 +170,7 @@ function me.MenuItemOnClick()
   }
 
   mod.common.EquipItemByID(item, me.currentSlot)
-  getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_FRAME):Hide()
+  getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):Hide()
 end
 
 --[[
@@ -191,7 +191,7 @@ function me.UseInventoryItem(position)
 
   if not id then
     -- reflect item use
-    getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. position):SetChecked(1)
+    getglobal(GM_CONSTANTS.ELEMENT_SLOT .. position):SetChecked(1)
     mod.timer.StartTimer("ReflectItemUse")
 
     return
@@ -203,7 +203,7 @@ function me.UseInventoryItem(position)
   mod.quickChange.CheckItemUse(module)
 
   -- reflect item use
-  getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. position):SetChecked(1)
+  getglobal(GM_CONSTANTS.ELEMENT_SLOT .. position):SetChecked(1)
   mod.timer.StartTimer("ReflectItemUse")
 end
 
@@ -212,7 +212,7 @@ end
 ]]
 function me.ReflectItemUse()
   for i = 1, GM_CONSTANTS.ADDON_SLOTS do
-    getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. i):SetChecked(0)
+    getglobal(GM_CONSTANTS.ELEMENT_SLOT .. i):SetChecked(0)
   end
 
   mod.timer.StopTimer("ReflectItemUse")
@@ -224,7 +224,7 @@ end
 function me.BuildMenu()
   -- clear out all item buttons
   for i = 1, 30 do
-    getglobal(GM_CONSTANTS.ELEMENT_GM_MENU_ITEM .. i):Hide()
+    getglobal(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i):Hide()
   end
 
   local idx, i, j, k, texture = 1, numberOfItems, slotName, module
@@ -254,7 +254,7 @@ function me.BuildMenu()
 
   if numberOfItems < 1 then
     -- user has no bagged item of this specific type
-    getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_FRAME):Hide()
+    getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):Hide()
   else
     local row = 0
     local max_rows = 2 -- width of 2 items
@@ -263,9 +263,9 @@ function me.BuildMenu()
     local ypos = 8
 
     for i = 1, numberOfItems do
-      local item = getglobal(GM_CONSTANTS.ELEMENT_GM_MENU_ITEM .. i)
+      local item = getglobal(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i)
       item:SetChecked(0)
-      getglobal(GM_CONSTANTS.ELEMENT_GM_MENU_ITEM .. i .. "Icon"):SetTexture(me.BaggedItems[i].texture)
+      getglobal(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i .. "Icon"):SetTexture(me.BaggedItems[i].texture)
 
       if math.mod(i, 2) ~= 0 then
         row = 0 -- left row
@@ -290,24 +290,24 @@ function me.BuildMenu()
         col = col + 1
       end
 
-      item:SetPoint("BOTTOMLEFT", GM_CONSTANTS.ELEMENT_GM_SLOT_FRAME, xpos, ypos)
+      item:SetPoint("BOTTOMLEFT", GM_CONSTANTS.ELEMENT_SLOT_FRAME, xpos, ypos)
       item:Show()
     end
 
-    local frame = getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_FRAME)
+    local frame = getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME)
     frame:ClearAllPoints()
 
     -- bind to point slot that was hovered
-    frame:SetPoint("BOTTOMLEFT", GM_CONSTANTS.ELEMENT_GM_SLOT .. position,
+    frame:SetPoint("BOTTOMLEFT", GM_CONSTANTS.ELEMENT_SLOT .. position,
       GM_CONSTANTS.INTERFACE_DEFAULT_NEGATIVE_MARGIN, GM_CONSTANTS.INTERFACE_SLOT_SPACE)
 
     if col == 0 then
       col = 1
     end
 
-    getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_FRAME):SetWidth(12 + (max_rows * GM_CONSTANTS.INTERFACE_SLOT_SPACE))
-    getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_FRAME):SetHeight(12 + ((col) * GM_CONSTANTS.INTERFACE_SLOT_SPACE))
-    getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_FRAME):Show()
+    getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):SetWidth(12 + (max_rows * GM_CONSTANTS.INTERFACE_SLOT_SPACE))
+    getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):SetHeight(12 + ((col) * GM_CONSTANTS.INTERFACE_SLOT_SPACE))
+    getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):Show()
 
     mod.cooldown.UpdateCooldownForBaggedItems(numberOfItems, me.BaggedItems)
     mod.timer.StartTimer("MenuMouseover")
@@ -318,9 +318,9 @@ end
   Close slot frame after a delay
 ]]--
 function me.SlotFrameMouseOver()
-  if (not MouseIsOver(getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME))) and (not MouseIsOver(getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_FRAME))) then
+  if (not MouseIsOver(getglobal(GM_CONSTANTS.ELEMENT_MAIN_FRAME))) and (not MouseIsOver(getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME))) then
     mod.timer.StopTimer("MenuMouseover")
-    getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_FRAME):Hide()
+    getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):Hide()
   end
 end
 
@@ -359,18 +359,17 @@ function me.RearrangeSlotPositions()
 
   -- make table of active slotswa
   for i = 1, GM_CONSTANTS.ADDON_SLOTS do
-    local slotFrame = getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. i)
+    local slotFrame = getglobal(GM_CONSTANTS.ELEMENT_SLOT .. i)
 
     if slotFrame:IsShown() then
-      slots[i] = GM_CONSTANTS.ELEMENT_GM_SLOT .. i
+      slots[i] = GM_CONSTANTS.ELEMENT_SLOT .. i
     end
   end
 
   local i = 0
   -- position active slots
   for index, value in pairs(slots) do
-    local slotFrame = getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. index)
-
+    local slotFrame = getglobal(GM_CONSTANTS.ELEMENT_SLOT .. index)
 
     slotFrame:SetPoint("TOPLEFT",
       GM_CONSTANTS.INTERFACE_DEFAULT_MARGIN + (GM_CONSTANTS.INTERFACE_SLOT_SPACE * i),
@@ -384,7 +383,7 @@ function me.RearrangeSlotPositions()
   end
 
   -- set size of mainframe
-  getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME):SetWidth(GM_CONSTANTS.INTERFACE_DEFAULT_MARGIN
+  getglobal(GM_CONSTANTS.ELEMENT_MAIN_FRAME):SetWidth(GM_CONSTANTS.INTERFACE_DEFAULT_MARGIN
     + (GM_CONSTANTS.INTERFACE_SLOT_SPACE * i) + 4)
 end
 
@@ -394,7 +393,7 @@ end
   @param {number} position
 ]]--
 function me.ShowSlot(position)
-  local frame = getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. position)
+  local frame = getglobal(GM_CONSTANTS.ELEMENT_SLOT .. position)
   frame:Show()
 
   -- recalculate slot positioning
@@ -407,7 +406,7 @@ end
   @param {number} position
 ]]--
 function me.HideSlot(position)
-  local frame = getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. position)
+  local frame = getglobal(GM_CONSTANTS.ELEMENT_SLOT .. position)
   frame:Hide()
   -- recalculate slot positioning
   me.RearrangeSlotPositions()
@@ -419,7 +418,7 @@ end
 function me.ShowKeyBindings()
   for i = 1, GM_CONSTANTS.ADDON_SLOTS do
     if GearMenuOptions.showKeyBindings then
-      local binding = getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. i .. "HotKey")
+      local binding = getglobal(GM_CONSTANTS.ELEMENT_SLOT .. i .. "HotKey")
       binding:SetText(GetBindingText(GetBindingKey("Slot " .. i), "KEY_", 1))
     end
   end
@@ -430,7 +429,7 @@ end
 ]]--
 function me.HideKeyBindings()
   for i = 1, GM_CONSTANTS.ADDON_SLOTS do
-    local binding = getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. i .. "HotKey")
+    local binding = getglobal(GM_CONSTANTS.ELEMENT_SLOT .. i .. "HotKey")
     binding:SetText("")
   end
 end
@@ -441,13 +440,13 @@ end
 function me.HideCooldowns()
   -- hide slot cooldowns
   for i = 1, GM_CONSTANTS.ADDON_SLOTS do
-    local frame = getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. i .. "Time")
+    local frame = getglobal(GM_CONSTANTS.ELEMENT_SLOT .. i .. "Time")
     frame:Hide()
   end
 
   -- hide bagged items cooldown
   for i = 1, 30 do
-    local frame = getglobal(GM_CONSTANTS.ELEMENT_GM_MENU_ITEM .. i .. "Time")
+    local frame = getglobal(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i .. "Time")
     frame:Hide()
   end
 end
@@ -458,13 +457,13 @@ end
 function me.ShowCooldowns()
   -- show slot cooldowns
   for i = 1, GM_CONSTANTS.ADDON_SLOTS do
-    local frame = getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. i .. "Time")
+    local frame = getglobal(GM_CONSTANTS.ELEMENT_SLOT .. i .. "Time")
     frame:Show()
   end
 
   -- show bagged items cooldown
   for i = 1, 30 do
-    local frame = getglobal(GM_CONSTANTS.ELEMENT_GM_MENU_ITEM .. i .. "Time")
+    local frame = getglobal(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i .. "Time")
     frame:Show()
   end
 end

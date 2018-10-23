@@ -122,7 +122,7 @@ function me.OnEvent()
     me.logger.LogEvent(me.tag, "UNIT_INVENTORY_CHANGED")
     -- update all registered worn items
     me.itemManager.UpdateWornItems()
-    if getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_FRAME):IsVisible() then
+    if getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):IsVisible() then
       -- rebuild possible changed menu
       me.gui.BuildMenu()
     end

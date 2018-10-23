@@ -50,7 +50,7 @@ function GM_Tooltip_OnEnter()
   if not name then return end
 
   for i = 1, table.getn(options) do
-    if name == GM_CONSTANTS.ELEMENT_GM_Opt .. options[i][1] then
+    if name == GM_CONSTANTS.ELEMENT_OPT .. options[i][1] then
       mod.tooltip.BuildTooltipForOption(options[i][2], options[i][3])
     end
   end
@@ -60,7 +60,7 @@ end
   Hide options tooltip onleave
 ]]--
 function GM_Tooltip_OnLeave()
-  getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP):Hide()
+  getglobal(GM_CONSTANTS.ELEMENT_TOOLTIP):Hide()
 end
 
 function GM_LockWindowOption_OnShow()
@@ -186,7 +186,7 @@ function GM_InitGeneralMenu()
   local item
 
   for i = 1, table.getn(options) do
-    item = getglobal(GM_CONSTANTS.ELEMENT_GM_Opt .. options[i][1] .. "Text")
+    item = getglobal(GM_CONSTANTS.ELEMENT_OPT .. options[i][1] .. "Text")
     if item then
       item:SetText(options[i][2])
       item:SetTextColor(.95, .95, .95)
@@ -249,8 +249,8 @@ function me.InitializeDropdownMenu()
     GM_CONSTANTS.ITEMQUALITY.legendary, me.DropDownMenuCallback)
   UIDropDownMenu_AddButton(button)
 
-  if (UIDropDownMenu_GetSelectedID(getglobal(GM_CONSTANTS.ELEMENT_GM_OPT_FILTER_ITEM_QUALITY)) == nil) then
-    UIDropDownMenu_SetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_GM_OPT_FILTER_ITEM_QUALITY), itemQualityFilter)
+  if (UIDropDownMenu_GetSelectedID(getglobal(GM_CONSTANTS.ELEMENT_OPT_FILTER_ITEM_QUALITY)) == nil) then
+    UIDropDownMenu_SetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_OPT_FILTER_ITEM_QUALITY), itemQualityFilter)
   end
 end
 

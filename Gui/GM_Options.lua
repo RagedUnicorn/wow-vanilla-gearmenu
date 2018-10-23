@@ -35,18 +35,18 @@ end
 
 function me.InitOptionsMenu()
   -- set version title
-  getglobal(GM_CONSTANTS.ELEMENT_GM_OPTIONS_TITLE):SetText(GM_ENVIRONMENT.ADDON_NAME ..
+  getglobal(GM_CONSTANTS.ELEMENT_OPTIONS_TITLE):SetText(GM_ENVIRONMENT.ADDON_NAME ..
     " " .. GM_ENVIRONMENT.ADDON_VERSION)
   -- show optionsframe
-  getglobal(GM_CONSTANTS.ELEMENT_GM_OPTIONS_FRAME):Show()
+  getglobal(GM_CONSTANTS.ELEMENT_OPTIONS_FRAME):Show()
 end
 
 --[[
   @param {boolean} locked
 ]]--
 function me.ReflectLockState(locked)
-  local mainFrame = getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME)
-  local slotFrame = getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_FRAME)
+  local mainFrame = getglobal(GM_CONSTANTS.ELEMENT_MAIN_FRAME)
+  local slotFrame = getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME)
 
   if locked then
     mainFrame:SetBackdropColor(0, 0, 0, 0)
@@ -56,7 +56,7 @@ function me.ReflectLockState(locked)
     slotFrame:EnableMouse(0 * 2)
 
     -- hide move button
-    getglobal(GM_CONSTANTS.ELEMENT_GM_MOVE_BUTTON):Hide()
+    getglobal(GM_CONSTANTS.ELEMENT_DRAG_BUTTON):Hide()
   else
     mainFrame:SetBackdropColor(.5, .5, .5, .5)
     mainFrame:SetBackdropBorderColor(.5, .5, .5, .5 * 2)
@@ -65,7 +65,7 @@ function me.ReflectLockState(locked)
     slotFrame:EnableMouse(.5 * 2)
 
     -- show move button
-    getglobal(GM_CONSTANTS.ELEMENT_GM_MOVE_BUTTON):Show()
+    getglobal(GM_CONSTANTS.ELEMENT_DRAG_BUTTON):Show()
   end
 end
 

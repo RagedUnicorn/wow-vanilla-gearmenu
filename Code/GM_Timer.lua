@@ -74,7 +74,7 @@ function me.StartTimer(name, delay)
 
   if not me.IsTimerActive(name) then
     table.insert(Timers, name)
-    getglobal(GM_CONSTANTS.ELEMENT_GM_TIMER_FRAME):Show()
+    getglobal(GM_CONSTANTS.ELEMENT_TIMER_FRAME):Show()
   end
 end
 
@@ -88,7 +88,7 @@ function me.StopTimer(name)
     table.remove(Timers, idx)
     mod.logger.LogDebug(me.tag, "Stopped timer with name: " .. name)
     if table.getn(Timers) < 1 then
-      getglobal(GM_CONSTANTS.ELEMENT_GM_TIMER_FRAME):Hide()
+      getglobal(GM_CONSTANTS.ELEMENT_TIMER_FRAME):Hide()
     end
   end
 end

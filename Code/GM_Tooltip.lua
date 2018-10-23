@@ -66,7 +66,7 @@ end
   @param {string} line2
 ]]--
 function me.BuildTooltipForOption(line1, line2)
-  local tooltip = getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP)
+  local tooltip = getglobal(GM_CONSTANTS.ELEMENT_TOOLTIP)
 
   GameTooltip_SetDefaultAnchor(tooltip, this)
 
@@ -84,7 +84,7 @@ end
 function me.TooltipUpdate()
   if GearMenuOptions.disableTooltips then return end
 
-  local tooltip = getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP)
+  local tooltip = getglobal(GM_CONSTANTS.ELEMENT_TOOLTIP)
 
   tooltip:ClearLines()
 
@@ -125,5 +125,5 @@ end
 function me.TooltipClear()
   mod.logger.LogDebug(me.tag, "Cleared Tooltip")
   mod.timer.StopTimer("TooltipUpdate")
-  getglobal(GM_CONSTANTS.ELEMENT_GM_TOOLTIP):Hide()
+  getglobal(GM_CONSTANTS.ELEMENT_TOOLTIP):Hide()
 end

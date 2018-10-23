@@ -36,13 +36,13 @@ local navigationEntries = {
     ["position"] = 1,
     ["active"] = true,
     ["init"] = function()
-      getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_TITLE .. 1):SetText(gm.L["titleslot1"])
-      getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_TITLE .. 2):SetText(gm.L["titleslot2"])
-      getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_TITLE .. 3):SetText(gm.L["titleslot3"])
-      getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_TITLE .. 4):SetText(gm.L["titleslot4"])
-      getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_TITLE .. 5):SetText(gm.L["titleslot5"])
-      getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_TITLE .. 6):SetText(gm.L["titleslot6"])
-      getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT_TITLE .. 7):SetText(gm.L["titleslot7"])
+      getglobal(GM_CONSTANTS.ELEMENT_SLOT_TITLE .. 1):SetText(gm.L["titleslot1"])
+      getglobal(GM_CONSTANTS.ELEMENT_SLOT_TITLE .. 2):SetText(gm.L["titleslot2"])
+      getglobal(GM_CONSTANTS.ELEMENT_SLOT_TITLE .. 3):SetText(gm.L["titleslot3"])
+      getglobal(GM_CONSTANTS.ELEMENT_SLOT_TITLE .. 4):SetText(gm.L["titleslot4"])
+      getglobal(GM_CONSTANTS.ELEMENT_SLOT_TITLE .. 5):SetText(gm.L["titleslot5"])
+      getglobal(GM_CONSTANTS.ELEMENT_SLOT_TITLE .. 6):SetText(gm.L["titleslot6"])
+      getglobal(GM_CONSTANTS.ELEMENT_SLOT_TITLE .. 7):SetText(gm.L["titleslot7"])
     end
   },
   [2] = {
@@ -51,7 +51,7 @@ local navigationEntries = {
     ["position"] = 2,
     ["active"] = false,
     ["init"] = function()
-      getglobal(GM_CONSTANTS.ELEMENT_GM_FILTER_ITEM_QUALITY_TITLE):SetText(gm.L["filteritemquality"])
+      getglobal(GM_CONSTANTS.ELEMENT_FILTER_ITEM_QUALITY_TITLE):SetText(gm.L["filteritemquality"])
     end
   },
   [3] = {
@@ -60,11 +60,11 @@ local navigationEntries = {
     ["position"] = 3,
     ["active"] = false,
     ["init"] = function()
-      getglobal(GM_CONSTANTS.ELEMENT_GM_QUICK_CHANGE_DELAY_LABEL):SetText(gm.L["delaylabel"])
-      getglobal(GM_CONSTANTS.ELEMENT_GM_QUICK_CHANGE_UNIT_DELAY_LABEL):SetText(gm.L["delayunitlabel"])
-      getglobal(GM_CONSTANTS.ELEMENT_GM_RULE_LIST_LABEL):SetText(gm.L["rulelistlabel"])
-      getglobal(GM_CONSTANTS.ELEMENT_GM_CHANGE_FROM_LABEL):SetText(gm.L["changefromlabel"])
-      getglobal(GM_CONSTANTS.ELEMENT_GM_CHANGE_TO_LABEL):SetText(gm.L["changetolabel"])
+      getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_DELAY_LABEL):SetText(gm.L["delaylabel"])
+      getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_UNIT_DELAY_LABEL):SetText(gm.L["delayunitlabel"])
+      getglobal(GM_CONSTANTS.ELEMENT_RULE_LIST_LABEL):SetText(gm.L["rulelistlabel"])
+      getglobal(GM_CONSTANTS.ELEMENT_CHANGE_FROM_LABEL):SetText(gm.L["changefromlabel"])
+      getglobal(GM_CONSTANTS.ELEMENT_CHANGE_TO_LABEL):SetText(gm.L["changetolabel"])
     end
   },
   [4] = {
@@ -74,10 +74,10 @@ local navigationEntries = {
     ["active"] = false,
     ["init"] = function()
       --load texts
-      getglobal(GM_CONSTANTS.ELEMENT_GM_ABOUT_AUTHOR_LABEL):SetText(gm.L["author"])
-      getglobal(GM_CONSTANTS.ELEMENT_GM_ABOUT_EMAIL_LABEL):SetText(gm.L["email"])
-      getglobal(GM_CONSTANTS.ELEMENT_GM_ABOUT_ISSUES_LABEL):SetText(gm.L["issues"])
-      getglobal(GM_CONSTANTS.ELEMENT_GM_ABOUT_VERSION_LABEL):SetText(gm.L["version"])
+      getglobal(GM_CONSTANTS.ELEMENT_ABOUT_AUTHOR_LABEL):SetText(gm.L["author"])
+      getglobal(GM_CONSTANTS.ELEMENT_ABOUT_EMAIL_LABEL):SetText(gm.L["email"])
+      getglobal(GM_CONSTANTS.ELEMENT_ABOUT_ISSUES_LABEL):SetText(gm.L["issues"])
+      getglobal(GM_CONSTANTS.ELEMENT_ABOUT_VERSION_LABEL):SetText(gm.L["version"])
     end
   }
 }
@@ -93,10 +93,10 @@ function GM_LeftNavigationMenu_OnLoad()
     navigationEntries[i].active = false
 
     -- reset navigation highlight
-    getglobal(GM_CONSTANTS.ELEMENT_GM_NAVIGATION_BUTTON .. i .. "Texture"):Hide()
-    getglobal(GM_CONSTANTS.ELEMENT_GM_NAVIGATION_BUTTON .. i .. "Text"):SetTextColor(0.94, 0.76, 0, 1)
+    getglobal(GM_CONSTANTS.ELEMENT_NAVIGATION_BUTTON .. i .. "Texture"):Hide()
+    getglobal(GM_CONSTANTS.ELEMENT_NAVIGATION_BUTTON .. i .. "Text"):SetTextColor(0.94, 0.76, 0, 1)
     -- hide content frame
-    getglobal(GM_CONSTANTS.ELEMENT_GM_CONTENT .. navigationEntries[i].name):Hide()
+    getglobal(GM_CONSTANTS.ELEMENT_CONTENT .. navigationEntries[i].name):Hide()
   end
 
   for _, framechild in ipairs(frames) do
@@ -108,7 +108,7 @@ function GM_LeftNavigationMenu_OnLoad()
   end
 
   -- set first content window active
-  getglobal(GM_CONSTANTS.ELEMENT_GM_CONTENT .. navigationEntries[1].name):Show()
+  getglobal(GM_CONSTANTS.ELEMENT_CONTENT .. navigationEntries[1].name):Show()
   navigationEntries[1].init()
 end
 
@@ -124,16 +124,16 @@ function GM_Navigation_Button_OnClick()
         getglobal(name .. "Texture"):Show()
         getglobal(name .. "Text"):SetTextColor(1, 1, 1, 1)
         -- set content frame active
-        getglobal(GM_CONSTANTS.ELEMENT_GM_CONTENT .. navigationEntries[i].name):Show()
+        getglobal(GM_CONSTANTS.ELEMENT_CONTENT .. navigationEntries[i].name):Show()
         navigationEntries[i].init()
       else
         navigationEntries[i].active = false
 
         -- reset navigation highlight
-        getglobal(GM_CONSTANTS.ELEMENT_GM_NAVIGATION_BUTTON .. i .. "Texture"):Hide()
-        getglobal(GM_CONSTANTS.ELEMENT_GM_NAVIGATION_BUTTON .. i .. "Text"):SetTextColor(0.94, 0.76, 0, 1)
+        getglobal(GM_CONSTANTS.ELEMENT_NAVIGATION_BUTTON .. i .. "Texture"):Hide()
+        getglobal(GM_CONSTANTS.ELEMENT_NAVIGATION_BUTTON .. i .. "Text"):SetTextColor(0.94, 0.76, 0, 1)
         -- hide content frame
-        getglobal(GM_CONSTANTS.ELEMENT_GM_CONTENT .. navigationEntries[i].name):Hide()
+        getglobal(GM_CONSTANTS.ELEMENT_CONTENT .. navigationEntries[i].name):Hide()
       end
     end
   else

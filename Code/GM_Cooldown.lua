@@ -83,7 +83,7 @@ function me.CooldownUpdate()
     end
   end
 
-  if getglobal(GM_CONSTANTS.ELEMENT_GM_MAIN_FRAME):IsVisible() then
+  if getglobal(GM_CONSTANTS.ELEMENT_MAIN_FRAME):IsVisible() then
     mod.itemManager.UpdateCooldownForAllWornItems()
   end
 end
@@ -99,13 +99,13 @@ function me.UpdateCooldownForBaggedItems(numberOfItems, BaggedItems)
     local start, duration, enable = GetContainerItemCooldown(BaggedItems[i].bag, BaggedItems[i].slot)
 
     CooldownFrame_SetTimer(
-      getglobal(GM_CONSTANTS.ELEMENT_GM_MENU_ITEM .. i .. "Cooldown"),
+      getglobal(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i .. "Cooldown"),
       start, duration, enable
     )
 
     if GearMenuOptions.showCooldowns then
-      me.SetCooldownFont(GM_CONSTANTS.ELEMENT_GM_MENU_ITEM .. i)
-      me.SetCooldown(getglobal(GM_CONSTANTS.ELEMENT_GM_MENU_ITEM .. i .. "Time"), start, duration)
+      me.SetCooldownFont(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i)
+      me.SetCooldown(getglobal(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i .. "Time"), start, duration)
     end
   end
 end
@@ -120,13 +120,13 @@ function me.UpdateCooldownForWornItem(slotID, position)
   local start, duration, enable = GetInventoryItemCooldown("player", slotID)
 
   CooldownFrame_SetTimer(
-    getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. position .. "Cooldown"),
+    getglobal(GM_CONSTANTS.ELEMENT_SLOT .. position .. "Cooldown"),
     start, duration, enable
   )
 
   if GearMenuOptions.showCooldowns then
-    local frame = getglobal(GM_CONSTANTS.ELEMENT_GM_SLOT .. position .. "Time")
-    me.SetCooldownFont(GM_CONSTANTS.ELEMENT_GM_SLOT .. position)
+    local frame = getglobal(GM_CONSTANTS.ELEMENT_SLOT .. position .. "Time")
+    me.SetCooldownFont(GM_CONSTANTS.ELEMENT_SLOT .. position)
     me.SetCooldown(frame, start, duration)
   end
 end
