@@ -227,11 +227,9 @@ function me.BuildMenu()
     getglobal(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i):Hide()
   end
 
-  local idx, i, j, k, texture = 1, numberOfItems, slotName, module
-  local itemLink, itemId, itemName, equipSlot, itemTexture, position
+  local numberOfItems, module, position
 
   me.BaggedItems = {}
-  slotName = this:GetName()
 
   position = mod.common.ExtractPositionFromName(this:GetName())
 
