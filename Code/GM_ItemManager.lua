@@ -93,7 +93,7 @@ end
 --[[
   Returns the item that matches the passed itemSlot id or nil if none could be found
 
-  @param {number} position
+  @param {number} id
   @return {string | nil}
 ]]
 function me.FindItemForSlotId(id)
