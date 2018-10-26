@@ -57,7 +57,7 @@ function GM_QuickChangeRulesListUpdate()
 
     if idx <= table.getn(rules) then
       -- prepare left items
-      local changeFromName, _, itemFromQuality, _, _, _, _, equipFromSlot, itemFromTexture = GetItemInfo(rules[idx].changeFromID)
+      local changeFromName, _, itemFromQuality, _, _, _, _, equipFromSlot, itemFromTexture = GetItemInfo(rules[idx].changeFromId)
 
       itemIconLeft:SetTexture(itemFromTexture)
       itemNameLeft:SetText(rules[idx].changeFromName)
@@ -65,7 +65,7 @@ function GM_QuickChangeRulesListUpdate()
       itemNameLeft:SetTextColor(r, g, b)
       itemIconLeft:SetVertexColor(1, 1, 1)
       -- prepare right item
-      local changeToName, _, itemToQuality, _, _, _, _, equipToSlot, itemToTexture = GetItemInfo(rules[idx].changeToID)
+      local changeToName, _, itemToQuality, _, _, _, _, equipToSlot, itemToTexture = GetItemInfo(rules[idx].changeToId)
 
       itemIconRight:SetTexture(itemToTexture)
       itemNameRight:SetText(rules[idx].changeToName)
@@ -320,7 +320,7 @@ function me.ClearCellList(baseName, count, visual)
 end
 
 --[[
-  Filter retrieved itemlist by itemID
+  Filter retrieved itemlist by itemId
 
   @param {table} itemList
   @return {table}

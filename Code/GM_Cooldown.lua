@@ -35,22 +35,22 @@ local itemsUsed = {}
   Update cooldowns
 ]]--
 function me.CooldownUpdate()
-  local inv, bag, slot, start, duration, itemID, remain
+  local inv, bag, slot, start, duration, itemId, remain
 
   for i in itemsUsed do
-    start, itemID = nil
+    start, itemId = nil
     inv, bag, slot = watch[i].inv, watch[i].bag, watch[i].slot
 
     if inv then -- if it was last seen in an inv slot, get name in that slot
-      _, _, itemID = strfind(GetInventoryItemLink("player", inv) or "", itemID, 1, 1)
+      _, _, itemId = strfind(GetInventoryItemLink("player", inv) or "", itemId, 1, 1)
     end
 
     if bag then -- if it was last seen in a container slot, get name in that slot
-      _, _, itemID = strfind(GetContainerItemLink("player", bag, slot) or "", itemID, 1, 1)
+      _, _, itemId = strfind(GetContainerItemLink("player", bag, slot) or "", itemId, 1, 1)
     end
 
-    if itemID ~= i then -- item has moved
-      inv, bag, slot = mod.common.FindItemByID(i, 1)
+    if itemId ~= i then -- item has moved
+      inv, bag, slot = mod.common.FindItemById(i, 1)
       watch[i].inv, watch[i].bag, watch[i].slot = inv, bag, slot
     end
 
@@ -113,11 +113,11 @@ end
 --[[
   Update cooldown for a worn itemManager
 
-  @param {number} slotID
+  @param {number} slotId
   @param {number} position
 ]]--
-function me.UpdateCooldownForWornItem(slotID, position)
-  local start, duration, enable = GetInventoryItemCooldown("player", slotID)
+function me.UpdateCooldownForWornItem(slotId, position)
+  local start, duration, enable = GetInventoryItemCooldown("player", slotId)
 
   CooldownFrame_SetTimer(
     getglobal(GM_CONSTANTS.ELEMENT_SLOT .. position .. "Cooldown"),

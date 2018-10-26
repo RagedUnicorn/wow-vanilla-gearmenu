@@ -66,11 +66,11 @@ GearMenuOptions = {
   --[[
     example
     {
-      ["slotID"] = {13, 14},
+      ["slotId"] = {13, 14},
       ["changeFromName"] = "Earthstrike",
-      ["changeFromID"] = 21180,
+      ["changeFromId"] = 21180,
       ["changeToName"] = "Drake Fang Talisman",
-      ["changeToID"]  = 19406,
+      ["changeToId"]  = 19406,
       ["changeDelay"] = 20 -- delay in sek
     }
   ]]--

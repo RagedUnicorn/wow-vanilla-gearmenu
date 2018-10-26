@@ -105,7 +105,7 @@ function me.DropDownMenuCallback()
 
   -- when the currentValue is not equal to the selectedValue we need to deactivate the item
   if currentValue ~= 0 and currentValue ~= this.value then
-    local moduleName = mod.itemManager.FindItemForSlotID(currentValue)
+    local moduleName = mod.itemManager.FindItemForSlotId(currentValue)
     mod[moduleName].SetPosition(0)
     mod[moduleName].SetDisabled(true)
   end
@@ -115,7 +115,7 @@ function me.DropDownMenuCallback()
 
   -- activate item
   if this.value ~= 0 then
-    local moduleName = mod.itemManager.FindItemForSlotID(this.value)
+    local moduleName = mod.itemManager.FindItemForSlotId(this.value)
     mod[moduleName].SetPosition(tonumber(slotPosition))
     mod[moduleName].SetDisabled(false)
 

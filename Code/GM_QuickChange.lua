@@ -32,34 +32,34 @@ me.tag = "QuickChange"
 --[[
   Save new quick change rule
 
-  @param (number) changeFromID
+  @param (number) changeFromId
     item to switch from
-  @param (number) changeToID
+  @param (number) changeToId
     item to switch to
   @param {number} delay
     time to wait before changing an item
   @return (nil)
 ]]--
-function me.AddQuickChangeRule(changeFromID, changeToID, delay)
+function me.AddQuickChangeRule(changeFromId, changeToId, delay)
   local quickChangeRule = {}
-  local slotID
+  local slotId
 
-  changeFromName, _, itemFromQuality, _, _, _, _, equipFromSlot, itemFromTexture = GetItemInfo(changeFromID)
-  changeToName, _, itemToQuality, _, _, _, _, equipToSlot, itemToTexture = GetItemInfo(changeToID)
+  changeFromName, _, itemFromQuality, _, _, _, _, equipFromSlot, itemFromTexture = GetItemInfo(changeFromId)
+  changeToName, _, itemToQuality, _, _, _, _, equipToSlot, itemToTexture = GetItemInfo(changeToId)
 
   for i = 1, table.getn(GM_CONSTANTS.CATEGORIES) do
     for it = 1, table.getn(GM_CONSTANTS.CATEGORIES[i].type) do
       if equipFromSlot == GM_CONSTANTS.CATEGORIES[i].type[it] then
-        slotID = GM_CONSTANTS.CATEGORIES[i].slotID
+        slotId = GM_CONSTANTS.CATEGORIES[i].slotId
       end
     end
   end
 
-  quickChangeRule.slotID = slotID
+  quickChangeRule.slotId = slotId
   quickChangeRule.changeFromName = changeFromName
-  quickChangeRule.changeFromID = tonumber(changeFromID)
+  quickChangeRule.changeFromId = tonumber(changeFromId)
   quickChangeRule.changeToName = changeToName
-  quickChangeRule.changeToID = tonumber(changeToID)
+  quickChangeRule.changeToId = tonumber(changeToId)
   quickChangeRule.changeDelay = delay
 
   table.insert(GearMenuOptions.QuickChangeRules, quickChangeRule)
@@ -77,17 +77,17 @@ function me.RemoveQuickChangeRule(position)
 end
 
 --[[
-  @param {number} slotID
+  @param {number} slotId
 ]]--
-function me.UpdateQuickChange(slotID)
+function me.UpdateQuickChange(slotId)
   for i = 1, table.getn(GearMenuOptions.QuickChangeRules) do
-    for it = 1, table.getn(GearMenuOptions.QuickChangeRules[i].slotID) do
-      if slotID == GearMenuOptions.QuickChangeRules[i].slotID[it] then
-        local itemID = mod.common.GetItemIDBySlot(slotID)
+    for it = 1, table.getn(GearMenuOptions.QuickChangeRules[i].slotId) do
+      if slotId == GearMenuOptions.QuickChangeRules[i].slotId[it] then
+        local itemId = mod.common.GetItemIdBySlot(slotId)
 
-        if tonumber(itemID) == GearMenuOptions.QuickChangeRules[i].changeFromID then
+        if tonumber(itemId) == GearMenuOptions.QuickChangeRules[i].changeFromId then
           -- found a quick change rule that matches - prepare for switching
-          me.SwitchItems(GearMenuOptions.QuickChangeRules[i], slotID)
+          me.SwitchItems(GearMenuOptions.QuickChangeRules[i], slotId)
         end
       end
     end
@@ -122,15 +122,15 @@ end
   Switch items for a found rule
 
   @param {table} rule
-  @param {number} slotID
+  @param {number} slotId
 ]]--
-function me.SwitchItems(rule, slotID)
+function me.SwitchItems(rule, slotId)
   local timerName = "QuickChange_" .. math.floor(math.random() * 100000000000000)
 
   local quickChangeSwitchCallback = function()
     mod.timer.StopTimer(timerName)
-    mod.logger.LogDebug(me.tag, "ChangeToName: " .. rule.changeToName .. " slotID: " .. slotID)
-    mod.combatQueue.AddToQueue(rule.changeToID, slotID)
+    mod.logger.LogDebug(me.tag, "ChangeToName: " .. rule.changeToName .. " slotId: " .. slotId)
+    mod.combatQueue.AddToQueue(rule.changeToId, slotId)
     -- kick off combat queue
     mod.combatQueue.ProcessQueue()
   end

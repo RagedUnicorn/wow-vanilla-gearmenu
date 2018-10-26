@@ -87,9 +87,9 @@ function me.ItemButtonOnClick(button)
 
   if button == "RightButton" then
     -- rightclick
-    local slotID = mod[module].id
+    local slotId = mod[module].id
 
-    mod.combatQueue.RemoveFromQueue(slotID)
+    mod.combatQueue.RemoveFromQueue(slotId)
     -- reflect item not in use
     this:SetChecked(0)
   else
@@ -165,11 +165,11 @@ end
 function me.MenuItemOnClick()
   -- item that should get equiped
   local item = {
-    itemID = me.BaggedItems[this:GetID()].id,
+    itemId = me.BaggedItems[this:GetID()].id,
     itemSlotType = me.BaggedItems[this:GetID()].equipSlot
   }
 
-  mod.common.EquipItemByID(item, me.currentSlot)
+  mod.common.EquipItemById(item, me.currentSlot)
   getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):Hide()
 end
 
@@ -228,7 +228,7 @@ function me.BuildMenu()
   end
 
   local idx, i, j, k, texture = 1, numberOfItems, slotName, module
-  local itemLink, itemID, itemName, equipSlot, itemTexture, position
+  local itemLink, itemId, itemName, equipSlot, itemTexture, position
 
   me.BaggedItems = {}
   slotName = this:GetName()

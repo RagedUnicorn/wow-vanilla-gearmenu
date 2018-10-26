@@ -84,30 +84,30 @@ local slotName = {
 --[[
   Retrieve itemInfo
 
-  @param {number} slotID
+  @param {number} slotId
   @return {string}, {string}, {string}
 ]]--
-function me.RetrieveItemInfo(slotID)
-  local link, id, name, equipSlot, texture = GetInventoryItemLink("player", slotID)
+function me.RetrieveItemInfo(slotId)
+  local link, id, name, equipSlot, texture = GetInventoryItemLink("player", slotId)
 
   if link then
     _, _, id = strfind(link, "item:(%d+)")
     name, _, _, _, _, _, _, equipSlot, texture = GetItemInfo(id)
   else
-    _, texture = GetInventorySlotInfo(slotName[slotID])
+    _, texture = GetInventorySlotInfo(slotName[slotId])
   end
 
   return texture, id, equipSlot
 end
 
 --[[
-  Retrieve itemID from a specific slot
+  Retrieve itemId from a specific slot
 
-  @param {number} slotID
+  @param {number} slotId
   @return {string | nil}
 ]]--
-function me.GetItemIDBySlot(slotID)
-  local itemLink = GetInventoryItemLink("player", slotID)
+function me.GetItemIdBySlot(slotId)
+  local itemLink = GetInventoryItemLink("player", slotId)
 
   if itemLink then
     local _, _, id = string.find(itemLink, "item:(%d+):(%d+):(%d+)")
@@ -118,16 +118,16 @@ function me.GetItemIDBySlot(slotID)
 end
 
 --[[
-  Search for an itemID
+  Search for an itemId
 
-  @param {number} itemID
+  @param {number} itemId
   @param {bool} includeInventory
   @return {number}, {number}, {number}
 ]]--
-function me.FindItemByID(itemID, includeInventory)
+function me.FindItemById(itemId, includeInventory)
   if includeInventory then
     for i = 0, 19 do
-      if strfind(GetInventoryItemLink("player", i) or "", itemID, 1, 1) then
+      if strfind(GetInventoryItemLink("player", i) or "", itemId, 1, 1) then
         return i
       end
     end
@@ -135,7 +135,7 @@ function me.FindItemByID(itemID, includeInventory)
 
   for i = 0, 4 do
     for j = 1, GetContainerNumSlots(i) do
-      if strfind(GetContainerItemLink(i, j) or "", itemID, 1, 1) then
+      if strfind(GetContainerItemLink(i, j) or "", itemId, 1, 1) then
         return nil, i, j
       end
     end
@@ -146,13 +146,13 @@ end
   Equip an item into a specific slot identified by it's id
 
   @param {table} item
-  @param {number} slotID
+  @param {number} slotId
 ]]--
-function me.EquipItemByID(item, slotID)
-  if not item or not slotID then return end
+function me.EquipItemById(item, slotId)
+  if not item or not slotId then return end
 
-  if item.itemID then
-    mod.logger.LogDebug(me.tag, "EquipItem: " .. item.itemID .. " in slot: " .. slotID)
+  if item.itemId then
+    mod.logger.LogDebug(me.tag, "EquipItem: " .. item.itemId .. " in slot: " .. slotId)
   end
 
   --[[
@@ -162,16 +162,16 @@ function me.EquipItemByID(item, slotID)
   ]]--
   if UnitAffectingCombat("player") or me.IsPlayerReallyDead() then
     -- if not of type weapon add it to queue
-    if slotID ~= mod.mainHand.id and slotID ~= mod.offHand.id then
-      mod.combatQueue.AddToQueue(item.itemID, slotID)
+    if slotId ~= mod.mainHand.id and slotId ~= mod.offHand.id then
+      mod.combatQueue.AddToQueue(item.itemId, slotId)
     -- if type is weapon only add it to queue if the player is dead
     elseif me.IsPlayerReallyDead() then
-      mod.combatQueue.AddToQueue(item.itemID, slotID)
+      mod.combatQueue.AddToQueue(item.itemId, slotId)
     else
-      me.SwitchItems(item, slotID)
+      me.SwitchItems(item, slotId)
     end
   else
-    me.SwitchItems(item, slotID)
+    me.SwitchItems(item, slotId)
   end
 end
 
@@ -179,35 +179,35 @@ end
   Switch to items from itemSlot and a bag position
 
   @param {table} item
-  @param {number} slotID
+  @param {number} slotId
 ]]--
-function me.SwitchItems(item, slotID)
+function me.SwitchItems(item, slotId)
   --[[
     special case if main hand is twohand and the item that should be equiped is offhand
     wow does not handle this properly
   ]]--
-  if slotID == mod.offHand.id then
+  if slotId == mod.offHand.id then
     local _, _, wornType = mod.common.RetrieveItemInfo(mod.mainHand.id)
 
     if wornType == "INVTYPE_2HWEAPON" and (item.itemSlotType == "INVTYPE_SHIELD"
       or item.itemSlotType == "INVTYPE_WEAPON" or item.itemSlotType == "INVTYPE_WEAPONOFFHAND"
       or item.itemSlotType == "INVTYPE_HOLDABLE") then
-        mod.common.UnequipItemBySlotID(mod.mainHand.id)
+        mod.common.UnequipItemBySlotId(mod.mainHand.id)
       end
   end
 
   if not CursorHasItem() and not SpellIsTargeting() then
-    local _, b, s = me.FindItemByID(item.itemID)
+    local _, b, s = me.FindItemById(item.itemId)
     if b then
       local _, _, isLocked = GetContainerItemInfo(b, s)
-      if not isLocked and not IsInventoryItemLocked(slotID) then
+      if not isLocked and not IsInventoryItemLocked(slotId) then
         -- neither container item nor inventory item locked, perform swap
         PickupContainerItem(b, s)
-        PickupInventoryItem(slotID)
+        PickupInventoryItem(slotId)
       end
     end
     -- make sure to clear combatQueue
-    mod.combatQueue.RemoveFromQueue(slotID)
+    mod.combatQueue.RemoveFromQueue(slotId)
   end
 end
 
@@ -215,9 +215,9 @@ end
   Unequip item in a specific slot. The item will be placed in the first
   free bagspace that is found. If no space is found the operation is cancelled
 
-  @param {number} slotID
+  @param {number} slotId
 ]]--
-function me.UnequipItemBySlotID(slotID)
+function me.UnequipItemBySlotId(slotId)
   local i, j
   local itemLink
 
@@ -227,7 +227,7 @@ function me.UnequipItemBySlotID(slotID)
       itemLink = GetContainerItemLink(i, j)
 
       if itemLink == nil then
-        PickupInventoryItem(slotID)
+        PickupInventoryItem(slotId)
         PickupContainerItem(i, j)
         return
       end
@@ -294,7 +294,7 @@ end
 ]]--
 function me.GetItemsByType(type, includeEquiped)
   local idx = 1, i, j
-  local itemLink, itemID, itemName, equipSlot, itemTexture, itemQuality, numberOfItems, itemTypes
+  local itemLink, itemId, itemName, equipSlot, itemTexture, itemQuality, numberOfItems, itemTypes
   local items = {}
 
   if type == nil then
@@ -309,8 +309,8 @@ function me.GetItemsByType(type, includeEquiped)
       itemLink = GetContainerItemLink(i, j)
 
       if itemLink then
-        _, _, itemID, itemName = strfind(GetContainerItemLink(i, j) or "", "item:(%d+).+%[(.+)%]")
-        _, _, itemQuality, _, _, _, _, equipSlot, itemTexture = GetItemInfo(itemID or "")
+        _, _, itemId, itemName = strfind(GetContainerItemLink(i, j) or "", "item:(%d+).+%[(.+)%]")
+        _, _, itemQuality, _, _, _, _, equipSlot, itemTexture = GetItemInfo(itemId or "")
 
         for it = 1, table.getn(itemTypes) do
           if equipSlot == itemTypes[it] then
@@ -323,7 +323,7 @@ function me.GetItemsByType(type, includeEquiped)
               items[idx].slot = j
               items[idx].name = itemName
               items[idx].texture = itemTexture
-              items[idx].id = itemID
+              items[idx].id = itemId
               items[idx].equipSlot = equipSlot
               items[idx].quality = itemQuality
 
@@ -341,11 +341,12 @@ function me.GetItemsByType(type, includeEquiped)
   -- include currently equiped items
   if includeEquiped then
     for i = 1, table.getn(itemTypes) do
-      for it = 1, table.getn(GM_CONSTANTS.CATEGORIES[type].slotID) do
-        _, _, itemID, itemName = strfind(GetInventoryItemLink("player", GM_CONSTANTS.CATEGORIES[type].slotID[it]) or "", "item:(%d+).+%[(.+)%]")
+      for it = 1, table.getn(GM_CONSTANTS.CATEGORIES[type].slotId) do
+        _, _, itemId, itemName = strfind(GetInventoryItemLink("player",
+          GM_CONSTANTS.CATEGORIES[type].slotId[it]) or "", "item:(%d+).+%[(.+)%]")
 
-        if itemID then
-          _, _, itemQuality, _, _, _, _, equipSlot, itemTexture = GetItemInfo(itemID or "")
+        if itemId then
+          _, _, itemQuality, _, _, _, _, equipSlot, itemTexture = GetItemInfo(itemId or "")
 
           if itemQuality and itemQuality >= GearMenuOptions.filterItemQuality then
             if not items[idx] then
@@ -356,7 +357,7 @@ function me.GetItemsByType(type, includeEquiped)
             items[idx].slot = j
             items[idx].name = itemName
             items[idx].texture = itemTexture
-            items[idx].id = itemID
+            items[idx].id = itemId
             items[idx].equipSlot = equipSlot
             items[idx].quality = itemQuality
 

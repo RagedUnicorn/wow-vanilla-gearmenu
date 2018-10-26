@@ -61,13 +61,13 @@ GM_CONSTANTS = {
     [1] = {
       ["type"] = {"INVTYPE_TRINKET"},
       ["name"] = "Trinket",
-      ["slotID"] = {13, 14}
+      ["slotId"] = {13, 14}
     },
     -- waist
     [2] = {
       ["type"] = {"INVTYPE_WAIST"},
       ["name"] = "Waist",
-      ["slotID"] = {6}
+      ["slotId"] = {6}
     },
     -- offHand
     [3] = {
@@ -125,25 +125,25 @@ GM_CONSTANTS = {
         end
       end)(),
       ["name"] = "OffHand",
-      ["slotID"] = {17}
+      ["slotId"] = {17}
     },
     -- mainhand
     [4] = {
       ["type"] = {"INVTYPE_WEAPONMAINHAND", "INVTYPE_2HWEAPON", "INVTYPE_WEAPON"},
       ["name"] = "MainHand",
-      ["slotID"] = {16}
+      ["slotId"] = {16}
     },
     -- head
     [5] = {
       ["type"] = {"INVTYPE_HEAD"},
       ["name"] = "Head",
-      ["slotID"] = {1}
+      ["slotId"] = {1}
     },
     -- feet
     [6] = {
       ["type"] = {"INVTYPE_FEET"},
       ["name"] = "Feet",
-      ["slotID"] = {8}
+      ["slotId"] = {8}
     }
   },
 

@@ -33,10 +33,10 @@ function __GM__DEBUG__PRINTCOMBATQUEUE()
   local items = mod.itemManager.GetAllRegisteredItems()
 
   for key, moduleName in pairs(items) do
-    local itemID = mod.combatQueue.GetCombatQueueStore()[mod[items[moduleName]].id]
+    local itemId = mod.combatQueue.GetCombatQueueStore()[mod[items[moduleName]].id]
 
-    if itemID ~= nil then
-      mod.logger.LogDebug(me.tag, "Item with id '" .. itemID .. "' registered for slot '" .. moduleName .."'")
+    if itemId ~= nil then
+      mod.logger.LogDebug(me.tag, "Item with id '" .. itemId .. "' registered for slot '" .. moduleName .."'")
     else
       mod.logger.LogDebug(me.tag, "No item registered for slot: " .. moduleName)
     end
@@ -50,14 +50,14 @@ function __GM__DEBUG__PRINTQUICKCHANGERULELIST()
   for key, rule in pairs(ruleList) do
     mod.logger.LogDebug(me.tag, "Rule no." .. ruleNumber)
 
-    for i = 1, table.getn(rule.slotID) do
-      mod.logger.LogDebug(me.tag, "slotID: " .. rule.slotID[i])
+    for i = 1, table.getn(rule.slotId) do
+      mod.logger.LogDebug(me.tag, "slotId: " .. rule.slotId[i])
     end
 
     mod.logger.LogDebug(me.tag, "changeFromName: " .. rule.changeFromName)
-    mod.logger.LogDebug(me.tag, "changeFromID: " .. rule.changeFromID)
+    mod.logger.LogDebug(me.tag, "changeFromId: " .. rule.changeFromId)
     mod.logger.LogDebug(me.tag, "changeToName: " .. rule.changeToName)
-    mod.logger.LogDebug(me.tag, "changeToID: " .. rule.changeToID)
+    mod.logger.LogDebug(me.tag, "changeToId: " .. rule.changeToId)
     mod.logger.LogDebug(me.tag, "delay: " .. rule.changeDelay)
     ruleNumber = ruleNumber + 1
   end

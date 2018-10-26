@@ -96,7 +96,7 @@ end
   @param {number} position
   @return {string | nil}
 ]]
-function me.FindItemForSlotID(id)
+function me.FindItemForSlotId(id)
   for key, value in pairs(items) do
     if mod[value].id == id then
       return mod[value].moduleName
