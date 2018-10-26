@@ -71,7 +71,7 @@ GearMenuOptions = {
       ["changeFromId"] = 21180,
       ["changeToName"] = "Drake Fang Talisman",
       ["changeToId"]  = 19406,
-      ["changeDelay"] = 20 -- delay in sek
+      ["changeDelay"] = 20 -- delay in seconds
     }
   ]]--
   ["QuickChangeRules"] = {}
@@ -228,4 +228,43 @@ function me.SetupConfiguration()
   if GearMenuOptions.QuickChangeRules == nil then
     GearMenuOptions.QuickChangeRules = {}
   end
+
+  --[[
+    Set saved variables with addon version. This can be used later to determine whether
+    a migration path applies to the current saved variables or not
+  ]]--
+  if GearMenuOptions.addonVersion == nil then
+    me.MigrationPath()
+  end
+end
+
+--[[
+  Migration path for older version to newest version. For now this migration path
+  is running each time the addon starts. Later versions should consider the save addon
+  version before running a migration path
+]]--
+function me.MigrationPath()
+  --[[
+    Migration path for pre 1.0.4 versions - Update quick change rules to new format
+  ]]--
+  for i = 1, table.getn(GearMenuOptions.QuickChangeRules) do
+    local rule = GearMenuOptions.QuickChangeRules[i]
+
+    if rule.slotID then
+      rule.slotId = rule.slotID
+      rule.slotID = nil
+    end
+
+    if rule.changeFromID then
+      rule.changeFromId = rule.changeFromID
+      rule.changeFromID = nil
+    end
+
+    if rule.changeToID then
+      rule.changeToId = rule.changeToID
+      rule.changeToID = nil
+    end
+  end
+
+  GearMenuOptions.addonVersion = GM_ENVIRONMENT.ADDON_VERSION
 end
