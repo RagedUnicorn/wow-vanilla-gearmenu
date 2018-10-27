@@ -29,6 +29,7 @@ GM_ENVIRONMENT = {
   ADDON_NAME = "${addon.name}",
   ADDON_NAME_SHORT = "${addon.name.short}",
   ADDON_VERSION = "${project.version}",
+  ADDON_IDENTIFIER = "${addon.identifier}",
   LOG_LEVEL = ${addon.logLevel},
   LOG_EVENT = ${addon.logEvent}
 }

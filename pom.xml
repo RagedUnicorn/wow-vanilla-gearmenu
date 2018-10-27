@@ -12,6 +12,7 @@
     <addon.name>GearMenu</addon.name>
     <addon.name.short>GM</addon.name.short>
     <addon.tag.version>v${project.version}</addon.tag.version>
+    <addon.identifier>com.ragedunicorn.gearmenu</addon.identifier>
   </properties>
 
   <profiles>

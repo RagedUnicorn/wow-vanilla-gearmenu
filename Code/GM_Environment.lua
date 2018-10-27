@@ -31,6 +31,7 @@ GM_ENVIRONMENT = {
   ADDON_NAME = "GearMenu",
   ADDON_NAME_SHORT = "GM",
   ADDON_VERSION = "1.0.3",
+  ADDON_IDENTIFIER = "com.ragedunicorn.gearmenu",
   LOG_LEVEL = 4,
   LOG_EVENT = true
 }
