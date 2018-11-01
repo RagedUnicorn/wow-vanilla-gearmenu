@@ -65,7 +65,8 @@ end
 
 function GM_LockWindowOption_OnShow()
   -- load status from config-object
-  if GearMenuOptions.windowLocked then
+
+  if mod.addonOptions.IsWindowLocked() then
     this:SetChecked(true)
   else
     this:SetChecked(false)
@@ -76,17 +77,15 @@ function GM_LockWindowOption_OnClick()
   local enabled = this:GetChecked()
 
   if enabled == 1 then
-    GearMenuOptions.windowLocked = true
-    mod.opt.ReflectLockState(true)
+    mod.addonOptions.EnableWindowLocked()
   else
-    GearMenuOptions.windowLocked = false
-    mod.opt.ReflectLockState(false)
+    mod.addonOptions.DisableWindowLocked()
   end
 end
 
 function GM_ShowCooldownsOption_OnShow()
   -- load status from config-object
-  if GearMenuOptions.showCooldowns then
+  if mod.addonOptions.IsShowCooldownsEnabled() then
     this:SetChecked(true)
   else
     this:SetChecked(false)
@@ -97,17 +96,15 @@ function GM_ShowCooldownsOption_OnClick()
   local enabled = this:GetChecked()
 
   if enabled == 1 then
-    GearMenuOptions.showCooldowns = true
-    mod.gui.ShowCooldowns()
+    mod.addonOptions.EnableShowCooldowns()
   else
-    GearMenuOptions.showCooldowns = false
-    mod.gui.HideCooldowns()
+    mod.addonOptions.DisableShowCooldowns()
   end
 end
 
 function GM_ShowKeyBindingsOption_OnShow()
   -- load status from config-object
-  if GearMenuOptions.showKeyBindings then
+  if mod.addonOptions.IsShowKeyBindingsEnabled() then
     this:SetChecked(true)
   else
     this:SetChecked(false)
@@ -118,11 +115,18 @@ function GM_ShowKeyBindingsOption_OnClick()
   local enabled = this:GetChecked()
 
   if enabled == 1 then
-    GearMenuOptions.showKeyBindings = true
-    mod.gui.ShowKeyBindings()
+    mod.addonOptions.EnableShowKeyBindings()
   else
-    GearMenuOptions.showKeyBindings = false
-    mod.gui.HideKeyBindings()
+    mod.addonOptions.DisableShowKeyBindings()
+  end
+end
+
+function GM_Opt_DisableTooltipsOption_OnShow()
+  -- load status from config-object
+  if mod.addonOptions.IsTooltipsDisabled() then
+    this:SetChecked(true)
+  else
+    this:SetChecked(false)
   end
 end
 
@@ -130,15 +134,15 @@ function GM_Opt_DisableTooltipsOption_OnClick()
   local enabled = this:GetChecked()
 
   if enabled == 1 then
-    GearMenuOptions.disableTooltips = true
+    mod.addonOptions.DisableTooltips()
   else
-    GearMenuOptions.disableTooltips = false
+    mod.addonOptions.EnableTooltips()
   end
 end
 
-function GM_Opt_DisableTooltipsOption_OnShow()
+function GM_Opt_SmallTooltipsOption_OnShow()
   -- load status from config-object
-  if GearMenuOptions.disableTooltips then
+  if mod.addonOptions.IsSmallTooltipsEnabled() then
     this:SetChecked(true)
   else
     this:SetChecked(false)
@@ -149,15 +153,14 @@ function GM_Opt_SmallTooltipsOption_OnClick()
   local enabled = this:GetChecked()
 
   if enabled == 1 then
-    GearMenuOptions.smallTooltips = true
+    mod.addonOptions.EnableSmallTooltips()
   else
-    GearMenuOptions.smallTooltips = false
+    mod.addonOptions.DisableSmallTooltips()
   end
 end
 
-function GM_Opt_SmallTooltipsOption_OnShow()
-  -- load status from config-object
-  if GearMenuOptions.smallTooltips then
+function GM_Opt_DisableDragAndDropOption_OnShow()
+  if mod.addonOptions.IsDragAndDropDisabled() then
     this:SetChecked(true)
   else
     this:SetChecked(false)
@@ -168,17 +171,9 @@ function GM_Opt_DisableDragAndDropOption_OnClick()
   local enabled = this:GetChecked()
 
   if enabled == 1 then
-    GearMenuOptions.disableDragAndDrop = true
+    mod.addonOptions.DisableDragAndDrop()
   else
-    GearMenuOptions.disableDragAndDrop = false
-  end
-end
-
-function GM_Opt_DisableDragAndDropOption_OnShow()
-  if GearMenuOptions.disableDragAndDrop then
-    this:SetChecked(true)
-  else
-    this:SetChecked(false)
+    mod.addonOptions.EnableDragAndDrop()
   end
 end
 
@@ -218,12 +213,7 @@ end
 function me.InitializeDropdownMenu()
   local button, itemQualityFilter
 
-  itemQualityFilter = GearMenuOptions.filterItemQuality
-
-  if itemQualityFilter == nil then
-    mod.logger.LogWarn(me.tag, "Invalid item quality filter - resetting to default value")
-    GearMenuOptions.filterItemQuality = 5
-  end
+  itemQualityFilter = mod.addonOptions.GetFilterItemQuality()
 
   button = me.CreateDropdownButton(gm.L["item_quality_poor"],
     GM_CONSTANTS.ITEMQUALITY.poor, me.DropDownMenuCallback)
@@ -259,7 +249,7 @@ end
 ]]
 function me.DropDownMenuCallback()
   -- update addon setting
-  GearMenuOptions.filterItemQuality = tonumber(this.value)
+  mod.addonOptions.SetFilterItemQuality(tonumber(this.value))
   -- UIDROPDOWNMENU_OPEN_MENU is the currently open dropdown menu
   UIDropDownMenu_SetSelectedValue(getglobal(UIDROPDOWNMENU_OPEN_MENU), this.value)
 end

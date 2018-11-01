@@ -32,52 +32,6 @@ gm.L = {}
 me.tag = "Core"
 
 --[[
-  Saved addon variable
-]]--
-GearMenuOptions = {
-  ["windowLocked"] = true,
-  ["showKeyBindings"] = true,
-  ["showCooldowns"] = true,
-  ["disableTooltips"] = false,
-  ["smallTooltips"] = false,
-  ["disableDragAndDrop"] = false,
-  --[[
-    Itemquality to filter items by their quality. Everything that is below the settings value
-    will not be considered a valid item to display when building the itemcontextmenu.
-    By default all items are allowed
-
-    0 Poor (gray)
-    1 Common (white)
-    2 Uncommon (green)
-    3 Rare (blue)
-    4 Epic (purple)
-    5 Legendary (orange)
-  ]]--
-  ["filterItemQuality"] = 0,
-  ["modules"] = {
-    ["mainHand"] = 1,
-    ["offHand"] = 2,
-    ["waist"] = 3,
-    ["feet"] = 4,
-    ["head"] = 5,
-    ["upperTrinket"] = 6,
-    ["lowerTrinket"] = 7
-  },
-  --[[
-    example
-    {
-      ["slotId"] = {13, 14},
-      ["changeFromName"] = "Earthstrike",
-      ["changeFromId"] = 21180,
-      ["changeToName"] = "Drake Fang Talisman",
-      ["changeToId"]  = 19406,
-      ["changeDelay"] = 20 -- delay in seconds
-    }
-  ]]--
-  ["QuickChangeRules"] = {}
-}
-
---[[
   Addon load
 ]]--
 function me.OnLoad()
@@ -149,7 +103,7 @@ function me.Initialize()
   math.randomseed(GetTime())
   me.logger.LogDebug(me.tag, "Initialize addon")
 
-  me.SetupConfiguration()
+  me.addonOptions.SetupConfiguration()
 
   -- register item
   me.itemManager.RegisterItem(me.mainHand.moduleName)
@@ -179,92 +133,4 @@ function me.Initialize()
   -- show welcome message
   DEFAULT_CHAT_FRAME:AddMessage(
     string.format(GM_ENVIRONMENT.ADDON_NAME .. gm.L["help"], GM_ENVIRONMENT.ADDON_VERSION))
-end
-
---[[
-  Set default values if property is nil. This might happen after an addon upgrade
-]]--
-function me.SetupConfiguration()
-  if GearMenuOptions.windowLocked == nil then
-    GearMenuOptions.windowLocked = true
-  end
-
-  if GearMenuOptions.showKeyBindings == nil then
-    GearMenuOptions.showKeyBindings = true
-  end
-
-  if GearMenuOptions.showCooldowns == nil then
-    GearMenuOptions.showCooldowns = true
-  end
-
-  if GearMenuOptions.disableTooltips == nil then
-    GearMenuOptions.disableTooltips = false
-  end
-
-  if GearMenuOptions.smallTooltips == nil then
-    GearMenuOptions.smallTooltips = false
-  end
-
-  if GearMenuOptions.disableDragAndDrop == nil then
-    GearMenuOptions.disableDragAndDrop = false
-  end
-
-  if GearMenuOptions.filterItemQuality == nil then
-    GearMenuOptions.filterItemQuality = 0
-  end
-
-  if GearMenuOptions.modules == nil then
-    GearMenuOptions.modules = {
-      ["mainHand"] = 1,
-      ["offHand"] = 2,
-      ["waist"] = 3,
-      ["feet"] = 4,
-      ["head"] = 5,
-      ["upperTrinket"] = 6,
-      ["lowerTrinket"] = 7
-    }
-  end
-
-  if GearMenuOptions.QuickChangeRules == nil then
-    GearMenuOptions.QuickChangeRules = {}
-  end
-
-  --[[
-    Set saved variables with addon version. This can be used later to determine whether
-    a migration path applies to the current saved variables or not
-  ]]--
-  if GearMenuOptions.addonVersion == nil then
-    me.MigrationPath()
-  end
-end
-
---[[
-  Migration path for older version to newest version. For now this migration path
-  is running each time the addon starts. Later versions should consider the save addon
-  version before running a migration path
-]]--
-function me.MigrationPath()
-  --[[
-    Migration path for pre 1.0.4 versions - Update quick change rules to new format
-  ]]--
-  for i = 1, table.getn(GearMenuOptions.QuickChangeRules) do
-    local rule = GearMenuOptions.QuickChangeRules[i]
-
-    if rule.slotID then
-      rule.slotId = rule.slotID
-      rule.slotID = nil
-    end
-
-    if rule.changeFromID then
-      rule.changeFromId = rule.changeFromID
-      rule.changeFromID = nil
-    end
-
-    if rule.changeToID then
-      rule.changeToId = rule.changeToID
-      rule.changeToID = nil
-    end
-  end
-
-  GearMenuOptions.addonVersion = GM_ENVIRONMENT.ADDON_VERSION
 end

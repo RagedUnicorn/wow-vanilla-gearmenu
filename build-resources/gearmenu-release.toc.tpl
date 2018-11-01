@@ -29,6 +29,7 @@ Code\GM_Feet.lua
 Code\GM_Head.lua
 Code\GM_UpperTrinket.lua
 Code\GM_LowerTrinket.lua
+Code\GM_AddonOptions.lua
 
 Localization\enUS.lua
 Localization\deDE.lua
