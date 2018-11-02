@@ -4,14 +4,6 @@
     <Size>
       <AbsDimension x="24" y="24"/>
     </Size>
-    <Scripts>
-      <OnEnter>
-        GM_Tooltip_OnEnter()
-      </OnEnter>
-      <OnLeave>
-        GM_Tooltip_OnLeave()
-      </OnLeave>
-    </Scripts>
   </CheckButton>
 
   <!-- Navigationbutton for optionsframe -->

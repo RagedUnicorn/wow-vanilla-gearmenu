@@ -29,9 +29,6 @@ mod.generalMenu = me
 
 me.tag = "GeneralMenu"
 
---[[
-  Private
-]]
 local options = {
   {"LockWindow", gm.L["lockwindow"], gm.L["lockwindowtooltip"]},
   {"ShowCooldowns", gm.L["showcooldowns"], gm.L["showcooldownstooltip"]},
@@ -41,10 +38,27 @@ local options = {
   {"DisableDragAndDrop", gm.L["disabledraganddrop"], gm.L["disabledraganddroptooltip"]}
 }
 
+function me.InitGeneralMenu()
+  local item
+
+  for i = 1, table.getn(options) do
+    item = getglobal(GM_CONSTANTS.ELEMENT_OPT .. options[i][1])
+    if item then
+      local itemTextObject = getglobal(item:GetName() .. "Text")
+      itemTextObject:SetText(options[i][2])
+      itemTextObject:SetTextColor(.95, .95, .95)
+
+      -- configure script-handlers
+      item:SetScript("OnEnter", me.OptTooltipOnEnter)
+      item:SetScript("OnLeave", me.OptTooltipOnLeave)
+    end
+  end
+end
+
 --[[
-  Tooltip for options
+  OnEnter callback for checkbuttons - show tooltip
 ]]--
-function GM_Tooltip_OnEnter()
+function me.OptTooltipOnEnter()
   local name = this:GetName()
 
   if not name then return end
@@ -57,15 +71,17 @@ function GM_Tooltip_OnEnter()
 end
 
 --[[
-  Hide options tooltip onleave
+  OnEnter callback for checkbuttons - hide tooltip
 ]]--
-function GM_Tooltip_OnLeave()
+function me.OptTooltipOnLeave()
   getglobal(GM_CONSTANTS.ELEMENT_TOOLTIP):Hide()
 end
 
-function GM_LockWindowOption_OnShow()
+--[[
+  OnShow callback for checkbuttons - lock window
+]]--
+function me.LockWindowOptionOnShow()
   -- load status from config-object
-
   if mod.addonOptions.IsWindowLocked() then
     this:SetChecked(true)
   else
@@ -73,7 +89,10 @@ function GM_LockWindowOption_OnShow()
   end
 end
 
-function GM_LockWindowOption_OnClick()
+--[[
+  OnClick callback for checkbuttons - lock window
+]]--
+function me.LockWindowOptionOnClick()
   local enabled = this:GetChecked()
 
   if enabled == 1 then
@@ -83,7 +102,10 @@ function GM_LockWindowOption_OnClick()
   end
 end
 
-function GM_ShowCooldownsOption_OnShow()
+--[[
+  OnShow callback for checkbuttons - show cooldowns
+]]--
+function me.ShowCooldownsOptionOnShow()
   -- load status from config-object
   if mod.addonOptions.IsShowCooldownsEnabled() then
     this:SetChecked(true)
@@ -92,7 +114,10 @@ function GM_ShowCooldownsOption_OnShow()
   end
 end
 
-function GM_ShowCooldownsOption_OnClick()
+--[[
+  OnClick callback for checkbuttons - show cooldowns
+]]--
+function me.ShowCooldownsOptionOnClick()
   local enabled = this:GetChecked()
 
   if enabled == 1 then
@@ -102,7 +127,10 @@ function GM_ShowCooldownsOption_OnClick()
   end
 end
 
-function GM_ShowKeyBindingsOption_OnShow()
+--[[
+  OnShow callback for checkbuttons - show keybindings
+]]--
+function me.ShowKeyBindingsOptionOnShow()
   -- load status from config-object
   if mod.addonOptions.IsShowKeyBindingsEnabled() then
     this:SetChecked(true)
@@ -111,7 +139,10 @@ function GM_ShowKeyBindingsOption_OnShow()
   end
 end
 
-function GM_ShowKeyBindingsOption_OnClick()
+--[[
+  OnClick callback for checkbuttons - show keybindings
+]]--
+function me.ShowKeyBindingsOptionOnClick()
   local enabled = this:GetChecked()
 
   if enabled == 1 then
@@ -121,7 +152,10 @@ function GM_ShowKeyBindingsOption_OnClick()
   end
 end
 
-function GM_Opt_DisableTooltipsOption_OnShow()
+--[[
+  OnShow callback for checkbuttons - disable tooltips
+]]--
+function me.DisableTooltipsOptionOnShow()
   -- load status from config-object
   if mod.addonOptions.IsTooltipsDisabled() then
     this:SetChecked(true)
@@ -130,7 +164,10 @@ function GM_Opt_DisableTooltipsOption_OnShow()
   end
 end
 
-function GM_Opt_DisableTooltipsOption_OnClick()
+--[[
+  OnClick callback for checkbuttons - disable tooltips
+]]--
+function me.DisableTooltipsOptionOnClick()
   local enabled = this:GetChecked()
 
   if enabled == 1 then
@@ -140,7 +177,10 @@ function GM_Opt_DisableTooltipsOption_OnClick()
   end
 end
 
-function GM_Opt_SmallTooltipsOption_OnShow()
+--[[
+  OnShow callback for checkbuttons - use small tooltips
+]]--
+function me.SmallTooltipsOptionOnShow()
   -- load status from config-object
   if mod.addonOptions.IsSmallTooltipsEnabled() then
     this:SetChecked(true)
@@ -149,7 +189,10 @@ function GM_Opt_SmallTooltipsOption_OnShow()
   end
 end
 
-function GM_Opt_SmallTooltipsOption_OnClick()
+--[[
+  OnClick callback for checkbuttons - use small tooltips
+]]--
+function me.SmallTooltipsOptionOnClick()
   local enabled = this:GetChecked()
 
   if enabled == 1 then
@@ -159,7 +202,10 @@ function GM_Opt_SmallTooltipsOption_OnClick()
   end
 end
 
-function GM_Opt_DisableDragAndDropOption_OnShow()
+--[[
+  OnShow callback for checkbuttons - disable drag and drop
+]]--
+function me.DisableDragAndDropOptionOnShow()
   if mod.addonOptions.IsDragAndDropDisabled() then
     this:SetChecked(true)
   else
@@ -167,25 +213,16 @@ function GM_Opt_DisableDragAndDropOption_OnShow()
   end
 end
 
-function GM_Opt_DisableDragAndDropOption_OnClick()
+--[[
+  OnClick callback for checkbuttons - disable drag and drop
+]]--
+function me.DisableDragAndDropOptionOnClick()
   local enabled = this:GetChecked()
 
   if enabled == 1 then
     mod.addonOptions.DisableDragAndDrop()
   else
     mod.addonOptions.EnableDragAndDrop()
-  end
-end
-
-function GM_InitGeneralMenu()
-  local item
-
-  for i = 1, table.getn(options) do
-    item = getglobal(GM_CONSTANTS.ELEMENT_OPT .. options[i][1] .. "Text")
-    if item then
-      item:SetText(options[i][2])
-      item:SetTextColor(.95, .95, .95)
-    end
   end
 end
 

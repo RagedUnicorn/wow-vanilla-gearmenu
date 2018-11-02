@@ -345,10 +345,10 @@
                 </Anchors>
                 <Scripts>
                   <OnClick>
-                    GM_LockWindowOption_OnClick()
+                    gm.generalMenu.LockWindowOptionOnClick()
                   </OnClick>
                   <OnShow>
-                    GM_LockWindowOption_OnShow()
+                    gm.generalMenu.LockWindowOptionOnShow()
                   </OnShow>
                 </Scripts>
               </CheckButton>
@@ -362,10 +362,10 @@
                 </Anchors>
                 <Scripts>
                   <OnClick>
-                    GM_ShowCooldownsOption_OnClick()
+                    gm.generalMenu.ShowCooldownsOptionOnClick()
                   </OnClick>
                   <OnShow>
-                    GM_ShowCooldownsOption_OnShow()
+                    gm.generalMenu.ShowCooldownsOptionOnShow()
                   </OnShow>
                 </Scripts>
               </CheckButton>
@@ -379,10 +379,10 @@
                 </Anchors>
                 <Scripts>
                   <OnClick>
-                    GM_ShowKeyBindingsOption_OnClick()
+                    gm.generalMenu.ShowKeyBindingsOptionOnClick()
                   </OnClick>
                   <OnShow>
-                    GM_ShowKeyBindingsOption_OnShow()
+                    gm.generalMenu.ShowKeyBindingsOptionOnShow()
                   </OnShow>
                 </Scripts>
               </CheckButton>
@@ -396,10 +396,10 @@
                 </Anchors>
                 <Scripts>
                   <OnClick>
-                    GM_Opt_DisableTooltipsOption_OnClick()
+                    gm.generalMenu.DisableTooltipsOptionOnClick()
                   </OnClick>
                   <OnShow>
-                    GM_Opt_DisableTooltipsOption_OnShow()
+                    gm.generalMenu.DisableTooltipsOptionOnShow()
                   </OnShow>
                 </Scripts>
               </CheckButton>
@@ -413,10 +413,10 @@
                 </Anchors>
                 <Scripts>
                   <OnClick>
-                    GM_Opt_SmallTooltipsOption_OnClick()
+                    gm.generalMenu.SmallTooltipsOptionOnClick()
                   </OnClick>
                   <OnShow>
-                    GM_Opt_SmallTooltipsOption_OnShow()
+                    gm.generalMenu.SmallTooltipsOptionOnShow()
                   </OnShow>
                 </Scripts>
               </CheckButton>
@@ -430,10 +430,10 @@
                 </Anchors>
                 <Scripts>
                   <OnClick>
-                    GM_Opt_DisableDragAndDropOption_OnClick()
+                    gm.generalMenu.DisableDragAndDropOptionOnClick()
                   </OnClick>
                   <OnShow>
-                    GM_Opt_DisableDragAndDropOption_OnShow()
+                    gm.generalMenu.DisableDragAndDropOptionOnShow()
                   </OnShow>
                 </Scripts>
               </CheckButton>
@@ -454,7 +454,7 @@
             </Frames>
             <Scripts>
               <OnShow>
-                GM_InitGeneralMenu()
+                gm.generalMenu.InitGeneralMenu()
               </OnShow>
             </Scripts>
           </Frame>
