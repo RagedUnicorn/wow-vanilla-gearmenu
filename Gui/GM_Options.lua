@@ -29,16 +29,19 @@ mod.opt = me
 
 me.tag = "Options"
 
-function GM_CloseButton_OnClick()
-  GM_OptionsFrame:Hide()
-end
-
 function me.InitOptionsMenu()
   -- set version title
   getglobal(GM_CONSTANTS.ELEMENT_OPTIONS_TITLE):SetText(GM_ENVIRONMENT.ADDON_NAME ..
     " " .. GM_ENVIRONMENT.ADDON_VERSION)
   -- show optionsframe
   getglobal(GM_CONSTANTS.ELEMENT_OPTIONS_FRAME):Show()
+end
+
+--[[
+  Close the optionsmenu by hiding it
+]]--
+function me.OptionCloseButtonOnClick()
+  getglobal(GM_CONSTANTS.ELEMENT_OPTIONS_FRAME):Hide()
 end
 
 --[[

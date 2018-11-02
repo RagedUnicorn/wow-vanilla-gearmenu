@@ -68,7 +68,7 @@
         </DisabledTexture>
         <Scripts>
           <OnClick>
-            GM_CloseButton_OnClick()
+            gm.opt.OptionCloseButtonOnClick()
           </OnClick>
         </Scripts>
       </Button>
