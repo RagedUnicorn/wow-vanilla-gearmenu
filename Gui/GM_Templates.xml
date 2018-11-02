@@ -28,10 +28,10 @@
     </Layers>
     <Scripts>
       <OnLoad>
-        GM_Navigation_Button_OnLoad()
+        gm.navigationMenu.NavigationMenuButtonOnLoad()
       </OnLoad>
       <OnClick>
-        GM_Navigation_Button_OnClick()
+        gm.navigationMenu.NavigationMenuButtonOnClick()
       </OnClick>
     </Scripts>
     <HighlightTexture file="Interface\AddOns\GearMenu\Assets\UI-Listbox-Highlight.tga" alphaMode="ADD"/>

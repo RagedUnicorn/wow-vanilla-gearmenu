@@ -85,7 +85,7 @@ local navigationEntries = {
 --[[
   Set first navigation point and content frame active in optionsframe
 ]]--
-function GM_LeftNavigationMenu_OnLoad()
+function me.LeftNavigationMenuOnLoad()
   local frames = { this:GetChildren() }
 
   -- reset tab buttons and content frame
@@ -112,7 +112,7 @@ function GM_LeftNavigationMenu_OnLoad()
   navigationEntries[1].init()
 end
 
-function GM_Navigation_Button_OnClick()
+function me.NavigationMenuButtonOnClick()
   local name = this:GetName()
   local position = mod.common.ExtractPositionFromName(name)
 
@@ -141,7 +141,7 @@ function GM_Navigation_Button_OnClick()
   end
 end
 
-function GM_Navigation_Button_OnLoad()
+function me.NavigationMenuButtonOnLoad()
   local name = this:GetName()
   local position = mod.common.ExtractPositionFromName(name)
 
