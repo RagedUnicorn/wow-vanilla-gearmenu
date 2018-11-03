@@ -169,6 +169,9 @@
           getglobal(this:GetName() .. "Highlight"):Hide()
         end
       </OnLeave>
+      <OnClick>
+        gm.quickChangeMenu.QuickChangeRuleListCellOnClick()
+      </OnClick>
     </Scripts>
   </Button>
 

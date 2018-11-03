@@ -475,10 +475,10 @@
                 </Anchors>
                 <Scripts>
                   <OnLoad>
-                    this:SetVerticalScroll(0)
+                    gm.quickChangeMenu.QuickChangeScrollFrameOnLoad()
                   </OnLoad>
                   <OnMouseWheel>
-                    QuickChangeScrollFrameVerticalScroll()
+                    gm.quickChangeMenu.QuickChangeScrollFrameOnMouseWheel()
                   </OnMouseWheel>
                 </Scripts>
                 <ScrollChild>
@@ -540,51 +540,26 @@
                                 </Offset>
                               </Anchor>
                             </Anchors>
-                            <Scripts>
-                              <OnClick>
-                                GM_QuickChangeRuleListCell_OnClick()
-                              </OnClick>
-                            </Scripts>
                           </Button>
                           <Button name="GM_QuickChangeRuleCell2" inherits="GM_QuickChangeRuleListCellTemplate" id="2">
                             <Anchors>
                               <Anchor point="TOPLEFT" relativeTo="GM_QuickChangeRuleCell1" relativePoint="BOTTOMLEFT"/>
                             </Anchors>
-                            <Scripts>
-                              <OnClick>
-                                GM_QuickChangeRuleListCell_OnClick()
-                              </OnClick>
-                            </Scripts>
                           </Button>
                           <Button name="GM_QuickChangeRuleCell3" inherits="GM_QuickChangeRuleListCellTemplate" id="3">
                             <Anchors>
                               <Anchor point="TOPLEFT" relativeTo="GM_QuickChangeRuleCell2" relativePoint="BOTTOMLEFT"/>
                             </Anchors>
-                            <Scripts>
-                              <OnClick>
-                                GM_QuickChangeRuleListCell_OnClick()
-                              </OnClick>
-                            </Scripts>
                           </Button>
                           <Button name="GM_QuickChangeRuleCell4" inherits="GM_QuickChangeRuleListCellTemplate" id="4">
                             <Anchors>
                               <Anchor point="TOPLEFT" relativeTo="GM_QuickChangeRuleCell3" relativePoint="BOTTOMLEFT"/>
                             </Anchors>
-                            <Scripts>
-                              <OnClick>
-                                GM_QuickChangeRuleListCell_OnClick()
-                              </OnClick>
-                            </Scripts>
                           </Button>
                           <Button name="GM_QuickChangeRuleCell5" inherits="GM_QuickChangeRuleListCellTemplate" id="5">
                             <Anchors>
                               <Anchor point="TOPLEFT" relativeTo="GM_QuickChangeRuleCell4" relativePoint="BOTTOMLEFT"/>
                             </Anchors>
-                            <Scripts>
-                              <OnClick>
-                                GM_QuickChangeRuleListCell_OnClick()
-                              </OnClick>
-                            </Scripts>
                           </Button>
                           <!-- scrollable rule list -->
                           <ScrollFrame name="GM_QuickChangeRuleScrollFrame" inherits="FauxScrollFrameTemplate">
@@ -624,11 +599,11 @@
                             </Layers>
                             <Scripts>
                               <OnVerticalScroll>
-                                FauxScrollFrame_OnVerticalScroll(24, GM_QuickChangeRulesListUpdate)
+                                FauxScrollFrame_OnVerticalScroll(24, gm.quickChangeMenu.QuickChangeRuleListOnUpdate)
                               </OnVerticalScroll>
                               <OnShow>
                                 <!-- initialize rule list -->
-                                GM_QuickChangeRulesListUpdate()
+                                gm.quickChangeMenu.QuickChangeRuleListOnUpdate()
                               </OnShow>
                             </Scripts>
                           </ScrollFrame>
@@ -646,7 +621,7 @@
                             this:SetText(gm.L["deleterule"])
                           </OnShow>
                           <OnClick>
-                            GM_DeleteQuickChangeRule_OnClick()
+                            gm.quickChangeMenu.DeleteQuickChangeRuleOnClick()
                           </OnClick>
                         </Scripts>
                       </Button>
@@ -722,7 +697,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeFromListCell_OnClick()
+                                gm.quickChangeMenu.ChangeFromListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -732,7 +707,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeFromListCell_OnClick()
+                                gm.quickChangeMenu.ChangeFromListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -742,7 +717,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeFromListCell_OnClick()
+                                gm.quickChangeMenu.ChangeFromListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -752,7 +727,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeFromListCell_OnClick()
+                                gm.quickChangeMenu.ChangeFromListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -762,7 +737,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeFromListCell_OnClick()
+                                gm.quickChangeMenu.ChangeFromListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -772,7 +747,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeFromListCell_OnClick()
+                                gm.quickChangeMenu.ChangeFromListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -782,7 +757,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeFromListCell_OnClick()
+                                gm.quickChangeMenu.ChangeFromListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -792,7 +767,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeFromListCell_OnClick()
+                                gm.quickChangeMenu.ChangeFromListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -802,7 +777,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeFromListCell_OnClick()
+                                gm.quickChangeMenu.ChangeFromListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -844,7 +819,7 @@
                             </Layers>
                             <Scripts>
                               <OnVerticalScroll>
-                                FauxScrollFrame_OnVerticalScroll(24, GM_ChangeFromList_Update)
+                                FauxScrollFrame_OnVerticalScroll(24, gm.quickChangeMenu.QuickChangeFromListOnUpdate)
                               </OnVerticalScroll>
                             </Scripts>
                           </ScrollFrame>
@@ -907,7 +882,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeToListCell_OnClick()
+                                gm.quickChangeMenu.ChangeToListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -917,7 +892,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeToListCell_OnClick()
+                                gm.quickChangeMenu.ChangeToListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -927,7 +902,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeToListCell_OnClick()
+                                gm.quickChangeMenu.ChangeToListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -937,7 +912,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeToListCell_OnClick()
+                                gm.quickChangeMenu.ChangeToListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -947,7 +922,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeToListCell_OnClick()
+                                gm.quickChangeMenu.ChangeToListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -957,7 +932,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeToListCell_OnClick()
+                                gm.quickChangeMenu.ChangeToListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -967,7 +942,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeToListCell_OnClick()
+                                gm.quickChangeMenu.ChangeToListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -977,7 +952,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeToListCell_OnClick()
+                                gm.quickChangeMenu.ChangeToListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -987,7 +962,7 @@
                             </Anchors>
                             <Scripts>
                               <OnClick>
-                                GM_ChangeToListCell_OnClick()
+                                gm.quickChangeMenu.ChangeToListCellOnClick()
                               </OnClick>
                             </Scripts>
                           </Button>
@@ -1029,7 +1004,7 @@
                             </Layers>
                             <Scripts>
                               <OnVerticalScroll>
-                                FauxScrollFrame_OnVerticalScroll(24, GM_ChangeToList_Update)
+                                FauxScrollFrame_OnVerticalScroll(24, gm.quickChangeMenu.QuickChangeToListOnUpdate)
                               </OnVerticalScroll>
                             </Scripts>
                           </ScrollFrame>
@@ -1108,13 +1083,13 @@
                             this:ClearFocus()
                           </OnEnterPressed>
                           <OnTextChanged>
-                            GM_QuickChangeDelay_OnTextChanged()
+                            gm.quickChangeMenu.QuickChangeDelayOnTextChanged()
                           </OnTextChanged>
                           <OnEditFocusGained>
-                            GM_QuickChangeDelay_OnEditFocusGained()
+                            gm.quickChangeMenu.QuickChangeDelayOnEditFocusGained()
                           </OnEditFocusGained>
                           <OnEditFocusLost>
-                            GM_QuickChangeDelay_OnEditFocusLost()
+                            gm.quickChangeMenu.QuickChangeDelayOnEditFocusLost()
                           </OnEditFocusLost>
                         </Scripts>
                         <FontString inherits="ChatFontNormal" />
@@ -1131,14 +1106,14 @@
                             this:SetText(gm.L["addrule"])
                           </OnShow>
                           <OnClick>
-                            GM_AddQuickChangeRule_OnClick()
+                            gm.quickChangeMenu.AddQuickChangeRuleOnClick()
                           </OnClick>
                         </Scripts>
                       </Button>
                     </Frames>
                     <Scripts>
                       <OnShow>
-                        GM_ItemList_OnShow()
+                        gm.quickChangeMenu.ItemListOnShow()
                       </OnShow>
                     </Scripts>
                   </Frame>

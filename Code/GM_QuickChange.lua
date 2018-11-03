@@ -64,7 +64,7 @@ function me.AddQuickChangeRule(changeFromId, changeToId, delay)
 
   table.insert(GearMenuOptions.QuickChangeRules, quickChangeRule)
   -- update rule list
-  GM_QuickChangeRulesListUpdate()
+  mod.quickChangeMenu.QuickChangeRuleListOnUpdate()
 end
 
 --[[
@@ -73,7 +73,7 @@ end
 function me.RemoveQuickChangeRule(position)
   table.remove(GearMenuOptions.QuickChangeRules, position)
   -- update rule list
-  GM_QuickChangeRulesListUpdate()
+  mod.quickChangeMenu.QuickChangeRuleListOnUpdate()
 end
 
 --[[

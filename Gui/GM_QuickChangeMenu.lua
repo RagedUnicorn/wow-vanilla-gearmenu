@@ -40,7 +40,42 @@ local editDelayFocus = false
 local changeFromItemList = {}
 local changeToItemList = {}
 
-function GM_QuickChangeRulesListUpdate()
+--[[
+  OnLoad callback for quick change options screen
+]]--
+function me.QuickChangeScrollFrameOnLoad()
+  this:SetVerticalScroll(0)
+end
+
+--[[
+  OnMouseWheel callback for quick change options screen
+]]--
+function me.QuickChangeScrollFrameOnMouseWheel()
+  local pre, maxScroll, scroll, toScroll
+
+  pre = pre or 20
+  maxScroll = getglobal(this:GetName() .. "_Child"):GetHeight() - 100
+
+  if spec then
+    maxScroll = maxScroll + 100
+  end
+
+  scroll = this:GetVerticalScroll()
+  toScroll = (scroll - (pre*arg1))
+
+  if toScroll < 0 or maxScroll < 0 then
+    this:SetVerticalScroll(0)
+  elseif toScroll > maxScroll then
+    this:SetVerticalScroll(maxScroll)
+  else
+    this:SetVerticalScroll(toScroll)
+  end
+end
+
+--[[
+  OnVerticalScroll callback for quick change rule list
+]]--
+function me.QuickChangeRuleListOnUpdate()
   local offset = FauxScrollFrame_GetOffset(GM_QuickChangeRuleScrollFrame) + this:GetID()
   local rules = GearMenuOptions.QuickChangeRules
 
@@ -50,7 +85,7 @@ function GM_QuickChangeRulesListUpdate()
     local item = getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_CELL .. i)
     local itemNameLeft = getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_CELL .. i .. "NameLeft")
     local itemIconLeft = getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_CELL .. i .. "IconLeft")
-    local itemNameRight= getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_CELL .. i .. "NameRight")
+    local itemNameRight = getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_CELL .. i .. "NameRight")
     local itemIconRight = getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_CELL .. i .. "IconRight")
 
     local idx = offset + i
@@ -80,7 +115,7 @@ function GM_QuickChangeRulesListUpdate()
   end
 end
 
-function GM_QuickChangeRuleListCell_OnClick()
+function me.QuickChangeRuleListCellOnClick()
   local idx = FauxScrollFrame_GetOffset(GM_QuickChangeRuleScrollFrame) + this:GetID()
 
   quickChangeRuleSelectedPos = idx
@@ -91,7 +126,13 @@ function GM_QuickChangeRuleListCell_OnClick()
   getglobal(this:GetName() .. "Highlight"):Show()
 end
 
-function GM_ChangeFromList_Update(itemType)
+--[[
+  OnUpdate callback for quick change from list
+
+  @param {number} type
+    see gm_constants categories for a reference
+]]--
+function me.QuickChangeFromListOnUpdate(itemType)
   local itemList, offset
 
   if itemType == nil then
@@ -132,7 +173,13 @@ function GM_ChangeFromList_Update(itemType)
   end
 end
 
-function GM_ChangeToList_Update(itemType)
+--[[
+  OnUpdate callback for quick change to list
+
+  @param {number} type
+    see gm_constants categories for a reference
+]]--
+function me.QuickChangeToListOnUpdate(itemType)
   local itemList, offset
 
   if itemType == nil then
@@ -173,7 +220,10 @@ function GM_ChangeToList_Update(itemType)
   end
 end
 
-function GM_ChangeFromListCell_OnClick()
+--[[
+  OnClick callback for changefrom list
+]]--
+function me.ChangeFromListCellOnClick()
   local idx = FauxScrollFrame_GetOffset(GM_QuickChange_ChangeFromScrollFrame) + this:GetID()
 
   -- clear all current highlighting
@@ -184,7 +234,10 @@ function GM_ChangeFromListCell_OnClick()
   getglobal(this:GetName() .. "Highlight"):Show()
 end
 
-function GM_ChangeToListCell_OnClick()
+--[[
+  OnClick callback for changeto list
+]]--
+function me.ChangeToListCellOnClick()
   local idx = FauxScrollFrame_GetOffset(GM_QuickChange_ChangeToScrollFrame) + this:GetID()
 
   -- clear all current highlighting
@@ -196,7 +249,10 @@ function GM_ChangeToListCell_OnClick()
   getglobal(this:GetName() .. "Highlight"):Show()
 end
 
-function GM_AddQuickChangeRule_OnClick()
+--[[
+  OnClick callback for add quickchange rule
+]]--
+function me.AddQuickChangeRuleOnClick()
   -- check for selected items
   if changeFromSelectedItem == 0 or changeToSelectedItem == 0 then
     mod.logger.PrintUserError(gm.L["quick_change_item_select_missing"])
@@ -209,7 +265,10 @@ function GM_AddQuickChangeRule_OnClick()
   me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL, 9)
 end
 
-function GM_DeleteQuickChangeRule_OnClick()
+--[[
+  OnClick callback for delete quickchange rule
+]]--
+function me.DeleteQuickChangeRuleOnClick()
   if quickChangeRuleSelectedPos ~= nil then
     mod.logger.LogDebug(me.tag, "Removing position " .. quickChangeRuleSelectedPos .. " from QuickChange rules")
     mod.quickChange.RemoveQuickChangeRule(quickChangeRuleSelectedPos)
@@ -218,7 +277,10 @@ function GM_DeleteQuickChangeRule_OnClick()
   end
 end
 
-function GM_QuickChangeDelay_OnTextChanged()
+--[[
+  OnTextChanged callback for quick change delay input field
+]]--
+function me.QuickChangeDelayOnTextChanged()
   local delay = tonumber(this:GetText())
   -- set default to 0 sek delay
   if delay == nil and not editDelayFocus then
@@ -232,25 +294,28 @@ function GM_QuickChangeDelay_OnTextChanged()
 end
 
 --[[
-  Track editbox for delay focus gained
+  OnEditFocusGained callback for quick change delay input field
 ]]--
-function GM_QuickChangeDelay_OnEditFocusGained()
+function me.QuickChangeDelayOnEditFocusGained()
   editDelayFocus = true
 end
 
 --[[
-  Track editbox for delay focus lost
+  OnEditFocusLost callback for quick change delay input field
 ]]--
-function GM_QuickChangeDelay_OnEditFocusLost()
+function me.QuickChangeDelayOnEditFocusLost()
   editDelayFocus = false
 end
 
-function GM_ItemList_OnShow()
+--[[
+  OnShow callback for itemlist
+]]--
+function me.ItemListOnShow()
   if (UIDropDownMenu_GetSelectedID(getglobal(GM_CONSTANTS.ELEMENT_CHOOSE_CATEGORY)) ~= nil) then
     local currentValue = UIDropDownMenu_GetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_CHOOSE_CATEGORY))
 
-    GM_ChangeFromList_Update(currentValue)
-    GM_ChangeToList_Update(currentValue)
+    mod.quickChangeMenu.QuickChangeFromListOnUpdate(currentValue)
+    mod.quickChangeMenu.QuickChangeToListOnUpdate(currentValue)
   end
 end
 
@@ -298,8 +363,8 @@ function me.DropDownMenuCallback()
 
   mod.logger.LogDebug(me.tag, "Changing type to: " .. this.value)
 
-  GM_ChangeFromList_Update(this.value)
-  GM_ChangeToList_Update(this.value)
+  mod.quickChangeMenu.QuickChangeFromListOnUpdate(this.value)
+  mod.quickChangeMenu.QuickChangeToListOnUpdate(this.value)
 end
 
 --[[

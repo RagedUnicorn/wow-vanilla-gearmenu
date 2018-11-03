@@ -71,28 +71,3 @@ function me.ReflectLockState(locked)
     getglobal(GM_CONSTANTS.ELEMENT_DRAG_BUTTON):Show()
   end
 end
-
---[[
-  Scroll callback for quick change options screen
-]]--
-function QuickChangeScrollFrameVerticalScroll()
-  local pre, maxScroll, scroll, toScroll
-
-  pre = pre or 20
-  maxScroll = getglobal(this:GetName() .. "_Child"):GetHeight() - 100
-
-  if spec then
-    maxScroll = maxScroll + 100
-  end
-
-  scroll = this:GetVerticalScroll()
-  toScroll = (scroll - (pre*arg1))
-
-  if toScroll < 0 or maxScroll < 0 then
-    this:SetVerticalScroll(0)
-  elseif toScroll > maxScroll then
-    this:SetVerticalScroll(maxScroll)
-  else
-    this:SetVerticalScroll(toScroll)
-  end
-end
