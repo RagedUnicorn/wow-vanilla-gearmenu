@@ -18,6 +18,7 @@
         <include>Assets/*.blp</include>
         <include>Assets/*.tga</include>
         <include>Localization/*.lua</include>
+        <include>Bindings.xml</include>
       </includes>
       <excludes>
         <exclude>Code/GM_Debug.lua</exclude>
