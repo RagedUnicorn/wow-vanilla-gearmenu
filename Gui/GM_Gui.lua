@@ -169,7 +169,7 @@ end
   Choosing an item in slotframe
 ]]--
 function me.MenuItemOnClick()
-  mod.common.EquipItemById(
+  mod.itemHelper.EquipItemById(
     me.BaggedItems[this:GetID()].id,
     me.currentSlot,
     me.BaggedItems[this:GetID()].equipSlot
@@ -192,7 +192,7 @@ function me.UseInventoryItem(position)
   end
 
   -- check if slot has an equiped item
-  local _, id, _ = mod.common.RetrieveItemInfo(item.slotId)
+  local _, id, _ = mod.itemHelper.RetrieveItemInfo(item.slotId)
 
   if not id then
     -- reflect item use

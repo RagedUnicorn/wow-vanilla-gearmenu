@@ -83,7 +83,7 @@ function me.UpdateQuickChange(slotId)
   for i = 1, table.getn(GearMenuOptions.QuickChangeRules) do
     for it = 1, table.getn(GearMenuOptions.QuickChangeRules[i].slotId) do
       if slotId == GearMenuOptions.QuickChangeRules[i].slotId[it] then
-        local itemId = mod.common.GetItemIdBySlot(slotId)
+        local itemId = mod.itemHelper.GetItemIdBySlot(slotId)
 
         if tonumber(itemId) == GearMenuOptions.QuickChangeRules[i].changeFromId then
           -- found a quick change rule that matches - prepare for switching

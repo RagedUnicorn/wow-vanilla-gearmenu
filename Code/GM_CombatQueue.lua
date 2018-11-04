@@ -89,9 +89,9 @@ function me.UpdateCombatQueue(slotId)
   local icon = getglobal(GM_CONSTANTS.ELEMENT_SLOT .. item.gmSlotPosition .. "Queue")
 
   if itemId then
-    _, bag, slotId = mod.common.FindItemById(itemId)
-    if bag then
-      icon:SetTexture(GetContainerItemInfo(bag, slotId))
+    _, bagNumber, bagPos = mod.itemHelper.FindItemById(itemId, true)
+    if bagNumber then
+      icon:SetTexture(GetContainerItemInfo(bagNumber, bagPos))
       icon:Show()
     end
   else
@@ -114,7 +114,7 @@ function me.ProcessQueue()
 end
 
 --[[
-  Process items in combatqueue
+  Process item in combatqueue
 
   @param {table} item
 ]]--
@@ -122,7 +122,7 @@ end
 function me.ProcessItem(item)
   if CombatQueueStore[item.slotId] ~= nil then
     _, _, _, _, _, _, _, equipSlot = GetItemInfo(CombatQueueStore[item.slotId])
-    mod.common.EquipItemById(CombatQueueStore[item.slotId], item.slotId, equipSlot)
+    mod.itemHelper.EquipItemById(CombatQueueStore[item.slotId], item.slotId, equipSlot)
     me.UpdateCombatQueue(item.slotId)
   end
 end

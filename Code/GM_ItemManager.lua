@@ -126,7 +126,7 @@ function me.UpdateWornItem(item)
 
   mod.logger.LogDebug(me.tag, "Update worn item")
 
-  getglobal(GM_CONSTANTS.ELEMENT_SLOT .. item.gmSlotPosition .. "Icon"):SetTexture(mod.common.RetrieveItemInfo(item.slotId))
+  getglobal(GM_CONSTANTS.ELEMENT_SLOT .. item.gmSlotPosition .. "Icon"):SetTexture(mod.itemHelper.RetrieveItemInfo(item.slotId))
   getglobal(GM_CONSTANTS.ELEMENT_SLOT .. item.gmSlotPosition .. "Icon"):SetDesaturated(0)
   getglobal(GM_CONSTANTS.ELEMENT_SLOT .. item.gmSlotPosition):SetChecked(0)
   mod.cooldown.UpdateCooldownForWornItem(item.slotId, item.gmSlotPosition)

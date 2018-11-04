@@ -22,6 +22,7 @@ Code\GM_Cooldown.lua
 Code\GM_CombatQueue.lua
 Code\GM_QuickChange.lua
 Code\GM_ItemManager.lua
+Code\GM_ItemHelper.lua
 Code\GM_AddonOptions.lua
 
 Localization\enUS.lua
