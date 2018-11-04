@@ -151,7 +151,7 @@ GM_CONSTANTS = {
     elements
   ]]--
   ELEMENT_CHATFRAME = "ChatFrame",
-  ELEMENT_TOOLTIP = "GM_Tooltip",
+  ELEMENT_TOOLTIP = "GameTooltip", -- default blizzard frames tooltip
   ELEMENT_TIMER_FRAME = "GM_TimerFrame",
   ELEMENT_OPTIONS_TITLE = "GM_OptionsTitle",
   ELEMENT_OPT = "GM_Opt",

@@ -60,6 +60,7 @@ end
 ]]--
 function me.OptTooltipOnEnter()
   local name = this:GetName()
+  GameTooltip_SetDefaultAnchor(getglobal(GM_CONSTANTS.ELEMENT_TOOLTIP), this)
 
   if not name then return end
 

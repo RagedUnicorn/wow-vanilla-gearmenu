@@ -281,13 +281,4 @@
       </OnUpdate>
     </Scripts>
   </Frame>
-
-  <!-- gametooltip -->
-  <GameTooltip name="GM_Tooltip" inherits="GameTooltipTemplate">
-    <Scripts>
-      <OnLoad>
-        this:SetOwner(WorldFrame, "ANCHOR_NONE")
-      </OnLoad>
-    </Scripts>
-  </GameTooltip>
 </Ui>

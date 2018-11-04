@@ -53,7 +53,7 @@ function me.DragButtonOnMouseUp()
 end
 
 --[[
-  Hovering itemslot for worn item
+  OnEnter callback - hovering itemslot
 ]]--
 function me.ItemButtonOnEnter()
   GameTooltip_SetDefaultAnchor(getglobal(GM_CONSTANTS.ELEMENT_TOOLTIP), this)
@@ -70,7 +70,9 @@ function me.ItemButtonOnEnter()
   me.BuildMenu()
 end
 
-
+--[[
+  OnLeave callback - hover leave event on itemslot
+]]--
 function me.ItemButtonOnLeave()
   mod.tooltip.TooltipClear()
 end
@@ -148,13 +150,17 @@ function me.ItemButtonOnDragStart()
 end
 
 --[[
-  Hovering itemslot for bagged items
+  OnEnter callback - hovering itemslot for bagged items
 ]]--
 function me.MenuItemOnEnter()
   GameTooltip_SetDefaultAnchor(getglobal(GM_CONSTANTS.ELEMENT_TOOLTIP), this)
+
   mod.tooltip.BuildTooltipForBaggedItems(this:GetID(), me.BaggedItems)
 end
 
+--[[
+  OnLeave callback - hover leave event on itemslot for bagged items
+]]--
 function me.MenuItemOnLeave()
   mod.tooltip.TooltipClear()
 end
