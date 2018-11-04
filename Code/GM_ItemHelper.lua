@@ -165,7 +165,6 @@ end
   @param {string} itemSlotType
 ]]--
 function me.SwitchItems(itemId, slotId, itemSlotType)
-  mod.logger.LogError(me.tag, "switch item")
   --[[
     special case if main hand is twohand and the item that should be equiped is offhand
     wow does not handle this properly
