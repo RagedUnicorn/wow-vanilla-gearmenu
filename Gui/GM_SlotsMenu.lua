@@ -56,55 +56,16 @@ function me.InitializeDropdownMenu()
   position = mod.common.ExtractPositionFromName(this:GetName())
   item = mod.itemManager.FindItemForSlotPosition(position)
 
-  button = me.CreateDropdownButton(
-    gm.L[GM_CONSTANTS.ITEMS.HEAD.localizationKey],
-    GM_CONSTANTS.ITEMS.HEAD.slotId,
-    me.DropDownMenuCallback
-  )
-  UIDropDownMenu_AddButton(button)
+  for key, item in pairs(GM_CONSTANTS.ITEMS) do
+    button = me.CreateDropdownButton(
+      gm.L[item.localizationKey],
+      item.slotId,
+      me.DropDownMenuCallback
+    )
+    UIDropDownMenu_AddButton(button)
+  end
 
-  button = me.CreateDropdownButton(
-    gm.L[GM_CONSTANTS.ITEMS.WAIST.localizationKey],
-    GM_CONSTANTS.ITEMS.WAIST.slotId,
-    me.DropDownMenuCallback
-  )
-  UIDropDownMenu_AddButton(button)
-
-  button = me.CreateDropdownButton(
-    gm.L[GM_CONSTANTS.ITEMS.FEET.localizationKey],
-    GM_CONSTANTS.ITEMS.FEET.slotId,
-    me.DropDownMenuCallback
-  )
-  UIDropDownMenu_AddButton(button)
-
-  button = me.CreateDropdownButton(
-    gm.L[GM_CONSTANTS.ITEMS.UPPER_TRINKET.localizationKey],
-    GM_CONSTANTS.ITEMS.UPPER_TRINKET.slotId,
-    me.DropDownMenuCallback
-  )
-  UIDropDownMenu_AddButton(button)
-
-  button = me.CreateDropdownButton(
-    gm.L[GM_CONSTANTS.ITEMS.LOWER_TRINKET.localizationKey],
-    GM_CONSTANTS.ITEMS.LOWER_TRINKET.slotId,
-    me.DropDownMenuCallback
-  )
-  UIDropDownMenu_AddButton(button)
-
-  button = me.CreateDropdownButton(
-    gm.L[GM_CONSTANTS.ITEMS.MAINHAND.localizationKey],
-    GM_CONSTANTS.ITEMS.MAINHAND.slotId,
-    me.DropDownMenuCallback
-  )
-  UIDropDownMenu_AddButton(button)
-
-  button = me.CreateDropdownButton(
-    gm.L[GM_CONSTANTS.ITEMS.OFFHAND.localizationKey],
-    GM_CONSTANTS.ITEMS.OFFHAND.slotId,
-    me.DropDownMenuCallback
-  )
-  UIDropDownMenu_AddButton(button)
-
+  -- create an option to disable the slot completely
   button = me.CreateDropdownButton("None", 0, me.DropDownMenuCallback)
   UIDropDownMenu_AddButton(button)
 
