@@ -30,58 +30,6 @@ mod.common = me
 me.tag = "Common"
 
 --[[
-  0 = ammo
-  1 = head
-  2 = neck
-  3 = shoulder
-  4 = shirt
-  5 = chest
-  6 = waist
-  7 = legs
-  8 = feet
-  9 = wrist
-  10 = hands
-  11 = finger 1
-  12 = finger 2
-  13 = trinket 1
-  14 = trinket 2
-  15 = back
-  16 = main hand
-  17 = off hand
-  18 = ranged
-  19 = tabard
-
-  "HeadSlot" = Head/helmet slot.
-  "NeckSlot" = Necklace slot.
-  "ShoulderSlot" = Shoulder slot.
-  "BackSlot" = Back/Cape slot.
-  "ChestSlot" = Chest slot.
-  "ShirtSlot" = Shirt slot.
-  "TabardSlot" = Tabard slot.
-  "WristSlot" = Wrist/Bracer slot.
-  "HandsSlot" = Hand/Gloves slot.
-  "WaistSlot" = Waist/Belt slot.
-  "LegsSlot" = Legs/Pants slot.
-  "FeetSlot" = Feet/Boots slot.
-  "Finger0Slot" = First finger/ring slot.
-  "Finger1Slot" = Second finger/ring slot.
-  "Trinket0Slot" = First trinket slot.
-  "Trinket1Slot" = Second trinket slot.
-  "MainHandSlot" = Main hand slot.
-  "SecondaryHandSlot" = Secondary hand/Off-hand slot.
-]]--
-
-local slotName = {
-  [1] = "HeadSlot",
-  [6] = "WaistSlot",
-  [8] = "FeetSlot",
-  [13] = "Trinket0Slot",
-  [14] = "Trinket1Slot",
-  [16] = "MainhandSlot",
-  [17] = "SecondaryHandSlot"
-}
-
---[[
   Retrieve itemInfo
 
   @param {number} slotId
@@ -94,7 +42,7 @@ function me.RetrieveItemInfo(slotId)
     _, _, id = strfind(link, "item:(%d+)")
     name, _, _, _, _, _, _, equipSlot, texture = GetItemInfo(id)
   else
-    _, texture = GetInventorySlotInfo(slotName[slotId])
+    _, texture = GetInventorySlotInfo(GM_CONSTANTS.ITEM_CATEGORIES[slotId].slotName)
   end
 
   return texture, id, equipSlot
@@ -145,14 +93,15 @@ end
 --[[
   Equip an item into a specific slot identified by it's id
 
-  @param {table} item
+  @param {number} itemId
   @param {number} slotId
+  @param {string} itemSlotType
 ]]--
-function me.EquipItemById(item, slotId)
-  if not item or not slotId then return end
+function me.EquipItemById(itemId, slotId, itemSlotType)
+  if not itemId or not slotId or not itemSlotType then return end
 
-  if item.itemId then
-    mod.logger.LogDebug(me.tag, "EquipItem: " .. item.itemId .. " in slot: " .. slotId)
+  if itemId then
+    mod.logger.LogDebug(me.tag, "EquipItem: " .. itemId .. " in slot: " .. slotId)
   end
 
   --[[
@@ -162,42 +111,42 @@ function me.EquipItemById(item, slotId)
   ]]--
   if UnitAffectingCombat("player") or me.IsPlayerReallyDead() then
     -- if not of type weapon add it to queue
-    if slotId ~= mod.mainHand.id and slotId ~= mod.offHand.id then
-      mod.combatQueue.AddToQueue(item.itemId, slotId)
+    if slotId ~=  GM_CONSTANTS.ITEMS.MAINHAND.slotId and slotId ~= GM_CONSTANTS.ITEMS.OFFHAND.slotId then
+      mod.combatQueue.AddToQueue(itemId, slotId)
     -- if type is weapon only add it to queue if the player is dead
     elseif me.IsPlayerReallyDead() then
-      mod.combatQueue.AddToQueue(item.itemId, slotId)
+      mod.combatQueue.AddToQueue(itemId, slotId)
     else
-      me.SwitchItems(item, slotId)
+      me.SwitchItems(itemId, slotId, itemSlotType)
     end
   else
-    me.SwitchItems(item, slotId)
+    me.SwitchItems(itemId, slotId, itemSlotType)
   end
 end
 
 --[[
   Switch to items from itemSlot and a bag position
 
-  @param {table} item
+  @param {number} itemId
   @param {number} slotId
+  @param {string} itemSlotType
 ]]--
-function me.SwitchItems(item, slotId)
+function me.SwitchItems(itemId, slotId, itemSlotType)
   --[[
     special case if main hand is twohand and the item that should be equiped is offhand
     wow does not handle this properly
   ]]--
-  if slotId == mod.offHand.id then
-    local _, _, wornType = mod.common.RetrieveItemInfo(mod.mainHand.id)
-
-    if wornType == "INVTYPE_2HWEAPON" and (item.itemSlotType == "INVTYPE_SHIELD"
-      or item.itemSlotType == "INVTYPE_WEAPON" or item.itemSlotType == "INVTYPE_WEAPONOFFHAND"
-      or item.itemSlotType == "INVTYPE_HOLDABLE") then
-        mod.common.UnequipItemBySlotId(mod.mainHand.id)
+  if slotId == GM_CONSTANTS.ITEMS.OFFHAND.slotId then
+    local _, _, wornType = mod.common.RetrieveItemInfo(GM_CONSTANTS.ITEMS.MAINHAND.slotId)
+    if wornType == "INVTYPE_2HWEAPON" and (itemSlotType == "INVTYPE_SHIELD"
+      or itemSlotType == "INVTYPE_WEAPON" or itemSlotType == "INVTYPE_WEAPONOFFHAND"
+      or itemSlotType == "INVTYPE_HOLDABLE") then
+        mod.common.UnequipItemBySlotId(GM_CONSTANTS.ITEMS.MAINHAND.slotId)
       end
   end
 
   if not CursorHasItem() and not SpellIsTargeting() then
-    local _, b, s = me.FindItemById(item.itemId)
+    local _, b, s = me.FindItemById(itemId)
     if b then
       local _, _, isLocked = GetContainerItemInfo(b, s)
       if not isLocked and not IsInventoryItemLocked(slotId) then
@@ -266,114 +215,4 @@ function me.ExtractPositionFromName(name)
   _, _, position = strfind(name, "(%d+)")
 
   return tonumber(position)
-end
-
-
---[[
-  Retrieve all items from inventory bags matching any type of
-    INVTYPE_TRINKET
-    INVTYPE_WAIST
-    INVTYPE_HOLDABLE
-    INVTYPE_WEAPONOFFHAND
-    INVTYPE_SHIELD
-    INVTYPE_WEAPON
-    INVTYPE_WEAPONMAINHAND
-    INVTYPE_2HWEAPON
-    INVTYPE_WEAPON
-    INVTYPE_HEAD
-    INVTYPE_FEET
-
-  Depending on the type that is passed to the function. For available types see
-  constants CATEGORIES.
-
-  @param {number} type
-    see gm_constants categories for a reference
-  @param {boolean} includeEquiped
-    whether the currently equiped item should be included in the result or not
-  @return {table | nil}, {number}
-]]--
-function me.GetItemsByType(type, includeEquiped)
-  local idx = 1, i, j
-  local itemLink, itemId, itemName, equipSlot, itemTexture, itemQuality, numberOfItems, itemTypes
-  local items = {}
-
-  if type == nil then
-    mod.logger.LogError(me.tag, "Itemtype missing")
-    return nil
-  end
-
-  itemTypes = GM_CONSTANTS.CATEGORIES[type].type
-
-  for i = 0, 4 do
-    for j = 1, GetContainerNumSlots(i) do
-      itemLink = GetContainerItemLink(i, j)
-
-      if itemLink then
-        _, _, itemId, itemName = strfind(GetContainerItemLink(i, j) or "", "item:(%d+).+%[(.+)%]")
-        _, _, itemQuality, _, _, _, _, equipSlot, itemTexture = GetItemInfo(itemId or "")
-
-        for it = 1, table.getn(itemTypes) do
-          if equipSlot == itemTypes[it] then
-            if itemQuality >= GearMenuOptions.filterItemQuality then
-              if not items[idx] then
-                items[idx] = {}
-              end
-
-              items[idx].bag = i
-              items[idx].slot = j
-              items[idx].name = itemName
-              items[idx].texture = itemTexture
-              items[idx].id = itemId
-              items[idx].equipSlot = equipSlot
-              items[idx].quality = itemQuality
-
-              idx = idx + 1
-            else
-              mod.logger.LogDebug(me.tag, "Ignoring item because its quality is lower than setting "
-                .. GearMenuOptions.filterItemQuality)
-            end
-          end
-        end
-      end
-    end
-  end
-
-  -- include currently equiped items
-  if includeEquiped then
-    for i = 1, table.getn(itemTypes) do
-      for it = 1, table.getn(GM_CONSTANTS.CATEGORIES[type].slotId) do
-        _, _, itemId, itemName = strfind(GetInventoryItemLink("player",
-          GM_CONSTANTS.CATEGORIES[type].slotId[it]) or "", "item:(%d+).+%[(.+)%]")
-
-        if itemId then
-          _, _, itemQuality, _, _, _, _, equipSlot, itemTexture = GetItemInfo(itemId or "")
-
-          if itemQuality and itemQuality >= GearMenuOptions.filterItemQuality then
-            if not items[idx] then
-              items[idx] = {}
-            end
-
-            items[idx].bag = i
-            items[idx].slot = j
-            items[idx].name = itemName
-            items[idx].texture = itemTexture
-            items[idx].id = itemId
-            items[idx].equipSlot = equipSlot
-            items[idx].quality = itemQuality
-
-            idx = idx + 1
-          else
-            mod.logger.LogDebug(me.tag, "Ignoring item because its quality is lower than setting - "
-              .. GearMenuOptions.filterItemQuality)
-          end
-        else
-          mod.logger.LogDebug(me.tag, "Ignoring slot because no item could be found")
-        end
-      end
-    end
-  end
-
-  numberOfItems = math.min(idx - 1, GM_CONSTANTS.ADDON_MAX_ITEMS)
-
-  return items, numberOfItems
 end

@@ -56,21 +56,148 @@ GM_CONSTANTS = {
   CATEGORY_HEAD = 5,
   CATEGORY_FEET  = 6,
 
-  CATEGORIES = {
-    -- trinket
-    [1] = {
-      ["type"] = {"INVTYPE_TRINKET"},
-      ["name"] = "Trinket",
-      ["slotId"] = {13, 14}
+  ITEMS = {
+    HEAD = {
+      ["id"] = 1,
+      ["name"] = "head",
+      ["localizationKey"] = "slot_name_head",
+      ["slotId"] = 1
     },
-    -- waist
-    [2] = {
+    WAIST = {
+      ["id"] = 2,
+      ["name"] = "waist",
+      ["localizationKey"] = "slot_name_waist",
+      ["slotId"] = 6
+    },
+    FEET = {
+      ["id"] = 3,
+      ["name"] = "feet",
+      ["localizationKey"] = "slot_name_feet",
+      ["slotId"] = 8
+    },
+    -- shares id with lower trinket because they are the same category but two different slot exists
+    UPPER_TRINKET = {
+      ["id"] = 4,
+      ["name"] = "upperTrinket",
+      ["localizationKey"] = "slot_name_trinket",
+      ["slotId"] = 13
+    },
+    -- shares id with upper trinket because they are the same category but two different slot exists
+    LOWER_TRINKET = {
+      ["id"] = 4,
+      ["name"] = "lowerTrinket",
+      ["localizationKey"] = "slot_name_trinket",
+      ["slotId"] = 14
+    },
+    MAINHAND = {
+      ["id"] = 5,
+      ["name"] = "mainHand",
+      ["localizationKey"] = "slot_name_mainhand",
+      ["slotId"] = 16
+    },
+    OFFHAND = {
+      ["id"] = 6,
+      ["name"] = "offHand",
+      ["localizationKey"] = "slot_name_offhand",
+      ["slotId"] = 17
+    }
+  },
+  --[[
+    {number} slotId as defined by blizzard
+      0 = ammo
+      1 = head
+      2 = neck
+      3 = shoulder
+      4 = shirt
+      5 = chest
+      6 = waist
+      7 = legs
+      8 = feet
+      9 = wrist
+      10 = hands
+      11 = finger 1
+      12 = finger 2
+      13 = trinket 1
+      14 = trinket 2
+      15 = back
+      16 = main hand
+      17 = off hand
+      18 = ranged
+      19 = tabard
+    [slotId] = {
+      ["type"] = {"INVTYPE"}
+        {table<string>} type of the slot
+
+        | INVTYPE                  | NAME             | slotId |
+        |--------------------------|------------------|--------|
+        | "INVTYPE_AMMO"           | Ammo             | 0      |
+        | "INVTYPE_HEAD"           | Head             | 1      |
+        | "INVTYPE_NECK"           | Neck             | 2      |
+        | "INVTYPE_SHOULDER"       | Shoulder         | 3      |
+        | "INVTYPE_BODY"           | Shirt            | 4      |
+        | "INVTYPE_CHEST"          | Chest            | 5      |
+        | "INVTYPE_ROBE"           | Chest            | 5      |
+        | "INVTYPE_WAIST"          | Waist            | 6      |
+        | "INVTYPE_LEGS"           | Legs             | 7      |
+        | "INVTYPE_FEET"           | Feet             | 8      |
+        | "INVTYPE_WRIST"          | Wrist            | 9      |
+        | "INVTYPE_HAND"           | Hands            | 10     |
+        | "INVTYPE_FINGER"         | Fingers          | 11,12  |
+        | "INVTYPE_TRINKET"        | Trinkets         | 13,14  |
+        | "INVTYPE_CLOAK"          | Cloaks           | 15     |
+        | "INVTYPE_WEAPON"         | One-Hand         | 16,17  |
+        | "INVTYPE_SHIELD"         | Shield           | 17     |
+        | "INVTYPE_2HWEAPON"       | Two-Handed       | 16     |
+        | "INVTYPE_WEAPONMAINHAND" | Main-Hand Weapon | 16     |
+        | "INVTYPE_WEAPONOFFHAND"  | Off-Hand Weapon  | 17     |
+      ["name"] = "item name"
+        {string} Short name of the slot
+      ["slotName"] = "nameSlot"
+        {string} Name of the slot as found in the official documentation
+      ["slotId"] = {1}
+        {table<number>} A table of possible slotIds
+    }
+  ]]--
+  ITEM_CATEGORIES = {
+    [1] = {
+      ["type"] = {"INVTYPE_HEAD"},
+      ["name"] = "Head",
+      ["slotName"] = "HeadSlot",
+      ["slotId"] = {1}
+    },
+    [6] = {
       ["type"] = {"INVTYPE_WAIST"},
       ["name"] = "Waist",
+      ["slotName"] = "WaistSlot",
       ["slotId"] = {6}
     },
-    -- offHand
-    [3] = {
+    [8] = {
+      ["type"] = {"INVTYPE_FEET"},
+      ["name"] = "Feet",
+      ["slotName"] = "FeetSlot",
+      ["slotId"] = {8}
+    },
+    -- trinket
+    [13] = {
+      ["type"] = {"INVTYPE_TRINKET"},
+      ["name"] = "UpperTrinket",
+      ["slotName"] = "Trinket0Slot",
+      ["slotId"] = {13, 14}
+    },
+    -- trinket
+    [14] = {
+      ["type"] = {"INVTYPE_TRINKET"},
+      ["name"] = "LowerTrinket",
+      ["slotName"] = "Trinket1Slot",
+      ["slotId"] = {13, 14}
+    },
+    [16] = {
+      ["type"] = {"INVTYPE_WEAPONMAINHAND", "INVTYPE_2HWEAPON", "INVTYPE_WEAPON"},
+      ["name"] = "MainHand",
+      ["slotName"] = "MainhandSlot",
+      ["slotId"] = {16}
+    },
+    [17] = {
       ["type"] = (function()
         _, class = UnitClass("player")
 
@@ -125,28 +252,10 @@ GM_CONSTANTS = {
         end
       end)(),
       ["name"] = "OffHand",
+      ["slotName"] = "SecondaryHandSlot",
       ["slotId"] = {17}
     },
-    -- mainhand
-    [4] = {
-      ["type"] = {"INVTYPE_WEAPONMAINHAND", "INVTYPE_2HWEAPON", "INVTYPE_WEAPON"},
-      ["name"] = "MainHand",
-      ["slotId"] = {16}
-    },
-    -- head
-    [5] = {
-      ["type"] = {"INVTYPE_HEAD"},
-      ["name"] = "Head",
-      ["slotId"] = {1}
-    },
-    -- feet
-    [6] = {
-      ["type"] = {"INVTYPE_FEET"},
-      ["name"] = "Feet",
-      ["slotId"] = {8}
-    }
   },
-
   --[[
     elements
   ]]--

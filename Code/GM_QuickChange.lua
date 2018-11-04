@@ -97,18 +97,18 @@ end
 --[[
   Check if an items was successfully used before kicking off Quick Change
 
-  @param {string} module
+  @param {number} slotId
 ]]--
-function me.CheckItemUse(module)
+function me.CheckItemUse(slotId)
   -- wait a bit then check if there is a startime for the cooldown on the item
   local checkItemUseStatusCallback = function ()
-    local start, duration, enable = GetInventoryItemCooldown("player", mod[module].id)
+    local start, duration, enable = GetInventoryItemCooldown("player", slotId)
     -- 1 meaning item has an onUse effect
     if enable == 1 and start ~= 0 then
       -- inform quick change about used item
-      mod.quickChange.UpdateQuickChange(mod[module].id)
+      mod.quickChange.UpdateQuickChange(slotId)
     elseif enable == 0 then
-      mod.quickChange.UpdateQuickChange(mod[module].id)
+      mod.quickChange.UpdateQuickChange(slotId)
     end
 
     mod.timer.StopTimer("checkItemUseStatus")

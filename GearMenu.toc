@@ -22,13 +22,6 @@ Code\GM_Cooldown.lua
 Code\GM_CombatQueue.lua
 Code\GM_QuickChange.lua
 Code\GM_ItemManager.lua
-Code\GM_MainHand.lua
-Code\GM_OffHand.lua
-Code\GM_Waist.lua
-Code\GM_Feet.lua
-Code\GM_Head.lua
-Code\GM_UpperTrinket.lua
-Code\GM_LowerTrinket.lua
 Code\GM_AddonOptions.lua
 
 # debug only

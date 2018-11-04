@@ -8,6 +8,14 @@ gm.L["opt"] = "|cFFFFFF00opt|r - display Optionsmenu"
 gm.L["reload"] = "|cFFFFFF00reload|r - reload UI"
 gm.L["info_title"] = "|cFFFFFF00GearMenu:|r"
 
+-- slot translations
+gm.L["slot_name_head"] = "Head"
+gm.L["slot_name_waist"] = "Waist"
+gm.L["slot_name_feet"] = "Feet"
+gm.L["slot_name_trinket"] = "Trinket"
+gm.L["slot_name_mainhand"] = "MainHand"
+gm.L["slot_name_offhand"] = "OffHand"
+
 -- user errors
 gm.L["unequip_failed"] = "Unable to find empty bagspace"
 gm.L["quick_change_item_select_missing"] = "You have to select an item in both from and to list"
