@@ -100,10 +100,7 @@ function me.ItemButtonOnClick(button)
 
     UseInventoryItem(mod[module].id)
     mod.quickChange.CheckItemUse(module)
-
-    -- reflect item use
-    this:SetChecked(1)
-    mod.timer.StartTimer("ReflectItemUse")
+    me.ReflectItemUse(mod.common.ExtractPositionFromName(name))
   end
 end
 
@@ -196,10 +193,7 @@ function me.UseInventoryItem(position)
   local _, id, _ = mod.common.RetrieveItemInfo(mod[module].id)
 
   if not id then
-    -- reflect item use
-    getglobal(GM_CONSTANTS.ELEMENT_SLOT .. position):SetChecked(1)
-    mod.timer.StartTimer("ReflectItemUse")
-
+    me.ReflectItemUse(position)
     return
   end
 
@@ -207,21 +201,27 @@ function me.UseInventoryItem(position)
 
   UseInventoryItem(mod[module].id) -- use item
   mod.quickChange.CheckItemUse(module)
-
-  -- reflect item use
-  getglobal(GM_CONSTANTS.ELEMENT_SLOT .. position):SetChecked(1)
-  mod.timer.StartTimer("ReflectItemUse")
+  me.ReflectItemUse(position)
 end
 
 --[[
-  Remove checked status from all buttons
-]]
-function me.ReflectItemUse()
-  for i = 1, GM_CONSTANTS.ADDON_SLOTS do
-    getglobal(GM_CONSTANTS.ELEMENT_SLOT .. i):SetChecked(0)
+  Reflect the item use on a specific slot by its position
+
+  @param {number} position
+]]--
+function me.ReflectItemUse(position)
+  -- reflect item use
+  getglobal(GM_CONSTANTS.ELEMENT_SLOT .. position):SetChecked(1)
+  --[[
+    Remove checked status from all buttons
+  ]]
+  local reflectItemUseCallback = function()
+    getglobal(GM_CONSTANTS.ELEMENT_SLOT .. position):SetChecked(0)
   end
 
-  mod.timer.StopTimer("ReflectItemUse")
+  local timerName = "ReflectItemUse" .. math.floor(math.random() * 100000000000000)
+  mod.timer.CreateTimer(timerName, reflectItemUseCallback, .25, false)
+  mod.timer.StartTimer(timerName)
 end
 
 --[[

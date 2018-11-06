@@ -123,7 +123,6 @@ function me.Initialize()
   me.timer.CreateTimer("MenuMouseover", me.gui.SlotFrameMouseOver, .25, true)
   me.timer.CreateTimer("TooltipUpdate", me.tooltip.TooltipUpdate, 1, true)
   me.timer.CreateTimer("CooldownUpdate", me.cooldown.CooldownUpdate, 1, true)
-  me.timer.CreateTimer("ReflectItemUse", me.gui.ReflectItemUse, .75, true)
 
   me.gui.LoadSlotPositions()
   me.opt.ReflectLockState(GearMenuOptions.windowLocked)
