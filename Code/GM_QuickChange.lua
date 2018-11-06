@@ -47,10 +47,10 @@ function me.AddQuickChangeRule(changeFromId, changeToId, delay)
   changeFromName, _, itemFromQuality, _, _, _, _, equipFromSlot, itemFromTexture = GetItemInfo(changeFromId)
   changeToName, _, itemToQuality, _, _, _, _, equipToSlot, itemToTexture = GetItemInfo(changeToId)
 
-  for i = 1, table.getn(GM_CONSTANTS.CATEGORIES) do
-    for it = 1, table.getn(GM_CONSTANTS.CATEGORIES[i].type) do
-      if equipFromSlot == GM_CONSTANTS.CATEGORIES[i].type[it] then
-        slotId = GM_CONSTANTS.CATEGORIES[i].slotId
+  for _, item in pairs(GM_CONSTANTS.ITEM_CATEGORIES) do
+    for i = 1, table.getn(item.type) do
+      if equipFromSlot == item.type[i] then
+        slotId = item.slotId
       end
     end
   end
