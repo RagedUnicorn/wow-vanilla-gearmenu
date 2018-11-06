@@ -63,40 +63,96 @@ GM_CONSTANTS = {
       ["localizationKey"] = "slot_name_head",
       ["slotId"] = 1
     },
-    WAIST = {
+    NECK = {
       ["id"] = 2,
+      ["name"] = "neck",
+      ["localizationKey"] = "slot_name_neck",
+      ["slotId"] = 2
+    },
+    SHOULDER = {
+      ["id"] = 3,
+      ["name"] = "shoulder",
+      ["localizationKey"] = "slot_name_shoulder",
+      ["slotId"] = 3
+    },
+    CHEST = {
+      ["id"] = 4,
+      ["name"] = "chest",
+      ["localizationKey"] = "slot_name_chest",
+      ["slotId"] = 5
+    },
+    WAIST = {
+      ["id"] = 5,
       ["name"] = "waist",
       ["localizationKey"] = "slot_name_waist",
       ["slotId"] = 6
     },
+    LEGS = {
+      ["id"] = 6,
+      ["name"] = "legs",
+      ["localizationKey"] = "slot_name_legs",
+      ["slotId"] = 7
+    },
     FEET = {
-      ["id"] = 3,
+      ["id"] = 7,
       ["name"] = "feet",
       ["localizationKey"] = "slot_name_feet",
       ["slotId"] = 8
     },
+    WRIST = {
+      ["id"] = 8,
+      ["name"] = "wrist",
+      ["localizationKey"] = "slot_name_wrist",
+      ["slotId"] = 9
+    },
+    HANDS = {
+      ["id"] = 9,
+      ["name"] = "hands",
+      ["localizationKey"] = "slot_name_hands",
+      ["slotId"] = 10
+    },
+    -- shares id with lower finger because they are the same category but two different slot exists
+    UPPER_FINGER = {
+      ["id"] = 10,
+      ["name"] = "upperFinger",
+      ["localizationKey"] = "slot_name_upper_finger",
+      ["slotId"] = 11
+    },
+    -- shares id with upper finger because they are the same category but two different slot exists
+    LOWER_FINGER = {
+      ["id"] = 10,
+      ["name"] = "lowerFinger",
+      ["localizationKey"] = "slot_name_lower_finger",
+      ["slotId"] = 12
+    },
     -- shares id with lower trinket because they are the same category but two different slot exists
     UPPER_TRINKET = {
-      ["id"] = 4,
+      ["id"] = 11,
       ["name"] = "upperTrinket",
-      ["localizationKey"] = "slot_name_trinket",
+      ["localizationKey"] = "slot_name_upper_trinket",
       ["slotId"] = 13
     },
     -- shares id with upper trinket because they are the same category but two different slot exists
     LOWER_TRINKET = {
-      ["id"] = 4,
+      ["id"] = 11,
       ["name"] = "lowerTrinket",
-      ["localizationKey"] = "slot_name_trinket",
+      ["localizationKey"] = "slot_name_lower_trinket",
       ["slotId"] = 14
     },
+    CLOAK = {
+      ["id"] = 12,
+      ["name"] = "cloak",
+      ["localizationKey"] = "slot_name_cloak",
+      ["slotId"] = 15
+    },
     MAINHAND = {
-      ["id"] = 5,
+      ["id"] = 13,
       ["name"] = "mainHand",
       ["localizationKey"] = "slot_name_mainhand",
       ["slotId"] = 16
     },
     OFFHAND = {
-      ["id"] = 6,
+      ["id"] = 14,
       ["name"] = "offHand",
       ["localizationKey"] = "slot_name_offhand",
       ["slotId"] = 17
@@ -165,17 +221,65 @@ GM_CONSTANTS = {
       ["slotName"] = "HeadSlot",
       ["slotId"] = {1}
     },
+    [2] = {
+      ["type"] = {"INVTYPE_NECK"},
+      ["name"] = "Neck",
+      ["slotName"] = "NeckSlot",
+      ["slotId"] = {2}
+    },
+    [3] = {
+      ["type"] = {"INVTYPE_SHOULDER"},
+      ["name"] = "Shoulder",
+      ["slotName"] = "ShoulderSlot",
+      ["slotId"] = {3}
+    },
+    [5] = {
+      ["type"] = {"INVTYPE_CHEST", "INVTYPE_ROBE"},
+      ["name"] = "Chest",
+      ["slotName"] = "ChestSlot",
+      ["slotId"] = {5}
+    },
     [6] = {
       ["type"] = {"INVTYPE_WAIST"},
       ["name"] = "Waist",
       ["slotName"] = "WaistSlot",
       ["slotId"] = {6}
     },
+    [7] = {
+      ["type"] = {"INVTYPE_LEGS"},
+      ["name"] = "Legs",
+      ["slotName"] = "LegsSlot",
+      ["slotId"] = {7}
+    },
     [8] = {
       ["type"] = {"INVTYPE_FEET"},
       ["name"] = "Feet",
       ["slotName"] = "FeetSlot",
       ["slotId"] = {8}
+    },
+    [9] = {
+      ["type"] = {"INVTYPE_WRIST"},
+      ["name"] = "Wrist",
+      ["slotName"] = "WristSlot",
+      ["slotId"] = {9}
+    },
+    [10] = {
+      ["type"] = {"INVTYPE_HAND"},
+      ["name"] = "Hands",
+      ["slotName"] = "HandsSlot",
+      ["slotId"] = {10}
+    },
+    [11] = {
+      ["type"] = {"INVTYPE_FINGER"},
+      ["name"] = "UpperFinger",
+      ["slotName"] = "Finger0Slot",
+      ["slotId"] = {11, 12}
+    },
+    [12] = {
+      ["type"] = {"INVTYPE_FINGER"},
+      ["name"] = "LowerFinger",
+      ["slotName"] = "Finger1Slot",
+      ["slotId"] = {11, 12}
     },
     -- trinket
     [13] = {
@@ -190,6 +294,12 @@ GM_CONSTANTS = {
       ["name"] = "LowerTrinket",
       ["slotName"] = "Trinket1Slot",
       ["slotId"] = {13, 14}
+    },
+    [15] = {
+      ["type"] = {"INVTYPE_CLOAK"},
+      ["name"] = "Back",
+      ["slotName"] = "BackSlot",
+      ["slotId"] = {15}
     },
     [16] = {
       ["type"] = {"INVTYPE_WEAPONMAINHAND", "INVTYPE_2HWEAPON", "INVTYPE_WEAPON"},

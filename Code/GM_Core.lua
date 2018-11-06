@@ -146,6 +146,38 @@ function me.RegisterItems()
   )
 
   me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.NECK.name,
+    GM_CONSTANTS.ITEMS.NECK.localizationKey,
+    GM_CONSTANTS.ITEMS.NECK.slotId,
+    nil,
+    true
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.SHOULDER.name,
+    GM_CONSTANTS.ITEMS.SHOULDER.localizationKey,
+    GM_CONSTANTS.ITEMS.SHOULDER.slotId,
+    nil,
+    true
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.CLOAK.name,
+    GM_CONSTANTS.ITEMS.CLOAK.localizationKey,
+    GM_CONSTANTS.ITEMS.CLOAK.slotId,
+    nil,
+    true
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.CHEST.name,
+    GM_CONSTANTS.ITEMS.CHEST.localizationKey,
+    GM_CONSTANTS.ITEMS.CHEST.slotId,
+    nil,
+    true
+  )
+
+  me.itemManager.RegisterItem(
     GM_CONSTANTS.ITEMS.WAIST.name,
     GM_CONSTANTS.ITEMS.WAIST.localizationKey,
     GM_CONSTANTS.ITEMS.WAIST.slotId,
@@ -154,11 +186,51 @@ function me.RegisterItems()
   )
 
   me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.LEGS.name,
+    GM_CONSTANTS.ITEMS.LEGS.localizationKey,
+    GM_CONSTANTS.ITEMS.LEGS.slotId,
+    nil,
+    true
+  )
+
+  me.itemManager.RegisterItem(
     GM_CONSTANTS.ITEMS.FEET.name,
     GM_CONSTANTS.ITEMS.FEET.localizationKey,
     GM_CONSTANTS.ITEMS.FEET.slotId,
     3,
     false
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.WRIST.name,
+    GM_CONSTANTS.ITEMS.WRIST.localizationKey,
+    GM_CONSTANTS.ITEMS.WRIST.slotId,
+    nil,
+    true
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.HANDS.name,
+    GM_CONSTANTS.ITEMS.HANDS.localizationKey,
+    GM_CONSTANTS.ITEMS.HANDS.slotId,
+    nil,
+    true
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.UPPER_FINGER.name,
+    GM_CONSTANTS.ITEMS.UPPER_FINGER.localizationKey,
+    GM_CONSTANTS.ITEMS.UPPER_FINGER.slotId,
+    nil,
+    true
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.LOWER_FINGER.name,
+    GM_CONSTANTS.ITEMS.LOWER_FINGER.localizationKey,
+    GM_CONSTANTS.ITEMS.LOWER_FINGER.slotId,
+    nil,
+    true
   )
 
   me.itemManager.RegisterItem(

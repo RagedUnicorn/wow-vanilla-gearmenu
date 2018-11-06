@@ -11,9 +11,19 @@ if (GetLocale() == "deDE") then
 
   -- slot translations
   gm.L["slot_name_head"] = "Kopf"
+  gm.L["slot_name_neck"] = "Hals"
+  gm.L["slot_name_shoulder"] = "Schultern"
+  gm.L["slot_name_chest"] = "Brust"
   gm.L["slot_name_waist"] = "Taille"
+  gm.L["slot_name_legs"] = "Beine"
   gm.L["slot_name_feet"] = "Füße"
-  gm.L["slot_name_trinket"] = "Schmuck"
+  gm.L["slot_name_wrist"] = "Handgelenke"
+  gm.L["slot_name_hands"] = "Hände"
+  gm.L["slot_name_upper_finger"] = "Oberer Finger"
+  gm.L["slot_name_lower_finger"] = "Unterer Finger"
+  gm.L["slot_name_upper_trinket"] = "Oberer Schmuck"
+  gm.L["slot_name_lower_trinket"] = "Unterer Schmuck"
+  gm.L["slot_name_cloak"] = "Rücken"
   gm.L["slot_name_mainhand"] = "Waffenhand"
   gm.L["slot_name_offhand"] = "Schildhand"
 

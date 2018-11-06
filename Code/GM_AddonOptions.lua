@@ -77,7 +77,16 @@ GearMenuOptions = {
     ["feet"] = 4,
     ["head"] = 5,
     ["upperTrinket"] = 6,
-    ["lowerTrinket"] = 7
+    ["lowerTrinket"] = 7,
+    ["neck"] = nil,
+    ["shoulder"] = nil,
+    ["chest"] = nil,
+    ["legs"] = nil,
+    ["wrist"] = nil,
+    ["hands"] = nil,
+    ["upper_finger"] = nil,
+    ["lower_finger"] = nil,
+    ["cloak"] = nil
   },
   --[[
     example
