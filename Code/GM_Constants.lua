@@ -116,6 +116,7 @@ GM_CONSTANTS = {
       ["id"] = 10,
       ["name"] = "upperFinger",
       ["localizationKey"] = "slot_name_upper_finger",
+      ["localizationShort"] = "slot_name_finger",
       ["slotId"] = 11
     },
     -- shares id with upper finger because they are the same category but two different slot exists
@@ -123,6 +124,7 @@ GM_CONSTANTS = {
       ["id"] = 10,
       ["name"] = "lowerFinger",
       ["localizationKey"] = "slot_name_lower_finger",
+      ["localizationShort"] = "slot_name_finger",
       ["slotId"] = 12
     },
     -- shares id with lower trinket because they are the same category but two different slot exists
@@ -130,6 +132,7 @@ GM_CONSTANTS = {
       ["id"] = 11,
       ["name"] = "upperTrinket",
       ["localizationKey"] = "slot_name_upper_trinket",
+      ["localizationShort"] = "slot_name_trinket",
       ["slotId"] = 13
     },
     -- shares id with upper trinket because they are the same category but two different slot exists
@@ -137,6 +140,7 @@ GM_CONSTANTS = {
       ["id"] = 11,
       ["name"] = "lowerTrinket",
       ["localizationKey"] = "slot_name_lower_trinket",
+      ["localizationShort"] = "slot_name_trinket",
       ["slotId"] = 14
     },
     CLOAK = {

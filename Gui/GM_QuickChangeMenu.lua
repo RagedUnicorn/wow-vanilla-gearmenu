@@ -349,7 +349,12 @@ function me.InitializeDropdownMenu()
   for _, item in pairs(GM_CONSTANTS.ITEMS) do
     -- prevent adding slots with the same id multiple times
     if registeredCategoryIds[item.id] == nil then
-      button = me.CreateDropdownButton(gm.L[item.localizationKey], item.slotId, me.DropDownMenuCallback)
+      if item.localizationShort then
+        button = me.CreateDropdownButton(gm.L[item.localizationShort], item.slotId, me.DropDownMenuCallback)
+      else
+        button = me.CreateDropdownButton(gm.L[item.localizationKey], item.slotId, me.DropDownMenuCallback)
+      end
+
       UIDropDownMenu_AddButton(button)
       registeredCategoryIds[item.id] = true
     end
