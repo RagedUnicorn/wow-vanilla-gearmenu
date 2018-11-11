@@ -47,6 +47,9 @@ if (GetLocale() == "deDE") then
   gm.L["titleslot5"] = "Slot 5:"
   gm.L["titleslot6"] = "Slot 6:"
   gm.L["titleslot7"] = "Slot 7:"
+  gm.L["titleslot8"] = "Slot 8:"
+  gm.L["titleslot9"] = "Slot 9:"
+  gm.L["titleslot10"] = "Slot 10:"
   gm.L["slot_menu_slot_already_in_use"] = "Slot wird bereits benutzt"
 
   -- general tab

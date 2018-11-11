@@ -44,7 +44,7 @@ GM_CONSTANTS = {
     addon config
   ]]--
   ADDON_MAX_ITEMS = 30,
-  ADDON_SLOTS = 7,
+  ADDON_SLOTS = 10,
 
   --[[
     item categories

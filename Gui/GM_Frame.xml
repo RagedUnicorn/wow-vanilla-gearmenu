@@ -124,6 +124,48 @@
       <Frame parent="GM_Slot7" inherits="GM_QueueFrameTemplate"/>
       <!-- item slot 7 end -->
 
+      <!-- item slot 8 begin -->
+      <CheckButton name="GM_Slot8" inherits="GM_ItemButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="288" y="-8"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </CheckButton>
+      <Frame parent="GM_Slot8" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_Slot8" inherits="GM_QueueFrameTemplate"/>
+      <!-- item slot 8 end -->
+
+      <!-- item slot 9 begin -->
+      <CheckButton name="GM_Slot9" inherits="GM_ItemButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="328" y="-8"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </CheckButton>
+      <Frame parent="GM_Slot9" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_Slot9" inherits="GM_QueueFrameTemplate"/>
+      <!-- item slot 9 end -->
+
+      <!-- item slot 10 begin -->
+      <CheckButton name="GM_Slot10" inherits="GM_ItemButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="368" y="-8"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </CheckButton>
+      <Frame parent="GM_Slot10" inherits="GM_TimeFrameTemplate"/>
+      <Frame parent="GM_Slot10" inherits="GM_QueueFrameTemplate"/>
+      <!-- item slot 10 end -->
+
       <!-- drag button for slotframe -->
       <Button name="GM_DragButton" inherits="GM_DragButtonTemplate">
         <Anchors>
