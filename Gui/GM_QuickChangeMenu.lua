@@ -76,12 +76,18 @@ end
   OnVerticalScroll callback for quick change rule list
 ]]--
 function me.QuickChangeRuleListOnUpdate()
-  local offset = FauxScrollFrame_GetOffset(GM_QuickChangeRuleScrollFrame) + this:GetID()
+  local quickChangeRuleScrollFrame = getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_SCROLL_FRAME)
+  local offset = FauxScrollFrame_GetOffset(quickChangeRuleScrollFrame) + this:GetID()
   local rules = mod.addonOptions.GetQuickChangeRules()
 
-  FauxScrollFrame_Update(GM_QuickChangeRuleScrollFrame, rules and table.getn(rules) or 0, 5, 24)
+  FauxScrollFrame_Update(
+    quickChangeRuleScrollFrame,
+    rules and table.getn(rules) or 0,
+    GM_CONSTANTS.QUICKCHANGE_VISIBLE_RULES,
+    24
+  )
 
-  for i = 1, 5 do
+  for i = 1, GM_CONSTANTS.QUICKCHANGE_VISIBLE_RULES do
     local item = getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_CELL .. i)
     local itemNameLeft = getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_CELL .. i .. "NameLeft")
     local itemIconLeft = getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_CELL .. i .. "IconLeft")
@@ -116,11 +122,11 @@ function me.QuickChangeRuleListOnUpdate()
 end
 
 function me.QuickChangeRuleListCellOnClick()
-  local idx = FauxScrollFrame_GetOffset(GM_QuickChangeRuleScrollFrame) + this:GetID()
+  local idx = FauxScrollFrame_GetOffset(getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_SCROLL_FRAME)) + this:GetID()
 
   quickChangeRuleSelectedPos = idx
   -- clear all current highlighting
-  me.ClearCellList(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_CELL, 5)
+  me.ClearCellList(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULE_CELL, GM_CONSTANTS.QUICKCHANGE_VISIBLE_RULES)
 
   this.selectedItem = true
   getglobal(this:GetName() .. "Highlight"):Show()
@@ -134,6 +140,7 @@ end
 ]]--
 function me.QuickChangeFromListOnUpdate(slotId)
   local itemList, offset
+  local QuickChangeChangeFromScrollFrame = getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_FROM_SCROLL_FRAME)
 
   if slotId == nil then
     slotId = UIDropDownMenu_GetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_CHOOSE_CATEGORY))
@@ -141,13 +148,13 @@ function me.QuickChangeFromListOnUpdate(slotId)
 
   itemList = mod.itemManager.GetItemsForSlotId(slotId, true)
   changeFromItemList = me.FilterDuplicateItems(itemList)
-  FauxScrollFrame_Update(GM_QuickChange_ChangeFromScrollFrame,
-    changeFromItemList and table.getn(changeFromItemList) or 0, 9, 24)
+  FauxScrollFrame_Update(QuickChangeChangeFromScrollFrame,
+    changeFromItemList and table.getn(changeFromItemList) or 0, GM_CONSTANTS.QUICKCHANGE_VISIBLE_ITEMS, 24)
   -- clear highlighted cells on scroll
-  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_FROM_CELL, 9, true)
-  offset = FauxScrollFrame_GetOffset(GM_QuickChange_ChangeFromScrollFrame)
+  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_FROM_CELL, GM_CONSTANTS.QUICKCHANGE_VISIBLE_ITEMS, true)
+  offset = FauxScrollFrame_GetOffset(QuickChangeChangeFromScrollFrame)
 
-  for i = 1, 9 do
+  for i = 1, GM_CONSTANTS.QUICKCHANGE_VISIBLE_ITEMS do
     local item = getglobal(GM_CONSTANTS.ELEMENT_CHANGE_FROM_CELL .. i)
     local itemName = getglobal(GM_CONSTANTS.ELEMENT_CHANGE_FROM_CELL .. i .. "Name")
     local itemIcon = getglobal(GM_CONSTANTS.ELEMENT_CHANGE_FROM_CELL .. i .. "Icon")
@@ -182,6 +189,7 @@ end
 ]]--
 function me.QuickChangeToListOnUpdate(slotId)
   local itemList, offset
+  local QuickChangeChangeToScrollFrame = getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_TO_SCROLL_FRAME)
 
   if slotId == nil then
     slotId = UIDropDownMenu_GetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_CHOOSE_CATEGORY))
@@ -189,13 +197,13 @@ function me.QuickChangeToListOnUpdate(slotId)
 
   itemList = mod.itemManager.GetItemsForSlotId(slotId, true)
   changeToItemList = me.FilterDuplicateItems(itemList)
-  FauxScrollFrame_Update(GM_QuickChange_ChangeToScrollFrame,
-    changeToItemList and table.getn(changeToItemList) or 0, 9, 24)
+  FauxScrollFrame_Update(QuickChangeChangeToScrollFrame,
+    changeToItemList and table.getn(changeToItemList) or 0, GM_CONSTANTS.QUICKCHANGE_VISIBLE_ITEMS, 24)
   -- clear highlighted cells on scroll
-  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL, 9, true)
-  offset = FauxScrollFrame_GetOffset(GM_QuickChange_ChangeToScrollFrame)
+  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL, GM_CONSTANTS.QUICKCHANGE_VISIBLE_ITEMS, true)
+  offset = FauxScrollFrame_GetOffset(QuickChangeChangeToScrollFrame)
 
-  for i = 1, 9 do
+  for i = 1, GM_CONSTANTS.QUICKCHANGE_VISIBLE_ITEMS do
     local item = getglobal(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL .. i)
     local itemName = getglobal(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL .. i .. "Name")
     local itemIcon = getglobal(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL .. i .. "Icon")
@@ -226,10 +234,10 @@ end
   OnClick callback for changefrom list
 ]]--
 function me.ChangeFromListCellOnClick()
-  local idx = FauxScrollFrame_GetOffset(GM_QuickChange_ChangeFromScrollFrame) + this:GetID()
+  local idx = FauxScrollFrame_GetOffset(getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_FROM_SCROLL_FRAME)) + this:GetID()
 
   -- clear all current highlighting
-  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_FROM_CELL, 9)
+  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_FROM_CELL, GM_CONSTANTS.QUICKCHANGE_VISIBLE_ITEMS)
 
   changeFromSelectedItem = changeFromItemList[idx].id
   this.selectedItem = true
@@ -240,10 +248,10 @@ end
   OnClick callback for changeto list
 ]]--
 function me.ChangeToListCellOnClick()
-  local idx = FauxScrollFrame_GetOffset(GM_QuickChange_ChangeToScrollFrame) + this:GetID()
+  local idx = FauxScrollFrame_GetOffset(getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_TO_SCROLL_FRAME)) + this:GetID()
 
   -- clear all current highlighting
-  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL, 9)
+  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL, GM_CONSTANTS.QUICKCHANGE_VISIBLE_ITEMS)
 
   changeToSelectedItem = changeToItemList[idx].id
 
@@ -263,8 +271,12 @@ function me.AddQuickChangeRuleOnClick()
 
   mod.quickChange.AddQuickChangeRule(changeFromSelectedItem, changeToSelectedItem, quickChangeDelay)
   getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_ADD_RULE):SetText("0")
-  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_FROM_CELL, 9)
-  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL, 9)
+  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_FROM_CELL, GM_CONSTANTS.QUICKCHANGE_VISIBLE_ITEMS)
+  me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL, GM_CONSTANTS.QUICKCHANGE_VISIBLE_ITEMS)
+
+  -- reset selected items
+  changeFromSelectedItem = 0
+  changeToSelectedItem = 0
 end
 
 --[[
@@ -274,7 +286,10 @@ function me.DeleteQuickChangeRuleOnClick()
   if quickChangeRuleSelectedPos ~= nil then
     mod.logger.LogDebug(me.tag, "Removing position " .. quickChangeRuleSelectedPos .. " from QuickChange rules")
     mod.quickChange.RemoveQuickChangeRule(quickChangeRuleSelectedPos)
+    -- reset selected list
+    quickChangeRuleSelectedPos = nil
   else
+    mod.logger.PrintUserError(gm.L["quick_change_rule_select_missing"])
     return nil
   end
 end

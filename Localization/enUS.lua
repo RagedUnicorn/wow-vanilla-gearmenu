@@ -31,6 +31,7 @@ gm.L["slot_name_offhand"] = "OffHand"
 -- user errors
 gm.L["unequip_failed"] = "Unable to find empty bagspace"
 gm.L["quick_change_item_select_missing"] = "You have to select an item in both from and to list"
+gm.L["quick_change_rule_select_missing"] = "You have to select a rule to delete"
 
 -- gui
 gm.L["navigationslots"] = "Slots"

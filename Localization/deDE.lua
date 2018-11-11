@@ -32,6 +32,7 @@ if (GetLocale() == "deDE") then
   -- user errors
   gm.L["unequip_failed"] = "Kein freier Taschenplatz gefunden"
   gm.L["quick_change_item_select_missing"] = "Es muss ein Item von der Von und der Zu Liste ausgewählt werden"
+  gm.L["quick_change_rule_select_missing"] = "Es muss eine Regel gewählt werden welche gelöscht werden soll"
 
   -- gui
   gm.L["navigationslots"] = "Slots"
