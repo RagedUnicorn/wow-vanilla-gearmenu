@@ -4,7 +4,6 @@ ${addon.comment.generated.toc}
 ## Title: GearMenu
 ## Author: Michael Wiesendanger <michael.wiesendanger@gmail.com>
 ## Notes: Addon to manage usable gear
-## SavedVariables: GearMenuOptions
 ## SavedVariablesPerCharacter: GearMenuOptions
 
 # constant values
