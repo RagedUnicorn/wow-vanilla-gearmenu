@@ -43,12 +43,12 @@ local TOOLTIP_TYPE_ITEMSLOT = "ItemSlot"
   @param {number} id
   @param {table} BaggedItems
 ]]--
-function me.BuildTooltipForBaggedItems(id, BaggedItems)
-  tooltipBag = BaggedItems[id].bag
-  tooltipSlot = BaggedItems[id].slot
+function me.BuildTooltipForBaggedItems(id, baggedItems)
+  bagId = baggedItems[id].bag
+  slotId = baggedItems[id].slot
   tooltipType = TOOLTIP_TYPE_BAG
 
-  mod.timer.StartTimer("TooltipUpdate", 0)
+  me.TooltipUpdate(tooltipType, bagId, slotId)
 end
 
 --[[
@@ -60,7 +60,7 @@ function me.BuildTooltipForWornItem(slotId)
   tooltipSlot = slotId
   tooltipType = TOOLTIP_TYPE_ITEMSLOT
 
-  mod.timer.StartTimer("TooltipUpdate", 0)
+  me.TooltipUpdate(tooltipType, nil, slotId)
 end
 
 --[[
@@ -79,8 +79,13 @@ end
 
 --[[
   Update the tooltip
+
+  @param {string} tooltipType
+  @param {number} bagId
+  @param {number} slotId
+
 ]]--
-function me.TooltipUpdate()
+function me.TooltipUpdate(tooltipType, bagId, slotId)
   if mod.addonOptions.IsTooltipsDisabled() then return end
 
   local tooltip = getglobal(GM_CONSTANTS.ELEMENT_TOOLTIP)
@@ -89,17 +94,17 @@ function me.TooltipUpdate()
 
   if tooltipType == TOOLTIP_TYPE_BAG then
     if mod.addonOptions.IsSmallTooltipsEnabled() then
-      local itemLink = GetContainerItemLink(tooltipBag, tooltipSlot)
+      local itemLink = GetContainerItemLink(bagId, slotId)
       local _, _, color, id = string.find(itemLink, "^|c([|%a%d]+)|Hitem:(%d+)")
       local _, _, name = string.find(itemLink, "%[([%a%s%d',-:]+)%]")
 
       tooltip:AddLine("|c" .. color .. name .. "|h|r")
     else
-      tooltip:SetBagItem(tooltipBag, tooltipSlot)
+      tooltip:SetBagItem(bagId, slotId)
     end
   else
     if mod.addonOptions.IsSmallTooltipsEnabled() then
-      local itemLink = GetInventoryItemLink("player", tooltipSlot)
+      local itemLink = GetInventoryItemLink("player", slotId)
 
       -- if the player has nothing equiped in this slot abort
       if not itemLink then return end
@@ -109,7 +114,7 @@ function me.TooltipUpdate()
 
       tooltip:AddLine("|c" .. color .. name .. "|h|r")
     else
-      tooltip:SetInventoryItem("player", tooltipSlot)
+      tooltip:SetInventoryItem("player", slotId)
     end
   end
 
@@ -121,6 +126,5 @@ end
 ]]--
 function me.TooltipClear()
   mod.logger.LogDebug(me.tag, "Cleared Tooltip")
-  mod.timer.StopTimer("TooltipUpdate")
   getglobal(GM_CONSTANTS.ELEMENT_TOOLTIP):Hide()
 end

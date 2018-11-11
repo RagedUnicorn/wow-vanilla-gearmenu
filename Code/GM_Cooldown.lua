@@ -28,61 +28,11 @@ local me = {}
 mod.cooldown = me
 
 me.tag = "Cooldown"
--- table of used items and their respective cooldown
-local itemsUsed = {}
 
 --[[
   Update cooldowns
 ]]--
 function me.CooldownUpdate()
-  local inv, bag, slot, start, duration, itemId, remain
-
-  for i in itemsUsed do
-    start, itemId = nil
-    inv, bag, slot = watch[i].inv, watch[i].bag, watch[i].slot
-
-    if inv then -- if it was last seen in an inv slot, get name in that slot
-      _, _, itemId = strfind(GetInventoryItemLink("player", inv) or "", itemId, 1, 1)
-    end
-
-    if bag then -- if it was last seen in a container slot, get name in that slot
-      _, _, itemId = strfind(GetContainerItemLink("player", bag, slot) or "", itemId, 1, 1)
-    end
-
-    if itemId ~= i then -- item has moved
-      inv, bag, slot = mod.itemHelper.FindItemById(i, true)
-      watch[i].inv, watch[i].bag, watch[i].slot = inv, bag, slot
-    end
-
-    if inv then
-      start, duration = GetInventoryItemCooldown("player", inv)
-    elseif bag then
-      start, duration = GetContainerItemCooldown(bag, slot)
-    else
-      itemsUsed[i] = nil
-    end
-
-    if start and itemsUsed[i] < 3 then
-      itemsUsed[i] = itemsUsed[i] + 1 -- count for 3 seconds before seeing if this is a real cooldown
-    elseif start then
-      if start > 0 then
-        remain = duration - (GetTime() - start)
-        if itemsUsed[i] < 5 then
-          if remain > 29 then
-            itemsUsed[i] = 30 -- first actual cooldown greater than 30 seconds, tag it for 30 + 0 notify
-          elseif remain > 5 then
-            itemsUsed[i] = 5 -- first actual cooldown less than 30 but greater than 5, tag for 0 notify
-          end
-        end
-      end
-
-      -- no cooldown has started - remove from used items
-      if start == 0 then
-        itemsUsed[i] = nil
-      end
-    end
-  end
-
   if getglobal(GM_CONSTANTS.ELEMENT_MAIN_FRAME):IsVisible() then
     mod.itemManager.UpdateCooldownForAllWornItems()
   end
@@ -91,12 +41,13 @@ end
 --[[
   Update cooldown for all bagged items
 
-  @param {number} numberOfItems
-  @param {table} BaggedItems
+  @param {table} baggedItems
 ]]--
-function me.UpdateCooldownForBaggedItems(numberOfItems, BaggedItems)
-  for i = 1, numberOfItems do
-    local start, duration, enable = GetContainerItemCooldown(BaggedItems[i].bag, BaggedItems[i].slot)
+function me.UpdateCooldownForBaggedItems(baggedItems)
+  if baggedItems == nil or table.getn(baggedItems) == 0 then return end -- no other items available abort
+
+  for i = 1, table.getn(baggedItems) do
+    local start, duration, enable = GetContainerItemCooldown(baggedItems[i].bag, baggedItems[i].slot)
 
     CooldownFrame_SetTimer(
       getglobal(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i .. "Cooldown"),

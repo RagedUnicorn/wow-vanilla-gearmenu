@@ -126,7 +126,6 @@ end
 ]]--
 function me.SetupTimers()
   me.timer.CreateTimer("MenuMouseover", me.gui.SlotFrameMouseOver, .25, true)
-  me.timer.CreateTimer("TooltipUpdate", me.tooltip.TooltipUpdate, 1, true)
   me.timer.CreateTimer("CooldownUpdate", me.cooldown.CooldownUpdate, 1, true)
 
   me.timer.StartTimer("CooldownUpdate")

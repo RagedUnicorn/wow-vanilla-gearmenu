@@ -30,7 +30,8 @@ mod.gui = me
 me.tag = "Gui"
 me.currentSlot = 0
 me.currentPosition = 0
-me.BaggedItems = {}
+-- collection of gathered bagged items
+me.baggedItems = {}
 
 --[[
   Show gearmenu mainframe
@@ -169,7 +170,7 @@ end
 function me.MenuItemOnEnter()
   GameTooltip_SetDefaultAnchor(getglobal(GM_CONSTANTS.ELEMENT_TOOLTIP), this)
 
-  mod.tooltip.BuildTooltipForBaggedItems(this:GetID(), me.BaggedItems)
+  mod.tooltip.BuildTooltipForBaggedItems(this:GetID(), me.baggedItems)
 end
 
 --[[
@@ -184,9 +185,9 @@ end
 ]]--
 function me.MenuItemOnClick()
   mod.itemHelper.EquipItemById(
-    me.BaggedItems[this:GetID()].id,
+    me.baggedItems[this:GetID()].id,
     me.currentSlot,
-    me.BaggedItems[this:GetID()].equipSlot
+    me.baggedItems[this:GetID()].equipSlot
   )
   getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):Hide()
 end
@@ -249,9 +250,9 @@ function me.BuildMenu()
     getglobal(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i):Hide()
   end
 
-  local numberOfItems, position
+  local position
 
-  me.BaggedItems = {}
+  me.baggedItems = {}
 
   position = mod.common.ExtractPositionFromName(this:GetName())
 
@@ -270,9 +271,9 @@ function me.BuildMenu()
   if item == nil then return end
 
   mod.logger.LogDebug(me.tag, "building menu for slotId: " .. item.slotId)
-  me.BaggedItems, numberOfItems = mod.itemManager.GetItemsForSlotId(item.slotId)
+  me.baggedItems, _ = mod.itemManager.GetItemsForSlotId(item.slotId)
 
-  if numberOfItems < 1 then
+  if table.getn(me.baggedItems) < 1 then
     -- user has no bagged item of this specific type
     getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):Hide()
   else
@@ -282,10 +283,10 @@ function me.BuildMenu()
     local xpos = 8
     local ypos = 8
 
-    for i = 1, numberOfItems do
+    for i = 1, table.getn(me.baggedItems) do
       local item = getglobal(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i)
       item:SetChecked(0)
-      getglobal(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i .. "Icon"):SetTexture(me.BaggedItems[i].texture)
+      getglobal(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i .. "Icon"):SetTexture(me.baggedItems[i].texture)
 
       if math.mod(i, 2) ~= 0 then
         row = 0 -- left row
@@ -296,7 +297,7 @@ function me.BuildMenu()
         end
         xpos = row * GM_CONSTANTS.INTERFACE_SLOT_SPACE + GM_CONSTANTS.INTERFACE_DEFAULT_MARGIN
         -- special case for uneven numberOfItems, add 1 col
-        if i == numberOfItems then
+        if i == table.getn(me.baggedItems) then
           col = col + 1
         end
       else
@@ -329,7 +330,15 @@ function me.BuildMenu()
     getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):SetHeight(12 + ((col) * GM_CONSTANTS.INTERFACE_SLOT_SPACE))
     getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):Show()
 
-    mod.cooldown.UpdateCooldownForBaggedItems(numberOfItems, me.BaggedItems)
+    local callback = function()
+      mod.cooldown.UpdateCooldownForBaggedItems(me.baggedItems)
+    end
+
+    -- initial manual setting of cooldown timer
+    mod.cooldown.UpdateCooldownForBaggedItems(me.baggedItems)
+
+    mod.timer.CreateTimer("BaggedItemCooldownUpdate", callback, .25, true)
+    mod.timer.StartTimer("BaggedItemCooldownUpdate")
     mod.timer.StartTimer("MenuMouseover")
   end
 end
@@ -339,6 +348,7 @@ end
 ]]--
 function me.SlotFrameMouseOver()
   if (not MouseIsOver(getglobal(GM_CONSTANTS.ELEMENT_MAIN_FRAME))) and (not MouseIsOver(getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME))) then
+    mod.timer.StopTimer("BaggedItemCooldownUpdate")
     mod.timer.StopTimer("MenuMouseover")
     getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):Hide()
   end
