@@ -137,7 +137,7 @@ end
   @param {boolean} includeEquiped
     whether the currently equiped item should be included in the result or not
 
-  @return {table}, {number}
+  @return {table}
 ]]--
 function me.GetItemsForSlotId(slotId, includeEquiped)
   mod.logger.LogDebug(me.tag, "Retrieving items for category: " .. GM_CONSTANTS.ITEM_CATEGORIES[slotId].name)
@@ -174,11 +174,11 @@ end
     see GM_CONSTANTS ITEM_CATEGORIES for a reference
   @param {boolean} includeEquiped
     whether the currently equiped item should be included in the result or not
-  @return {table | nil}, {number}
+  @return {table}
 ]]--
 function me.GetItemsByType(slotId, includeEquiped)
   local idx = 1, i, j
-  local itemLink, itemId, itemName, equipSlot, itemTexture, itemQuality, numberOfItems
+  local itemLink, itemId, itemName, equipSlot, itemTexture, itemQuality
   local itemTypes = GM_CONSTANTS.ITEM_CATEGORIES[slotId].type
   local items = {}
 
@@ -256,9 +256,7 @@ function me.GetItemsByType(slotId, includeEquiped)
     end
   end
 
-  numberOfItems = math.min(idx - 1, GM_CONSTANTS.ADDON_MAX_ITEMS)
-
-  return items, numberOfItems
+  return items
 end
 
 --[[
