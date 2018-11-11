@@ -103,7 +103,7 @@ function me.UpdateCooldownForBaggedItems(numberOfItems, BaggedItems)
       start, duration, enable
     )
 
-    if GearMenuOptions.showCooldowns then
+    if mod.addonOptions.IsShowCooldownsEnabled() then
       me.SetCooldownFont(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i)
       me.SetCooldown(getglobal(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i .. "Time"), start, duration)
     end
@@ -124,7 +124,7 @@ function me.UpdateCooldownForWornItem(slotId, position)
     start, duration, enable
   )
 
-  if GearMenuOptions.showCooldowns then
+  if mod.addonOptions.IsShowCooldownsEnabled() then
     local frame = getglobal(GM_CONSTANTS.ELEMENT_SLOT .. position .. "Time")
     me.SetCooldownFont(GM_CONSTANTS.ELEMENT_SLOT .. position)
     me.SetCooldown(frame, start, duration)

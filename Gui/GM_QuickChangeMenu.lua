@@ -77,7 +77,7 @@ end
 ]]--
 function me.QuickChangeRuleListOnUpdate()
   local offset = FauxScrollFrame_GetOffset(GM_QuickChangeRuleScrollFrame) + this:GetID()
-  local rules = GearMenuOptions.QuickChangeRules
+  local rules = mod.addonOptions.GetQuickChangeRules()
 
   FauxScrollFrame_Update(GM_QuickChangeRuleScrollFrame, rules and table.getn(rules) or 0, 5, 24)
 

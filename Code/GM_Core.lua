@@ -114,7 +114,7 @@ function me.Initialize()
   me.gui.ShowKeyBindings()
   -- load slot positions from configuration
   me.gui.LoadSlotPositions()
-  me.opt.ReflectLockState(GearMenuOptions.windowLocked)
+  me.opt.ReflectLockState(me.addonOptions.IsWindowLocked())
 
   -- show welcome message
   DEFAULT_CHAT_FRAME:AddMessage(

@@ -44,7 +44,7 @@ function __GM__DEBUG__PRINTCOMBATQUEUE()
 end
 
 function __GM__DEBUG__PRINTQUICKCHANGERULELIST()
-  local ruleList = GearMenuOptions.QuickChangeRules
+  local ruleList = mod.addonOptions.GetQuickChangeRules()
   local ruleNumber = 1
 
   for key, rule in pairs(ruleList) do

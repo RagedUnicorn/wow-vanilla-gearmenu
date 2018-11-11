@@ -81,14 +81,14 @@ end
   Update the tooltip
 ]]--
 function me.TooltipUpdate()
-  if GearMenuOptions.disableTooltips then return end
+  if mod.addonOptions.IsTooltipsDisabled() then return end
 
   local tooltip = getglobal(GM_CONSTANTS.ELEMENT_TOOLTIP)
 
   tooltip:ClearLines()
 
   if tooltipType == TOOLTIP_TYPE_BAG then
-    if GearMenuOptions.smallTooltips then
+    if mod.addonOptions.IsSmallTooltipsEnabled() then
       local itemLink = GetContainerItemLink(tooltipBag, tooltipSlot)
       local _, _, color, id = string.find(itemLink, "^|c([|%a%d]+)|Hitem:(%d+)")
       local _, _, name = string.find(itemLink, "%[([%a%s%d',-:]+)%]")
@@ -98,7 +98,7 @@ function me.TooltipUpdate()
       tooltip:SetBagItem(tooltipBag, tooltipSlot)
     end
   else
-    if GearMenuOptions.smallTooltips then
+    if mod.addonOptions.IsSmallTooltipsEnabled() then
       local itemLink = GetInventoryItemLink("player", tooltipSlot)
 
       -- if the player has nothing equiped in this slot abort

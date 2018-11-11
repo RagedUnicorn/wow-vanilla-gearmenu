@@ -32,22 +32,34 @@ me.currentSlot = 0
 me.currentPosition = 0
 me.BaggedItems = {}
 
+--[[
+  Show gearmenu mainframe
+]]--
 function me.ShowMainFrame()
   getglobal(GM_CONSTANTS.ELEMENT_MAIN_FRAME):Show()
 end
 
+--[[
+  Hide gearmenu mainframe
+]]--
 function me.HideMainFrame()
   getglobal(GM_CONSTANTS.ELEMENT_MAIN_FRAME):Hide()
 end
 
+--[[
+  OnMouseDown callback - start dragging gearmenu mainframe
+]]--
 function me.DragButtonOnMouseDown()
-  if GearMenuOptions.windowLocked then return end
+  if mod.addonOptions.IsWindowLocked() then return end
 
   getglobal(GM_CONSTANTS.ELEMENT_MAIN_FRAME):StartMoving()
 end
 
+--[[
+  OnMouseUp callback - stop dragging gearmenu mainframe
+]]--
 function me.DragButtonOnMouseUp()
-  if GearMenuOptions.windowLocked then return end
+  if mod.addonOptions.IsWindowLocked() then return end
 
   getglobal(GM_CONSTANTS.ELEMENT_MAIN_FRAME):StopMovingOrSizing()
 end
@@ -116,7 +128,7 @@ end
 ]]--
 function me.ItemButtonOnReceiveDrag()
   -- abort if drag and drop is disabled
-  if GearMenuOptions.disableDragAndDrop then return end
+  if mod.addonOptions.IsDragAndDropDisabled() then return end
 
   local position = mod.common.ExtractPositionFromName(this:GetName())
   local item = mod.itemManager.FindItemForSlotPosition(position)
@@ -140,7 +152,7 @@ end
 ]]--
 function me.ItemButtonOnDragStart()
   -- abort if drag and drop is disabled
-  if GearMenuOptions.disableDragAndDrop then return end
+  if mod.addonOptions.IsDragAndDropDisabled() then return end
 
   local position = mod.common.ExtractPositionFromName(this:GetName())
   local item = mod.itemManager.FindItemForSlotPosition(position)
@@ -277,7 +289,7 @@ function me.BuildMenu()
 
       if math.mod(i, 2) ~= 0 then
         row = 0 -- left row
-        if (GearMenuOptions.windowLocked) then
+        if (mod.addonOptions.IsWindowLocked()) then
           ypos = col * GM_CONSTANTS.INTERFACE_SLOT_SPACE + GM_CONSTANTS.INTERFACE_ZERO_MARGIN
         else
           ypos = col * GM_CONSTANTS.INTERFACE_SLOT_SPACE + GM_CONSTANTS.INTERFACE_DEFAULT_MARGIN
@@ -289,7 +301,7 @@ function me.BuildMenu()
         end
       else
         row = 1 -- right row
-        if (GearMenuOptions.windowLocked) then
+        if (mod.addonOptions.IsWindowLocked()) then
           ypos = col * GM_CONSTANTS.INTERFACE_SLOT_SPACE + GM_CONSTANTS.INTERFACE_ZERO_MARGIN
         else
           ypos = col * GM_CONSTANTS.INTERFACE_SLOT_SPACE + GM_CONSTANTS.INTERFACE_DEFAULT_MARGIN
@@ -337,12 +349,12 @@ end
 ]]--
 function me.LoadSlotPositions()
   for _, item in pairs(GM_CONSTANTS.ITEMS) do
-    if GearMenuOptions.slots[item.name] == nil then
-      -- If the item has no position disabled it
+    if mod.addonOptions.IsItemDisabled(item.name) then
+      -- If the item has no position disable it
       mod.itemManager.DisableItem(item.slotId)
     else
-      -- Overwrite initial registered position with actualy position
-      mod.itemManager.EnableItem(item.slotId, GearMenuOptions.slots[item.name])
+      -- Overwrite initial registered position with actual position
+      mod.itemManager.EnableItem(item.slotId, mod.addonOptions.GetItemSlotPosition(item.name))
     end
   end
 
@@ -427,7 +439,7 @@ end
 ]]--
 function me.ShowKeyBindings()
   for i = 1, GM_CONSTANTS.ADDON_SLOTS do
-    if GearMenuOptions.showKeyBindings then
+    if mod.addonOptions.IsShowKeyBindingsEnabled() then
       local binding = getglobal(GM_CONSTANTS.ELEMENT_SLOT .. i .. "HotKey")
       binding:SetText(GetBindingText(GetBindingKey("Slot " .. i), "KEY_", 1))
     end

@@ -441,3 +441,49 @@ end
 function me.EnableItem(itemName, slotPosition)
   GearMenuOptions.slots[itemName] = slotPosition
 end
+
+--[[
+  @param {string} itemName
+
+  @return {boolean}
+    true if the item is disabled
+    false if the item is enabled
+]]--
+function me.IsItemDisabled(itemName)
+  if GearMenuOptions.slots[itemName] == nil then
+    return true
+  end
+
+  return false
+end
+
+--[[
+  @param {string} itemName
+
+  @return {number}
+
+]]--
+function me.GetItemSlotPosition(itemName)
+  return GearMenuOptions.slots[itemName]
+end
+
+--[[
+  @return {table}
+]]--
+function me.GetQuickChangeRules()
+  return GearMenuOptions.QuickChangeRules
+end
+
+--[[
+  @param {table} quickChangeRule
+]]--
+function me.AddQuickChangeRule(quickChangeRule)
+  table.insert(GearMenuOptions.QuickChangeRules, quickChangeRule)
+end
+
+--[[
+  @param {number} position
+]]--
+function me.RemoveQuickChangeRule(position)
+  table.remove(GearMenuOptions.QuickChangeRules, position)
+end

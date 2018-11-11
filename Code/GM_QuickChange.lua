@@ -62,7 +62,7 @@ function me.AddQuickChangeRule(changeFromId, changeToId, delay)
   quickChangeRule.changeToId = tonumber(changeToId)
   quickChangeRule.changeDelay = delay
 
-  table.insert(GearMenuOptions.QuickChangeRules, quickChangeRule)
+  mod.addonOptions.AddQuickChangeRule(quickChangeRule)
   -- update rule list
   mod.quickChangeMenu.QuickChangeRuleListOnUpdate()
 end
@@ -71,7 +71,7 @@ end
   @param {number} position
 ]]--
 function me.RemoveQuickChangeRule(position)
-  table.remove(GearMenuOptions.QuickChangeRules, position)
+  mod.addonOptions.RemoveQuickChangeRule(position)
   -- update rule list
   mod.quickChangeMenu.QuickChangeRuleListOnUpdate()
 end
@@ -80,14 +80,16 @@ end
   @param {number} slotId
 ]]--
 function me.UpdateQuickChange(slotId)
-  for i = 1, table.getn(GearMenuOptions.QuickChangeRules) do
-    for it = 1, table.getn(GearMenuOptions.QuickChangeRules[i].slotId) do
-      if slotId == GearMenuOptions.QuickChangeRules[i].slotId[it] then
+  local quickChangeRules = mod.addonOptions.GetQuickChangeRules()
+
+  for i = 1, table.getn(quickChangeRules) do
+    for it = 1, table.getn(quickChangeRules[i].slotId) do
+      if slotId == quickChangeRules[i].slotId[it] then
         local itemId = mod.itemHelper.GetItemIdBySlot(slotId)
 
-        if tonumber(itemId) == GearMenuOptions.QuickChangeRules[i].changeFromId then
+        if tonumber(itemId) == quickChangeRules[i].changeFromId then
           -- found a quick change rule that matches - prepare for switching
-          me.SwitchItems(GearMenuOptions.QuickChangeRules[i], slotId)
+          me.SwitchItems(quickChangeRules[i], slotId)
         end
       end
     end

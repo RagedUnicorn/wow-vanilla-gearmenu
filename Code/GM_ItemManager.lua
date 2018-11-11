@@ -197,7 +197,7 @@ function me.GetItemsByType(slotId, includeEquiped)
 
         for it = 1, table.getn(itemTypes) do
           if equipSlot == itemTypes[it] then
-            if itemQuality >= GearMenuOptions.filterItemQuality then
+            if itemQuality >= mod.addonOptions.GetFilterItemQuality() then
               if not items[idx] then
                 items[idx] = {}
               end
@@ -213,7 +213,7 @@ function me.GetItemsByType(slotId, includeEquiped)
               idx = idx + 1
             else
               mod.logger.LogDebug(me.tag, "Ignoring item because its quality is lower than setting "
-                .. GearMenuOptions.filterItemQuality)
+                .. mod.addonOptions.GetFilterItemQuality())
             end
           end
         end
@@ -231,7 +231,7 @@ function me.GetItemsByType(slotId, includeEquiped)
         if itemId then
           _, _, itemQuality, _, _, _, _, equipSlot, itemTexture = GetItemInfo(itemId or "")
 
-          if itemQuality and itemQuality >= GearMenuOptions.filterItemQuality then
+          if itemQuality and itemQuality >= mod.addonOptions.GetFilterItemQuality() then
             if not items[idx] then
               items[idx] = {}
             end
@@ -247,7 +247,7 @@ function me.GetItemsByType(slotId, includeEquiped)
             idx = idx + 1
           else
             mod.logger.LogDebug(me.tag, "Ignoring item because its quality is lower than setting - "
-              .. GearMenuOptions.filterItemQuality)
+              .. mod.addonOptions.GetFilterItemQuality())
           end
         else
           mod.logger.LogDebug(me.tag, "Ignoring slot because no item could be found")
