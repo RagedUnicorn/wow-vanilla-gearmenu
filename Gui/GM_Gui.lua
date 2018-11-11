@@ -338,12 +338,12 @@ end
 ]]--
 function me.LoadSlotPositions()
   for _, item in pairs(GM_CONSTANTS.ITEMS) do
-    if GearMenuOptions.modules[item.name] == nil then
+    if GearMenuOptions.slots[item.name] == nil then
       -- If the item has no position disabled it
       mod.itemManager.DisableItem(item.slotId)
     else
       -- Overwrite initial registered position with actualy position
-      mod.itemManager.EnableItem(item.slotId, GearMenuOptions.modules[item.name])
+      mod.itemManager.EnableItem(item.slotId, GearMenuOptions.slots[item.name])
     end
   end
 

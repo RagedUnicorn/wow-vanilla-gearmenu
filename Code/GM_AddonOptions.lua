@@ -70,7 +70,7 @@ GearMenuOptions = {
     5 Legendary (orange)
   ]]--
   ["filterItemQuality"] = 0,
-  ["modules"] = {
+  ["slots"] = {
     ["mainHand"] = 1,
     ["offHand"] = 2,
     ["waist"] = 3,
@@ -142,9 +142,9 @@ function me.SetupConfiguration()
     GearMenuOptions.filterItemQuality = 0
   end
 
-  if GearMenuOptions.modules == nil then
-    mod.logger.LogInfo(me.tag, "modules has unexpected nil value")
-    GearMenuOptions.modules = {
+  if GearMenuOptions.slots == nil then
+    mod.logger.LogInfo(me.tag, "slots has unexpected nil value")
+    GearMenuOptions.slots = {
       ["mainHand"] = 1,
       ["offHand"] = 2,
       ["waist"] = 3,
@@ -187,6 +187,7 @@ function me.SetAddonVersion()
   end
 
   me.MigrationPath()
+  -- migration done update addon version to current
   GearMenuOptions.addonVersion = GM_ENVIRONMENT.ADDON_VERSION
 end
 
@@ -197,9 +198,23 @@ end
   version before running a migration path
 ]]--
 function me.MigrationPath()
-  --[[
-    Migration path for pre 1.0.4 versions - Update quick change rules to new format
-  ]]--
+  if GearMenuOptions.addonVersion == "1.0.3" then
+    me.Pre110Migration()
+  end
+
+  if GearMenuOptions.addonVersion == "1.1.0" then
+    me.Pre120Migration()
+  end
+end
+
+--[[
+  Migration path for pre 1.1.0 versions
+
+  Update quick change rules to new format
+]]--
+function me.Pre110Migration()
+  mod.logger.LogDebug(me.tag, "Running pre 110 migration")
+
   for i = 1, table.getn(GearMenuOptions.QuickChangeRules) do
     local rule = GearMenuOptions.QuickChangeRules[i]
 
@@ -219,7 +234,32 @@ function me.MigrationPath()
     end
   end
 
-  GearMenuOptions.addonVersion = GM_ENVIRONMENT.ADDON_VERSION
+  mod.logger.LogDebug(me.tag, "Done running pre 110 migration")
+end
+
+--[[
+  Migration path for pre 1.2.0 versions
+
+  Rename modules options to slots
+  Initialize new slots
+]]--
+function me.Pre120Migration()
+  mod.logger.LogDebug(me.tag, "Running pre 120 migration")
+
+  GearMenuOptions.slots = mod.common.Clone(GearMenuOptions.modules)
+  GearMenuOptions.modules = nil
+
+  GearMenuOptions.slots["neck"] = nil
+  GearMenuOptions.slots["shoulder"] = nil
+  GearMenuOptions.slots["chest"] = nil
+  GearMenuOptions.slots["legs"] = nil
+  GearMenuOptions.slots["wrist"] = nil
+  GearMenuOptions.slots["hands"] = nil
+  GearMenuOptions.slots["upper_finger"] = nil
+  GearMenuOptions.slots["lower_finger"] = nil
+  GearMenuOptions.slots["cloak"] = nil
+
+  mod.logger.LogDebug(me.tag, "Done running pre 120 migration")
 end
 
 --[[

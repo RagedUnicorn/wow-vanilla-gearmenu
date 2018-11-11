@@ -32,13 +32,13 @@ me.tag = "Debug"
 function __GM__DEBUG__PRINTCOMBATQUEUE()
   local items = mod.itemManager.GetAllRegisteredItems()
 
-  for key, moduleName in pairs(items) do
-    local itemId = mod.combatQueue.GetCombatQueueStore()[mod[items[moduleName]].id]
+  for key, slotName in pairs(items) do
+    local itemId = mod.combatQueue.GetCombatQueueStore()[mod[items[slotName]].id]
 
     if itemId ~= nil then
-      mod.logger.LogDebug(me.tag, "Item with id '" .. itemId .. "' registered for slot '" .. moduleName .."'")
+      mod.logger.LogDebug(me.tag, "Item with id '" .. itemId .. "' registered for slot '" .. slotName .."'")
     else
-      mod.logger.LogDebug(me.tag, "No item registered for slot: " .. moduleName)
+      mod.logger.LogDebug(me.tag, "No item registered for slot: " .. slotName)
     end
   end
 end
