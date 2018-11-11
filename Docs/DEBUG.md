@@ -4,15 +4,15 @@
 
 ## Logging
 
-Logging can be configured in the logging module GM_Logger.lua. To enable different loglevels change the value of `logLevel`.
+Logging can be configured in the environment module `GM_Environment`. To enable different loglevels change the value of `GM_ENVIRONMENT.LOG_LEVEL`.
 
-`me.logLevel = 4` will enable all logs except events
+`GM_ENVIRONMENT.LOG_LEVEL = 4` will enable all logs except events
 
 ### Events
 
-Events have to be turned on separately with logEvent set to true
+Events have to be turned on separately with  `GM_ENVIRONMENT.LOG_EVENT` set to true
 
-`me.logEvent = true`
+`GM_ENVIRONMENT.LOG_EVENT = true`
 
 ### Log windows
 
