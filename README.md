@@ -118,6 +118,16 @@ Not interested to see items with a quality level below a certain level? Filter t
 
 ![](/Docs/gm_options_filter_item_quality.gif)
 
+## FAQ
+
+#### The addon is not showing up in WoW. What can I do?
+
+Make sure to recheck the installation part of this Readme and check that the addon is placed inside `[WoW-installation-directory]\Interface\AddOns` and is correctly named as `GearMenu`.
+
+#### I get a red error (Lua Error) on my screen. What is this?
+
+This is what we call a LUA error and it usually happens because of an oversight or error by the developer (in this case me). Take a screenshot off the error and create a Github Issue with it and I will see if I can resolve it. It also helps if you can add any additional information of what you we're doing at the time and what other addons you have active. Also if you are able to reproduce the error make sure to check if it still happens if you disable all others addons.
+
 ## Development
 
 ### Switching between Environments
