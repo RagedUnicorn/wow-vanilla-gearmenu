@@ -154,7 +154,7 @@
                   <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                       <Offset>
-                        <AbsDimension x="10" y="-60"/>
+                        <AbsDimension x="170" y="-10"/>
                       </Offset>
                     </Anchor>
                   </Anchors>
@@ -164,7 +164,7 @@
                   <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                       <Offset>
-                        <AbsDimension x="10" y="-110"/>
+                        <AbsDimension x="10" y="-60"/>
                       </Offset>
                     </Anchor>
                   </Anchors>
@@ -174,7 +174,7 @@
                   <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                       <Offset>
-                        <AbsDimension x="10" y="-160"/>
+                        <AbsDimension x="170" y="-60"/>
                       </Offset>
                     </Anchor>
                   </Anchors>
@@ -184,7 +184,7 @@
                   <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                       <Offset>
-                        <AbsDimension x="170" y="-10"/>
+                        <AbsDimension x="10" y="-110"/>
                       </Offset>
                     </Anchor>
                   </Anchors>
@@ -194,7 +194,7 @@
                   <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                       <Offset>
-                        <AbsDimension x="170" y="-60"/>
+                        <AbsDimension x="170" y="-110"/>
                       </Offset>
                     </Anchor>
                   </Anchors>
@@ -204,7 +204,37 @@
                   <Anchors>
                     <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                       <Offset>
-                        <AbsDimension x="170" y="-110"/>
+                        <AbsDimension x="10" y="-160"/>
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <Color r="1" g="1" b="1"/>
+                </FontString>
+                <FontString name="GM_TitleSlot8" inherits="GameFontHighlight">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="170" y="-160"/>
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <Color r="1" g="1" b="1"/>
+                </FontString>
+                <FontString name="GM_TitleSlot9" inherits="GameFontHighlight">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="10" y="-210"/>
+                      </Offset>
+                    </Anchor>
+                  </Anchors>
+                  <Color r="1" g="1" b="1"/>
+                </FontString>
+                <FontString name="GM_TitleSlot10" inherits="GameFontHighlight">
+                  <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
+                      <Offset>
+                        <AbsDimension x="170" y="-210"/>
                       </Offset>
                     </Anchor>
                   </Anchors>
@@ -232,7 +262,7 @@
                 <Anchors>
                   <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                     <Offset>
-                      <AbsDimension x="-5" y="-75"/>
+                      <AbsDimension x="155" y="-25"/>
                     </Offset>
                   </Anchor>
                 </Anchors>
@@ -246,7 +276,7 @@
                 <Anchors>
                   <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                     <Offset>
-                      <AbsDimension x="-5" y="-125"/>
+                      <AbsDimension x="-5" y="-75"/>
                     </Offset>
                   </Anchor>
                 </Anchors>
@@ -260,7 +290,7 @@
                 <Anchors>
                   <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                     <Offset>
-                      <AbsDimension x="-5" y="-175"/>
+                      <AbsDimension x="155" y="-75"/>
                     </Offset>
                   </Anchor>
                 </Anchors>
@@ -274,7 +304,7 @@
                 <Anchors>
                   <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                     <Offset>
-                      <AbsDimension x="155" y="-25"/>
+                      <AbsDimension x="-5" y="-125"/>
                     </Offset>
                   </Anchor>
                 </Anchors>
@@ -288,7 +318,7 @@
                 <Anchors>
                   <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                     <Offset>
-                      <AbsDimension x="155" y="-75"/>
+                      <AbsDimension x="155" y="-125"/>
                     </Offset>
                   </Anchor>
                 </Anchors>
@@ -302,7 +332,49 @@
                 <Anchors>
                   <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
                     <Offset>
-                      <AbsDimension x="155" y="-125"/>
+                      <AbsDimension x="-5" y="-175"/>
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnShow>
+                    UIDropDownMenu_Initialize(this, gm.slotsMenu.InitializeDropdownMenu)
+                  </OnShow>
+                </Scripts>
+              </Button>
+              <Button name="GM_OptSlot8" inherits="UIDropDownMenuTemplate">
+                <Anchors>
+                  <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
+                    <Offset>
+                      <AbsDimension x="155" y="-175"/>
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnShow>
+                    UIDropDownMenu_Initialize(this, gm.slotsMenu.InitializeDropdownMenu)
+                  </OnShow>
+                </Scripts>
+              </Button>
+              <Button name="GM_OptSlot9" inherits="UIDropDownMenuTemplate">
+                <Anchors>
+                  <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
+                    <Offset>
+                      <AbsDimension x="-5" y="-225"/>
+                    </Offset>
+                  </Anchor>
+                </Anchors>
+                <Scripts>
+                  <OnShow>
+                    UIDropDownMenu_Initialize(this, gm.slotsMenu.InitializeDropdownMenu)
+                  </OnShow>
+                </Scripts>
+              </Button>
+              <Button name="GM_OptSlot10" inherits="UIDropDownMenuTemplate">
+                <Anchors>
+                  <Anchor point="TOPLEFT" relativeTo="GM_RightContentMenu" relativePoint="TOPLEFT">
+                    <Offset>
+                      <AbsDimension x="155" y="-225"/>
                     </Offset>
                   </Anchor>
                 </Anchors>

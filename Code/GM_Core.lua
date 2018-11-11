@@ -104,32 +104,163 @@ function me.Initialize()
   me.logger.LogDebug(me.tag, "Initialize addon")
 
   me.addonOptions.SetupConfiguration()
-
-  -- register item
-  me.itemManager.RegisterItem(me.mainHand.moduleName)
-  me.itemManager.RegisterItem(me.offHand.moduleName)
-  me.itemManager.RegisterItem(me.waist.moduleName)
-  me.itemManager.RegisterItem(me.feet.moduleName)
-  me.itemManager.RegisterItem(me.head.moduleName)
-  me.itemManager.RegisterItem(me.upperTrinket.moduleName)
-  me.itemManager.RegisterItem(me.lowerTrinket.moduleName)
-
+  -- create and start timers
+  me.SetupTimers()
+  -- register all items
+  me.RegisterItems()
   -- update all registered worn items
   me.itemManager.UpdateWornItems()
   -- show keybindings for all registered items
   me.gui.ShowKeyBindings()
-
-  -- create all timers
-  me.timer.CreateTimer("MenuMouseover", me.gui.SlotFrameMouseOver, .25, true)
-  me.timer.CreateTimer("TooltipUpdate", me.tooltip.TooltipUpdate, 1, true)
-  me.timer.CreateTimer("CooldownUpdate", me.cooldown.CooldownUpdate, 1, true)
-
+  -- load slot positions from configuration
   me.gui.LoadSlotPositions()
   me.opt.ReflectLockState(GearMenuOptions.windowLocked)
-
-  me.timer.StartTimer("CooldownUpdate")
 
   -- show welcome message
   DEFAULT_CHAT_FRAME:AddMessage(
     string.format(GM_ENVIRONMENT.ADDON_NAME .. gm.L["help"], GM_ENVIRONMENT.ADDON_VERSION))
+end
+
+--[[
+  Setup timer functions
+]]--
+function me.SetupTimers()
+  me.timer.CreateTimer("MenuMouseover", me.gui.SlotFrameMouseOver, .25, true)
+  me.timer.CreateTimer("TooltipUpdate", me.tooltip.TooltipUpdate, 1, true)
+  me.timer.CreateTimer("CooldownUpdate", me.cooldown.CooldownUpdate, 1, true)
+
+  me.timer.StartTimer("CooldownUpdate")
+end
+
+--[[
+  Register items with the itemmanager module
+]]--
+function me.RegisterItems()
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.HEAD.name,
+    GM_CONSTANTS.ITEMS.HEAD.localizationKey,
+    GM_CONSTANTS.ITEMS.HEAD.slotId,
+    1,
+    false
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.NECK.name,
+    GM_CONSTANTS.ITEMS.NECK.localizationKey,
+    GM_CONSTANTS.ITEMS.NECK.slotId,
+    nil,
+    true
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.SHOULDER.name,
+    GM_CONSTANTS.ITEMS.SHOULDER.localizationKey,
+    GM_CONSTANTS.ITEMS.SHOULDER.slotId,
+    nil,
+    true
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.CLOAK.name,
+    GM_CONSTANTS.ITEMS.CLOAK.localizationKey,
+    GM_CONSTANTS.ITEMS.CLOAK.slotId,
+    nil,
+    true
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.CHEST.name,
+    GM_CONSTANTS.ITEMS.CHEST.localizationKey,
+    GM_CONSTANTS.ITEMS.CHEST.slotId,
+    nil,
+    true
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.WAIST.name,
+    GM_CONSTANTS.ITEMS.WAIST.localizationKey,
+    GM_CONSTANTS.ITEMS.WAIST.slotId,
+    2,
+    false
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.LEGS.name,
+    GM_CONSTANTS.ITEMS.LEGS.localizationKey,
+    GM_CONSTANTS.ITEMS.LEGS.slotId,
+    nil,
+    true
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.FEET.name,
+    GM_CONSTANTS.ITEMS.FEET.localizationKey,
+    GM_CONSTANTS.ITEMS.FEET.slotId,
+    3,
+    false
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.WRIST.name,
+    GM_CONSTANTS.ITEMS.WRIST.localizationKey,
+    GM_CONSTANTS.ITEMS.WRIST.slotId,
+    nil,
+    true
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.HANDS.name,
+    GM_CONSTANTS.ITEMS.HANDS.localizationKey,
+    GM_CONSTANTS.ITEMS.HANDS.slotId,
+    nil,
+    true
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.UPPER_FINGER.name,
+    GM_CONSTANTS.ITEMS.UPPER_FINGER.localizationKey,
+    GM_CONSTANTS.ITEMS.UPPER_FINGER.slotId,
+    nil,
+    true
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.LOWER_FINGER.name,
+    GM_CONSTANTS.ITEMS.LOWER_FINGER.localizationKey,
+    GM_CONSTANTS.ITEMS.LOWER_FINGER.slotId,
+    nil,
+    true
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.UPPER_TRINKET.name,
+    GM_CONSTANTS.ITEMS.UPPER_TRINKET.localizationKey,
+    GM_CONSTANTS.ITEMS.UPPER_TRINKET.slotId,
+    4,
+    false
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.LOWER_TRINKET.name,
+    GM_CONSTANTS.ITEMS.LOWER_TRINKET.localizationKey,
+    GM_CONSTANTS.ITEMS.LOWER_TRINKET.slotId,
+    5,
+    false
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.MAINHAND.name,
+    GM_CONSTANTS.ITEMS.MAINHAND.localizationKey,
+    GM_CONSTANTS.ITEMS.MAINHAND.slotId,
+    6,
+    false
+  )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.OFFHAND.name,
+    GM_CONSTANTS.ITEMS.OFFHAND.localizationKey,
+    GM_CONSTANTS.ITEMS.OFFHAND.slotId,
+    7,
+    false
+  )
 end

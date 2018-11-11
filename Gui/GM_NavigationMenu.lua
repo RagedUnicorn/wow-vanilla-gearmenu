@@ -36,13 +36,9 @@ local navigationEntries = {
     ["position"] = 1,
     ["active"] = true,
     ["init"] = function()
-      getglobal(GM_CONSTANTS.ELEMENT_SLOT_TITLE .. 1):SetText(gm.L["titleslot1"])
-      getglobal(GM_CONSTANTS.ELEMENT_SLOT_TITLE .. 2):SetText(gm.L["titleslot2"])
-      getglobal(GM_CONSTANTS.ELEMENT_SLOT_TITLE .. 3):SetText(gm.L["titleslot3"])
-      getglobal(GM_CONSTANTS.ELEMENT_SLOT_TITLE .. 4):SetText(gm.L["titleslot4"])
-      getglobal(GM_CONSTANTS.ELEMENT_SLOT_TITLE .. 5):SetText(gm.L["titleslot5"])
-      getglobal(GM_CONSTANTS.ELEMENT_SLOT_TITLE .. 6):SetText(gm.L["titleslot6"])
-      getglobal(GM_CONSTANTS.ELEMENT_SLOT_TITLE .. 7):SetText(gm.L["titleslot7"])
+      for i = 1, 10 do
+        getglobal(GM_CONSTANTS.ELEMENT_SLOT_TITLE .. i):SetText(gm.L["titleslot" .. i])
+      end
     end
   },
   [2] = {

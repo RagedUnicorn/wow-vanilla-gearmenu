@@ -21,15 +21,23 @@ GearMenu is based on the popular TrinketMenu Addon and its goal is to bring this
 **Supported slots:**
 
 | Slotname          | Description                  |
-| ----------------- | ---------------------------- |
+|-------------------|------------------------------|
 | HeadSlot          | Head/Helmet slot             |
+| NeckSlot          | Neck slot                    |
+| ShoulderSlot      | Shoulder slot                |
+| ChestSlot         | Chest/Robe slot              |
 | WaistSlot         | Waist/Belt slot              |
+| LegsSlot          | Legs slot                    |
 | FeetSlot          | Feet/Boots slot              |
+| WristSlot         | Wrist/Bracers slot           |
+| HandsSlot         | Hands slot                   |
+| Finger0Slot       | First/Upper ring slot        |
+| Finger1Slot       | Second/Upper ring slot       |
 | Trinket0Slot      | First/Upper trinket slot     |
 | Trinket1Slot      | Second/Lower trinket slot    |
+| BackSlot          | Back/Cloack slot slot        |
 | MainhandSlot      | Main-hand slot               |
 | SecondaryHandSlot | Secondary-hand/Off-hand slot |
-
 
 ## Features of GearMenu
 

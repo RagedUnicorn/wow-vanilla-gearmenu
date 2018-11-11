@@ -9,6 +9,26 @@ if (GetLocale() == "deDE") then
   gm.L["reload"] = "|cFFFFFF00reload|r - UI neu laden"
   gm.L["info_title"] = "|cFFFFFF00GearMenu:|r"
 
+  -- slot translations
+  gm.L["slot_name_head"] = "Kopf"
+  gm.L["slot_name_neck"] = "Hals"
+  gm.L["slot_name_shoulder"] = "Schultern"
+  gm.L["slot_name_chest"] = "Brust"
+  gm.L["slot_name_waist"] = "Taille"
+  gm.L["slot_name_legs"] = "Beine"
+  gm.L["slot_name_feet"] = "Füße"
+  gm.L["slot_name_wrist"] = "Handgelenke"
+  gm.L["slot_name_hands"] = "Hände"
+  gm.L["slot_name_upper_finger"] = "Oberer Finger"
+  gm.L["slot_name_lower_finger"] = "Unterer Finger"
+  gm.L["slot_name_finger"] = "Finger"
+  gm.L["slot_name_upper_trinket"] = "Oberer Schmuck"
+  gm.L["slot_name_lower_trinket"] = "Unterer Schmuck"
+  gm.L["slot_name_trinket"] = "Schmuck"
+  gm.L["slot_name_cloak"] = "Rücken"
+  gm.L["slot_name_mainhand"] = "Waffenhand"
+  gm.L["slot_name_offhand"] = "Schildhand"
+
   -- user errors
   gm.L["unequip_failed"] = "Kein freier Taschenplatz gefunden"
   gm.L["quick_change_item_select_missing"] = "Es muss ein Item von der Von und der Zu Liste ausgewählt werden"
@@ -27,6 +47,9 @@ if (GetLocale() == "deDE") then
   gm.L["titleslot5"] = "Slot 5:"
   gm.L["titleslot6"] = "Slot 6:"
   gm.L["titleslot7"] = "Slot 7:"
+  gm.L["titleslot8"] = "Slot 8:"
+  gm.L["titleslot9"] = "Slot 9:"
+  gm.L["titleslot10"] = "Slot 10:"
   gm.L["slot_menu_slot_already_in_use"] = "Slot wird bereits benutzt"
 
   -- general tab

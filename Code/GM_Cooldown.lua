@@ -50,7 +50,7 @@ function me.CooldownUpdate()
     end
 
     if itemId ~= i then -- item has moved
-      inv, bag, slot = mod.common.FindItemById(i, 1)
+      inv, bag, slot = mod.itemHelper.FindItemById(i, true)
       watch[i].inv, watch[i].bag, watch[i].slot = inv, bag, slot
     end
 

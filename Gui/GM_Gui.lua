@@ -59,14 +59,14 @@ function me.ItemButtonOnEnter()
   GameTooltip_SetDefaultAnchor(getglobal(GM_CONSTANTS.ELEMENT_TOOLTIP), this)
 
   local position = mod.common.ExtractPositionFromName(this:GetName())
-  local module = mod.itemManager.FindModuleForPosition(position)
+  local item = mod.itemManager.FindItemForSlotPosition(position)
 
-  -- abort if no module could be found
-  if module == nil then return end
+  -- abort if no item could be found
+  if item == nil then return end
 
-  me.currentSlot = mod[module].id
+  me.currentSlot = item.slotId
   me.currentPosition = position
-  mod.tooltip.BuildTooltipForWornItem(mod[module].id)
+  mod.tooltip.BuildTooltipForWornItem(item.slotId)
   me.BuildMenu()
 end
 
@@ -85,21 +85,20 @@ end
 ]]--
 function me.ItemButtonOnClick(button)
   local name = this:GetName()
-  local module = mod.itemManager.FindModuleForPosition(mod.common.ExtractPositionFromName(name))
+  local item = mod.itemManager.FindItemForSlotPosition(mod.common.ExtractPositionFromName(name))
+
+  -- abort if no item could be found
+  if item == nil then return end
 
   if button == "RightButton" then
     -- rightclick
-    local slotId = mod[module].id
-
-    mod.combatQueue.RemoveFromQueue(slotId)
+    mod.combatQueue.RemoveFromQueue(item.slotId)
     -- reflect item not in use
     this:SetChecked(0)
   else
     -- leftclick
-    if module == nil then return end
-
-    UseInventoryItem(mod[module].id)
-    mod.quickChange.CheckItemUse(module)
+    UseInventoryItem(item.slotId)
+    mod.quickChange.CheckItemUse(item.slotId)
     me.ReflectItemUse(mod.common.ExtractPositionFromName(name))
   end
 end
@@ -120,15 +119,18 @@ function me.ItemButtonOnReceiveDrag()
   if GearMenuOptions.disableDragAndDrop then return end
 
   local position = mod.common.ExtractPositionFromName(this:GetName())
-  local module = mod.itemManager.FindModuleForPosition(position)
+  local item = mod.itemManager.FindItemForSlotPosition(position)
 
-  validItemForSlot = CursorCanGoInSlot(mod[module].id)
+  -- abort if no item could be found
+  if item == nil then return end
+
+  validItemForSlot = CursorCanGoInSlot(item.slotId)
 
   if validItemForSlot == nil then
-    mod.logger.LogInfo(me.tag, "Invalid item for slot - " .. mod[module].moduleName)
+    mod.logger.LogInfo(me.tag, "Invalid item for slotId - " .. item.slotId)
     ClearCursor() -- clear cursor from item
   else
-    EquipCursorItem(mod[module].id)
+    EquipCursorItem(item.slotId)
   end
 end
 
@@ -141,9 +143,12 @@ function me.ItemButtonOnDragStart()
   if GearMenuOptions.disableDragAndDrop then return end
 
   local position = mod.common.ExtractPositionFromName(this:GetName())
-  local module = mod.itemManager.FindModuleForPosition(position)
+  local item = mod.itemManager.FindItemForSlotPosition(position)
 
-  PickupInventoryItem(mod[module].id)
+  -- abort if no item could be found
+  if item == nil then return end
+
+  PickupInventoryItem(item.slotId)
 end
 
 --[[
@@ -166,13 +171,11 @@ end
   Choosing an item in slotframe
 ]]--
 function me.MenuItemOnClick()
-  -- item that should get equiped
-  local item = {
-    itemId = me.BaggedItems[this:GetID()].id,
-    itemSlotType = me.BaggedItems[this:GetID()].equipSlot
-  }
-
-  mod.common.EquipItemById(item, me.currentSlot)
+  mod.itemHelper.EquipItemById(
+    me.BaggedItems[this:GetID()].id,
+    me.currentSlot,
+    me.BaggedItems[this:GetID()].equipSlot
+  )
   getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):Hide()
 end
 
@@ -182,25 +185,26 @@ end
   @param {number} position
 ]]
 function me.UseInventoryItem(position)
-  local module = mod.itemManager.FindModuleForPosition(position)
+  local item = mod.itemManager.FindItemForSlotPosition(position)
 
-  if module == nil then
-    mod.logger.LogInfo(me.tag, "Unable to use item - module is deactivated")
+  -- abort if no item could be found
+  if item == nil then
+    mod.logger.LogInfo(me.tag, "Unable to use item - item is deactivated")
     return
   end
 
   -- check if slot has an equiped item
-  local _, id, _ = mod.common.RetrieveItemInfo(mod[module].id)
+  local _, id, _ = mod.itemHelper.RetrieveItemInfo(item.slotId)
 
   if not id then
     me.ReflectItemUse(position)
     return
   end
 
-  mod.logger.LogDebug(me.tag, "Using item: " .. mod[module].id)
+  mod.logger.LogDebug(me.tag, "Using item: " .. item.slotId)
 
-  UseInventoryItem(mod[module].id) -- use item
-  mod.quickChange.CheckItemUse(module)
+  UseInventoryItem(item.slotId) -- use item
+  mod.quickChange.CheckItemUse(item.slotId)
   me.ReflectItemUse(position)
 end
 
@@ -233,7 +237,7 @@ function me.BuildMenu()
     getglobal(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i):Hide()
   end
 
-  local numberOfItems, module, position
+  local numberOfItems, position
 
   me.BaggedItems = {}
 
@@ -248,13 +252,13 @@ function me.BuildMenu()
     end
   end
 
-  module = mod.itemManager.FindModuleForPosition(tonumber(position))
+  local item = mod.itemManager.FindItemForSlotPosition(tonumber(position))
 
-  -- abort if no module could be found
-  if module == nil then return end
+  -- abort if no item could be found
+  if item == nil then return end
 
-  mod.logger.LogDebug(me.tag, "building menu for " .. module)
-  me.BaggedItems, numberOfItems = mod[module].GetItems()
+  mod.logger.LogDebug(me.tag, "building menu for slotId: " .. item.slotId)
+  me.BaggedItems, numberOfItems = mod.itemManager.GetItemsForSlotId(item.slotId)
 
   if numberOfItems < 1 then
     -- user has no bagged item of this specific type
@@ -332,22 +336,24 @@ end
   Load slotpositions on addon load
 ]]--
 function me.LoadSlotPositions()
-  for module, position in pairs(GearMenuOptions.modules) do
-    if position == 0 then
-      mod[module].SetDisabled(true)
+  for _, item in pairs(GM_CONSTANTS.ITEMS) do
+    if GearMenuOptions.slots[item.name] == nil then
+      -- If the item has no position disabled it
+      mod.itemManager.DisableItem(item.slotId)
     else
-      mod[module].SetDisabled(false)
+      -- Overwrite initial registered position with actualy position
+      mod.itemManager.EnableItem(item.slotId, GearMenuOptions.slots[item.name])
     end
-
-    mod[module].SetPosition(position)
   end
 
   for i = 1, GM_CONSTANTS.ADDON_SLOTS do
-    local active = mod.itemManager.FindModuleForPosition(i)
+    local item = mod.itemManager.FindItemForSlotPosition(i)
 
-    if active == nil then
-      mod.logger.LogDebug(me.tag, "Slot" .. i .. " is inactive")
+    if item == nil then
+      mod.logger.LogDebug(me.tag, "Itemslot" .. i .. " is inactive")
       me.HideSlot(i)
+    else
+      me.ShowSlot(i)
     end
   end
 
@@ -361,7 +367,7 @@ end
 function me.RearrangeSlotPositions()
   local slots = {} -- table for visible slots
 
-  -- make table of active slotswa
+  -- make table of active slots
   for i = 1, GM_CONSTANTS.ADDON_SLOTS do
     local slotFrame = getglobal(GM_CONSTANTS.ELEMENT_SLOT .. i)
 

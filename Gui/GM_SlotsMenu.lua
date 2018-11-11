@@ -51,38 +51,27 @@ end
   Initialize dropdownmenus for slotpositions
 ]]--
 function me.InitializeDropdownMenu()
-  local button, position, moduleName
+  local button, position, item
 
   position = mod.common.ExtractPositionFromName(this:GetName())
-  moduleName = mod.itemManager.FindModuleForPosition(position)
+  item = mod.itemManager.FindItemForSlotPosition(position)
 
-  button = me.CreateDropdownButton(mod.mainHand.tag, mod.mainHand.id, me.DropDownMenuCallback)
-  UIDropDownMenu_AddButton(button)
+  for key, item in pairs(GM_CONSTANTS.ITEMS) do
+    button = me.CreateDropdownButton(
+      gm.L[item.localizationKey],
+      item.slotId,
+      me.DropDownMenuCallback
+    )
+    UIDropDownMenu_AddButton(button)
+  end
 
-  button = me.CreateDropdownButton(mod.offHand.tag, mod.offHand.id, me.DropDownMenuCallback)
-  UIDropDownMenu_AddButton(button)
-
-  button = me.CreateDropdownButton(mod.waist.tag, mod.waist.id, me.DropDownMenuCallback)
-  UIDropDownMenu_AddButton(button)
-
-  button = me.CreateDropdownButton(mod.feet.tag, mod.feet.id, me.DropDownMenuCallback)
-  UIDropDownMenu_AddButton(button)
-
-  button = me.CreateDropdownButton(mod.head.tag, mod.head.id, me.DropDownMenuCallback)
-  UIDropDownMenu_AddButton(button)
-
-  button = me.CreateDropdownButton(mod.upperTrinket.tag, mod.upperTrinket.id, me.DropDownMenuCallback)
-  UIDropDownMenu_AddButton(button)
-
-  button = me.CreateDropdownButton(mod.lowerTrinket.tag, mod.lowerTrinket.id, me.DropDownMenuCallback)
-  UIDropDownMenu_AddButton(button)
-
+  -- create an option to disable the slot completely
   button = me.CreateDropdownButton("None", 0, me.DropDownMenuCallback)
   UIDropDownMenu_AddButton(button)
 
   if (UIDropDownMenu_GetSelectedID(getglobal(GM_CONSTANTS.ELEMENT_OPT_SLOT .. position)) == nil) then
-    if moduleName then
-      UIDropDownMenu_SetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_OPT_SLOT .. position), mod[moduleName].id)
+    if item then
+      UIDropDownMenu_SetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_OPT_SLOT .. position), item.slotId)
     else
       UIDropDownMenu_SetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_OPT_SLOT .. position), 0)
     end
@@ -94,40 +83,32 @@ end
 ]]
 function me.DropDownMenuCallback()
   local currentValue = UIDropDownMenu_GetSelectedValue(getglobal(UIDROPDOWNMENU_OPEN_MENU))
+  local newValue = this.value
 
-  local isUsed = mod.itemManager.IsPositionInUse(this.value)
-  if isUsed then
-    mod.logger.LogDebug(me.tag, "Abort selection item is already in use in another slot")
-    mod.logger.PrintUserError(gm.L["slot_menu_slot_already_in_use"])
-    -- abort already in use
-    return
-  end
+  if newValue == 0 then
+    -- disabling a slot is always possible
+    mod.itemManager.DisableItem(currentValue)
 
-  -- when the currentValue is not equal to the selectedValue we need to deactivate the item
-  if currentValue ~= 0 and currentValue ~= this.value then
-    local moduleName = mod.itemManager.FindItemForSlotId(currentValue)
-    mod[moduleName].SetPosition(0)
-    mod[moduleName].SetDisabled(true)
-  end
-
-  local _, _, slotPosition = strfind(getglobal(UIDROPDOWNMENU_OPEN_MENU):GetName(),
-    GM_CONSTANTS.ELEMENT_OPT_SLOT .. "(%d+)")
-
-  -- activate item
-  if this.value ~= 0 then
-    local moduleName = mod.itemManager.FindItemForSlotId(this.value)
-    mod[moduleName].SetPosition(tonumber(slotPosition))
-    mod[moduleName].SetDisabled(false)
-
-    mod.gui.ShowSlot(slotPosition)
-  end
-
-  if this.value == 0 then
+    local _, _, slotPosition = strfind(getglobal(UIDROPDOWNMENU_OPEN_MENU):GetName(),
+      GM_CONSTANTS.ELEMENT_OPT_SLOT .. "(%d+)")
     mod.gui.HideSlot(slotPosition)
+  else
+    if mod.itemManager.IsPositionInUse(newValue) then
+      mod.logger.LogDebug(me.tag, "Abort selection item is already in use in another slot")
+      mod.logger.PrintUserError(gm.L["slot_menu_slot_already_in_use"])
+      -- abort already in use
+      return
+    else
+      -- item is not in use allow change
+      local _, _, slotPosition = strfind(getglobal(UIDROPDOWNMENU_OPEN_MENU):GetName(),
+        GM_CONSTANTS.ELEMENT_OPT_SLOT .. "(%d+)")
+      mod.itemManager.DisableItem(currentValue)
+      mod.itemManager.EnableItem(newValue, tonumber(slotPosition))
+      mod.gui.ShowSlot(slotPosition)
+    end
   end
-
-  mod.itemManager.UpdateWornItems()
 
   -- UIDROPDOWNMENU_OPEN_MENU is the currently open dropdown menu
-  UIDropDownMenu_SetSelectedValue(getglobal(UIDROPDOWNMENU_OPEN_MENU), this.value)
+  UIDropDownMenu_SetSelectedValue(getglobal(UIDROPDOWNMENU_OPEN_MENU), newValue)
+  mod.itemManager.UpdateWornItems()
 end

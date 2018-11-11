@@ -129,19 +129,20 @@ end
 --[[
   OnUpdate callback for quick change from list
 
-  @param {number} type
+  @param {number} slotId
     see gm_constants categories for a reference
 ]]--
-function me.QuickChangeFromListOnUpdate(itemType)
+function me.QuickChangeFromListOnUpdate(slotId)
   local itemList, offset
 
-  if itemType == nil then
-    itemType = UIDropDownMenu_GetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_CHOOSE_CATEGORY))
+  if slotId == nil then
+    slotId = UIDropDownMenu_GetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_CHOOSE_CATEGORY))
   end
 
-  itemList = mod.common.GetItemsByType(itemType, true)
+  itemList = mod.itemManager.GetItemsForSlotId(slotId, true)
   changeFromItemList = me.FilterDuplicateItems(itemList)
-  FauxScrollFrame_Update(GM_QuickChange_ChangeFromScrollFrame, changeFromItemList and table.getn(changeFromItemList) or 0, 9, 24)
+  FauxScrollFrame_Update(GM_QuickChange_ChangeFromScrollFrame,
+    changeFromItemList and table.getn(changeFromItemList) or 0, 9, 24)
   -- clear highlighted cells on scroll
   me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_FROM_CELL, 9, true)
   offset = FauxScrollFrame_GetOffset(GM_QuickChange_ChangeFromScrollFrame)
@@ -176,19 +177,20 @@ end
 --[[
   OnUpdate callback for quick change to list
 
-  @param {number} type
+  @param {number} slotId
     see gm_constants categories for a reference
 ]]--
-function me.QuickChangeToListOnUpdate(itemType)
+function me.QuickChangeToListOnUpdate(slotId)
   local itemList, offset
 
-  if itemType == nil then
-    itemType = UIDropDownMenu_GetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_CHOOSE_CATEGORY))
+  if slotId == nil then
+    slotId = UIDropDownMenu_GetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_CHOOSE_CATEGORY))
   end
 
-  itemList = mod.common.GetItemsByType(itemType, true)
+  itemList = mod.itemManager.GetItemsForSlotId(slotId, true)
   changeToItemList = me.FilterDuplicateItems(itemList)
-  FauxScrollFrame_Update(GM_QuickChange_ChangeToScrollFrame, changeToItemList and table.getn(changeToItemList) or 0, 9, 24)
+  FauxScrollFrame_Update(GM_QuickChange_ChangeToScrollFrame,
+    changeToItemList and table.getn(changeToItemList) or 0, 9, 24)
   -- clear highlighted cells on scroll
   me.ClearCellList(GM_CONSTANTS.ELEMENT_CHANGE_TO_CELL, 9, true)
   offset = FauxScrollFrame_GetOffset(GM_QuickChange_ChangeToScrollFrame)
@@ -342,15 +344,25 @@ end
 ]]--
 function me.InitializeDropdownMenu()
   local button
+  local registeredCategoryIds = {}
 
-  for i = 1, table.getn(GM_CONSTANTS.CATEGORIES) do
-    button = me.CreateDropdownButton(GM_CONSTANTS.CATEGORIES[i].name, i, me.DropDownMenuCallback)
-    UIDropDownMenu_AddButton(button)
+  for _, item in pairs(GM_CONSTANTS.ITEMS) do
+    -- prevent adding slots with the same id multiple times
+    if registeredCategoryIds[item.id] == nil then
+      if item.localizationShort then
+        button = me.CreateDropdownButton(gm.L[item.localizationShort], item.slotId, me.DropDownMenuCallback)
+      else
+        button = me.CreateDropdownButton(gm.L[item.localizationKey], item.slotId, me.DropDownMenuCallback)
+      end
+
+      UIDropDownMenu_AddButton(button)
+      registeredCategoryIds[item.id] = true
+    end
   end
 
   if (UIDropDownMenu_GetSelectedID(getglobal(GM_CONSTANTS.ELEMENT_CHOOSE_CATEGORY)) == nil) then
     -- set initial state
-    UIDropDownMenu_SetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_CHOOSE_CATEGORY), GM_CONSTANTS.CATEGORY_TRINKET)
+    UIDropDownMenu_SetSelectedValue(getglobal(GM_CONSTANTS.ELEMENT_CHOOSE_CATEGORY), GM_CONSTANTS.ITEMS.HEAD.slotId)
   end
 end
 
@@ -358,13 +370,14 @@ end
   Callback for optionsmenu dropdowns
 ]]
 function me.DropDownMenuCallback()
+  local newValue = this.value
   -- UIDROPDOWNMENU_OPEN_MENU is the currently open dropdown menu
-  UIDropDownMenu_SetSelectedValue(getglobal(UIDROPDOWNMENU_OPEN_MENU), this.value)
+  UIDropDownMenu_SetSelectedValue(getglobal(UIDROPDOWNMENU_OPEN_MENU), newValue)
 
-  mod.logger.LogDebug(me.tag, "Changing type to: " .. this.value)
+  mod.logger.LogDebug(me.tag, "Changing type to: " .. newValue)
 
-  mod.quickChangeMenu.QuickChangeFromListOnUpdate(this.value)
-  mod.quickChangeMenu.QuickChangeToListOnUpdate(this.value)
+  mod.quickChangeMenu.QuickChangeFromListOnUpdate(newValue)
+  mod.quickChangeMenu.QuickChangeToListOnUpdate(newValue)
 end
 
 --[[

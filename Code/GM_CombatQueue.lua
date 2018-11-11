@@ -43,58 +43,55 @@ end
   Add item to combatQueue. There can only be one item per slot
 
   @param {string} itemId
-  @param {number} slot
+  @param {number} slotId
 ]]--
-function me.AddToQueue(itemId, slot)
-  if not itemId or not slot then return end
+function me.AddToQueue(itemId, slotId)
+  if not itemId or not slotId then return end
 
-  CombatQueueStore[slot] = itemId
-  mod.logger.LogDebug(me.tag, "Added item with id " .. itemId .. " in slot "
-    .. slot .. " to CombatQueueStore")
-  me.UpdateCombatQueue(slot)
+  CombatQueueStore[slotId] = itemId
+  mod.logger.LogDebug(me.tag, "Added item with id " .. itemId .. " in slotId "
+    .. slotId .. " to CombatQueueStore")
+  me.UpdateCombatQueue(slotId)
 end
 
 --[[
   Remove item from combatQueue
 
-  @param {number} slot
+  @param {number} slotId
 ]]--
-function me.RemoveFromQueue(slot)
-  if not slot then return end
+function me.RemoveFromQueue(slotId)
+  if not slotId then return end
 
   -- get item from queue that is about to be removed
-  local itemId = CombatQueueStore[slot]
+  local itemId = CombatQueueStore[slotId]
 
-  -- if no item is registere in queue for that specific slot
+  -- if no item is registere in queue for that specific slotId
   if itemId == nil then
-    mod.logger.LogInfo(me.tag, "No item in queue for slot - " .. slot)
+    mod.logger.LogInfo(me.tag, "No item in queue for slotId - " .. slotId)
     return
   end
 
-  CombatQueueStore[slot] = nil
-  mod.logger.LogDebug(me.tag, "Removed item with id " .. itemId .. " in slot "
-    .. slot .. " from CombatQueueStore")
-  me.UpdateCombatQueue(slot)
+  CombatQueueStore[slotId] = nil
+  mod.logger.LogDebug(me.tag, "Removed item with id " .. itemId .. " in slotId "
+    .. slotId .. " from CombatQueueStore")
+  me.UpdateCombatQueue(slotId)
 end
 
 --[[
   Update the queue and show small icons for items or hide them if item was removed
   from queue
 
-  @param {number} slot
+  @param {number} slotId
 ]]--
-function me.UpdateCombatQueue(slot)
-  local module, itemId, icon
-
-  module = mod.itemManager.FindItemForSlotId(slot)
-
-  itemId = CombatQueueStore[slot]
-  icon = getglobal(GM_CONSTANTS.ELEMENT_SLOT .. mod[module].GetPosition() .. "Queue")
+function me.UpdateCombatQueue(slotId)
+  local item = mod.itemManager.FindItemForSlotId(slotId)
+  local itemId = CombatQueueStore[slotId]
+  local icon = getglobal(GM_CONSTANTS.ELEMENT_SLOT .. item.gmSlotPosition .. "Queue")
 
   if itemId then
-    _, bag, slot = mod.common.FindItemById(itemId)
-    if bag then
-      icon:SetTexture(GetContainerItemInfo(bag, slot))
+    _, bagNumber, bagPos = mod.itemHelper.FindItemById(itemId, true)
+    if bagNumber then
+      icon:SetTexture(GetContainerItemInfo(bagNumber, bagPos))
       icon:Show()
     end
   else
@@ -107,38 +104,25 @@ end
   Weapons will always be switched immediately because they can be changed while in combat
 ]]--
 function me.ProcessQueue()
-  -- retrieve all registered modules
+  -- retrieve all registered items
   local items = mod.itemManager.GetAllRegisteredItems()
-  --[[
-    if both mainHand and offHand are in the queue ensure that those are processed
-    with priority and in the correct order. Switch mainHand first to prevent problems
-    with 2handed weapons
-  ]]--
-  me.ProcessItem(items, mod.mainHand.moduleName)
-  me.ProcessItem(items, mod.offHand.moduleName)
 
-  for key, moduleName in pairs(items) do
+  for _, item in pairs(items) do
     -- update queue for all slotpositions
-    me.ProcessItem(items, moduleName)
+    me.ProcessItem(item)
   end
 end
 
 --[[
-  Process items in combatqueue
+  Process item in combatqueue
 
-  @param {table} items
-  @param {string} moduleName
+  @param {table} item
 ]]--
-function me.ProcessItem(items, moduleName)
-  if mod[items[moduleName]] and CombatQueueStore[mod[items[moduleName]].id] ~= nil then
-    _, _, _, _, _, _, _, equipSlot = GetItemInfo(CombatQueueStore[mod[items[moduleName]].id] or "")
 
-    local item = {
-      itemId = CombatQueueStore[mod[items[moduleName]].id],
-      itemSlotType = equipSlot
-    }
-
-    mod.common.EquipItemById(item, mod[items[moduleName]].id)
-    me.UpdateCombatQueue(mod[items[moduleName]].id)
+function me.ProcessItem(item)
+  if CombatQueueStore[item.slotId] ~= nil then
+    _, _, _, _, _, _, _, equipSlot = GetItemInfo(CombatQueueStore[item.slotId])
+    mod.itemHelper.EquipItemById(CombatQueueStore[item.slotId], item.slotId, equipSlot)
+    me.UpdateCombatQueue(item.slotId)
   end
 end
