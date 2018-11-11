@@ -83,7 +83,7 @@ function me.DisableItem(slotId)
     if item.slotId == slotId then
       item.gmSlotDisabled = true
       item.gmSlotPosition = nil
-      GearMenuOptions.slots[itemName] = nil -- TODO convert this to addonoptions
+      mod.addonOptions.DisableItem(itemName)
 
       return
     end
@@ -99,7 +99,7 @@ function me.EnableItem(slotId, slotPosition)
     if item.slotId == slotId then
       item.gmSlotDisabled = false
       item.gmSlotPosition = slotPosition
-      GearMenuOptions.slots[itemName] = slotPosition -- TODO convert this to addonoptions
+      mod.addonOptions.EnableItem(itemName, slotPosition)
 
       return
     end

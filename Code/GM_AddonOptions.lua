@@ -426,3 +426,18 @@ end
 function me.GetFilterItemQuality()
   return GearMenuOptions.filterItemQuality
 end
+
+--[[
+  @param {string} itemName
+]]--
+function me.DisableItem(itemName)
+  GearMenuOptions.slots[itemName] = nil
+end
+
+--[[
+  @param {string} itemName
+  @param {number} slotPosition
+]]--
+function me.EnableItem(itemName, slotPosition)
+  GearMenuOptions.slots[itemName] = slotPosition
+end
