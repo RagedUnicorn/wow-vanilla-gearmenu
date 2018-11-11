@@ -120,13 +120,35 @@ Not interested to see items with a quality level below a certain level? Filter t
 
 ## FAQ
 
-#### The addon is not showing up in WoW. What can I do?
+#### The Addon is not showing up in WoW. What can I do?
 
-Make sure to recheck the installation part of this Readme and check that the addon is placed inside `[WoW-installation-directory]\Interface\AddOns` and is correctly named as `GearMenu`.
+Make sure to recheck the installation part of this Readme and check that the Addon is placed inside `[WoW-installation-directory]\Interface\AddOns` and is correctly named as `GearMenu`.
 
 #### I get a red error (Lua Error) on my screen. What is this?
 
-This is what we call a LUA error and it usually happens because of an oversight or error by the developer (in this case me). Take a screenshot off the error and create a Github Issue with it and I will see if I can resolve it. It also helps if you can add any additional information of what you we're doing at the time and what other addons you have active. Also if you are able to reproduce the error make sure to check if it still happens if you disable all others addons.
+This is what we call a Lua error and it usually happens because of an oversight or error by the developer (in this case me). Take a screenshot off the error and create a Github Issue with it and I will see if I can resolve it. It also helps if you can add any additional information of what you we're doing at the time and what other addons you have active. Also if you are able to reproduce the error make sure to check if it still happens if you disable all others addons.
+
+#### I can't seem to have different settings for my characters. What can I do?
+
+Because of a bug versions before `1.2.0` saved the Addon options not only for the current character but also globally for the Addon. This was not intended and is fixed in the newest version. After updating to version `1.2.0` or newer make sure to delete the following files:
+
+```
+ WTF\Account\ACCOUNTNAME\SavedVariables\GearMenu.lua
+ WTF\Account\ACCOUNTNAME\SavedVariables\GearMenu.lua.bak
+```
+
+#### After updating to a newer version of the Addon I run into Lua errors. What can I do?
+
+When updating from an old version to a newer Addon options usually need to be migrated to the new version. While I intend to do this upgrading automatically there is a possibility that the upgrading didn't work as expected. In this case it usually is the easiest to delete locally stored configuration of GearMenu and start over. This means that your configuration is deleted and that you need to redo setting the options.
+
+Delete the following files for all characters.
+
+```
+WTF\Account\ACCOUNTNAME\RealmName\CharacterName\SavedVariables\GearMenu.lua
+WTF\Account\ACCOUNTNAME\RealmName\CharacterName\SavedVariables\GearMenu.lua.bak
+```
+
+**Note:** If those files do not exist skip the character. This means that you didn't login with that character while the Addon was active.
 
 ## Development
 
