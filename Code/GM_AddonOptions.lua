@@ -178,7 +178,7 @@ end
 
 --[[
   Set addon version on addon options. Before setting a new version make sure
-  to run through migration paths. As of right now there is no migration path.
+  to run through migration paths.
 ]]--
 function me.SetAddonVersion()
   -- if no version set so far make sure to set the current one
