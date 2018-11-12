@@ -29,13 +29,6 @@ mod.tooltip = me
 
 me.tag = "Tooltip"
 
---[[
-  Private
-]]--
-local tooltipBag = 0
-local tooltipSlot = 0
-local tooltipType = ""
-
 local TOOLTIP_TYPE_BAG = "Bag"
 local TOOLTIP_TYPE_ITEMSLOT = "ItemSlot"
 
@@ -44,11 +37,7 @@ local TOOLTIP_TYPE_ITEMSLOT = "ItemSlot"
   @param {table} BaggedItems
 ]]--
 function me.BuildTooltipForBaggedItems(id, baggedItems)
-  bagId = baggedItems[id].bag
-  slotId = baggedItems[id].slot
-  tooltipType = TOOLTIP_TYPE_BAG
-
-  me.TooltipUpdate(tooltipType, bagId, slotId)
+  me.TooltipUpdate(TOOLTIP_TYPE_BAG, baggedItems[id].bag, baggedItems[id].slot)
 end
 
 --[[
@@ -57,10 +46,7 @@ end
   @param {number} slotId
 ]]--
 function me.BuildTooltipForWornItem(slotId)
-  tooltipSlot = slotId
-  tooltipType = TOOLTIP_TYPE_ITEMSLOT
-
-  me.TooltipUpdate(tooltipType, nil, slotId)
+  me.TooltipUpdate(TOOLTIP_TYPE_ITEMSLOT, nil, slotId)
 end
 
 --[[
