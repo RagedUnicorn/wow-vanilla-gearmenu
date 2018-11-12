@@ -11,6 +11,10 @@ Code\GM_Constants.lua
 # environment variables
 Code\GM_Environment.lua
 
+# localization
+Localization\enUS.lua
+Localization\deDE.lua
+
 Code\GM_Core.lua
 Code\GM_Cmd.lua
 Code\GM_Common.lua
@@ -23,9 +27,6 @@ Code\GM_QuickChange.lua
 Code\GM_ItemManager.lua
 Code\GM_ItemHelper.lua
 Code\GM_AddonOptions.lua
-
-Localization\enUS.lua
-Localization\deDE.lua
 
 # Gui
 Gui\GM_Gui.lua

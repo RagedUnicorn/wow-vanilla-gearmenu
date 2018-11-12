@@ -1,4 +1,7 @@
 if (GetLocale() == "deDE") then
+  gm = gm or {}
+  gm.L = {}
+
   gm.L["name"] = "GearMenu"
 
   -- console

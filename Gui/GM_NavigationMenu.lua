@@ -81,9 +81,7 @@ local navigationEntries = {
 --[[
   Set first navigation point and content frame active in optionsframe
 ]]--
-function me.LeftNavigationMenuOnLoad()
-  local frames = { this:GetChildren() }
-
+function me.LeftNavigationMenuOnShow()
   -- reset tab buttons and content frame
   for i = 1, table.getn(navigationEntries) do
     navigationEntries[i].active = false
@@ -95,7 +93,7 @@ function me.LeftNavigationMenuOnLoad()
     getglobal(GM_CONSTANTS.ELEMENT_CONTENT .. navigationEntries[i].name):Hide()
   end
 
-  for _, framechild in ipairs(frames) do
+  for _, framechild in ipairs({this:GetChildren()}) do
     -- set first navigation button active and selected
     getglobal(framechild:GetName() .."Texture"):Show()
     getglobal(framechild:GetName() .."Text"):SetTextColor(1, 1, 1, 1)

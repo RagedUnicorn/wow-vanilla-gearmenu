@@ -1,3 +1,6 @@
+gm = gm or {}
+gm.L = {}
+
 gm.L["name"] = "GearMenu"
 
 -- console

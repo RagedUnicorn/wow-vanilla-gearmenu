@@ -114,7 +114,7 @@
         </Frames>
         <Scripts>
           <OnShow>
-            gm.navigationMenu.LeftNavigationMenuOnLoad()
+            gm.navigationMenu.LeftNavigationMenuOnShow()
           </OnShow>
         </Scripts>
       </Frame>

@@ -23,11 +23,8 @@
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]--
 
-gm = {}
+gm = gm or {}
 local me = gm
-
--- localization
-gm.L = {}
 
 me.tag = "Core"
 
