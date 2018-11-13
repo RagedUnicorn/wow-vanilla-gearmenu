@@ -36,12 +36,12 @@ local TOOLTIP_TYPE_ITEMSLOT = "ItemSlot"
   @param {number} id
   @param {table} BaggedItems
 ]]--
-function me.BuildTooltipForBaggedItems(id, baggedItems)
+function me.BuildTooltipForBaggedItem(id, baggedItems)
   me.TooltipUpdate(TOOLTIP_TYPE_BAG, baggedItems[id].bag, baggedItems[id].slot)
 end
 
 --[[
-  Build tooltip for an items that is worn by the player
+  Build tooltip for an item that is worn by the player
 
   @param {number} slotId
 ]]--

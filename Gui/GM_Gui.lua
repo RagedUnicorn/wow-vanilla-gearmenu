@@ -170,7 +170,7 @@ end
 function me.MenuItemOnEnter()
   GameTooltip_SetDefaultAnchor(getglobal(GM_CONSTANTS.ELEMENT_TOOLTIP), this)
 
-  mod.tooltip.BuildTooltipForBaggedItems(this:GetID(), me.baggedItems)
+  mod.tooltip.BuildTooltipForBaggedItem(this:GetID(), me.baggedItems)
 end
 
 --[[
