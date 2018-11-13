@@ -20,4 +20,13 @@
   <Binding name="Slot 7" description="Use Slot7">
     gm.gui.UseInventoryItem(7)
   </Binding>
+  <Binding name="Slot 8" description="Use Slot8">
+    gm.gui.UseInventoryItem(8)
+  </Binding>
+  <Binding name="Slot 9" description="Use Slot9">
+    gm.gui.UseInventoryItem(9)
+  </Binding>
+  <Binding name="Slot 10" description="Use Slot10">
+    gm.gui.UseInventoryItem(10)
+  </Binding>
 </Bindings>
