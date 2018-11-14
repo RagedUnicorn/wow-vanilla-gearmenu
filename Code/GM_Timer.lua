@@ -29,11 +29,8 @@ mod.timer = me
 
 me.tag = "Timer"
 
---[[
-  Private variables
-]]--
-local TimerPool = {}
-local Timers = {}
+local timerPool = {}
+local timers = {}
 
 --[[
   @param {string} name
@@ -43,7 +40,7 @@ local Timers = {}
 ]]--
 function me.CreateTimer(name, func, delay, rep)
   mod.logger.LogDebug(me.tag, "Created timer with name: " .. name)
-  TimerPool[name] = {
+  timerPool[name] = {
     func = func,
     delay = delay,
     rep = rep,
@@ -56,7 +53,7 @@ end
   @return {number, nil}
 ]]--
 function me.IsTimerActive(name)
-  for i, j in ipairs(Timers) do
+  for i, j in ipairs(timers) do
     if j == name then
       return i
     end
@@ -70,10 +67,10 @@ end
 ]]--
 function me.StartTimer(name, delay)
   mod.logger.LogDebug(me.tag, "Started timer with name: " .. name)
-  TimerPool[name].elapsed = delay or TimerPool[name].delay
+  timerPool[name].elapsed = delay or timerPool[name].delay
 
   if not me.IsTimerActive(name) then
-    table.insert(Timers, name)
+    table.insert(timers, name)
     getglobal(GM_CONSTANTS.ELEMENT_TIMER_FRAME):Show()
   end
 end
@@ -85,9 +82,9 @@ function me.StopTimer(name)
   local idx = me.IsTimerActive(name)
 
   if idx then
-    table.remove(Timers, idx)
+    table.remove(timers, idx)
     mod.logger.LogDebug(me.tag, "Stopped timer with name: " .. name)
-    if table.getn(Timers) < 1 then
+    if table.getn(timers) < 1 then
       getglobal(GM_CONSTANTS.ELEMENT_TIMER_FRAME):Hide()
     end
   end
@@ -97,15 +94,15 @@ end
   OnUpdate callback from timersframe
 ]]--
 function me.TimersFrameOnUpdate()
-  local timerPool
+  local timer
 
-  for _, name in ipairs(Timers) do
-    timerPool = TimerPool[name]
-    timerPool.elapsed = timerPool.elapsed - arg1
-    if timerPool.elapsed < 0 then
-      timerPool.func()
-      if timerPool.rep then
-        timerPool.elapsed = timerPool.delay
+  for _, name in ipairs(timers) do
+    timer = timerPool[name]
+    timer.elapsed = timer.elapsed - arg1
+    if timer.elapsed < 0 then
+      timer.func()
+      if timer.rep then
+        timer.elapsed = timer.delay
       else
         me.StopTimer(name)
       end
