@@ -160,6 +160,12 @@ GM_CONSTANTS = {
       ["name"] = "offHand",
       ["localizationKey"] = "slot_name_offhand",
       ["slotId"] = 17
+    },
+    RANGED = {
+      ["id"] = 15,
+      ["name"] = "ranged",
+      ["localizationKey"] = "slot_name_ranged",
+      ["slotId"] = 18
     }
   },
   --[[
@@ -210,6 +216,7 @@ GM_CONSTANTS = {
         | "INVTYPE_2HWEAPON"       | Two-Handed       | 16     |
         | "INVTYPE_WEAPONMAINHAND" | Main-Hand Weapon | 16     |
         | "INVTYPE_WEAPONOFFHAND"  | Off-Hand Weapon  | 17     |
+        | "INVTYPE_RANGED"         | Ranged Weapon    | 18     |
       ["name"] = "item name"
         {string} Short name of the slot
       ["slotName"] = "nameSlot"
@@ -369,6 +376,12 @@ GM_CONSTANTS = {
       ["slotName"] = "SecondaryHandSlot",
       ["slotId"] = {17}
     },
+    [18] = {
+      ["type"] = {"INVTYPE_RANGED"},
+      ["name"] = "Ranged",
+      ["slotName"] = "RangedSlot",
+      ["slotId"] = {18}
+    }
   },
   --[[
     elements

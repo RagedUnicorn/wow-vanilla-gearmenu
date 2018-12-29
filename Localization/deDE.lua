@@ -31,6 +31,7 @@ if (GetLocale() == "deDE") then
   gm.L["slot_name_cloak"] = "Rücken"
   gm.L["slot_name_mainhand"] = "Waffenhand"
   gm.L["slot_name_offhand"] = "Schildhand"
+  gm.L["slot_name_ranged"] = "Distanz"
 
   -- user errors
   gm.L["unequip_failed"] = "Kein freier Taschenplatz gefunden"

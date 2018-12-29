@@ -30,6 +30,7 @@ gm.L["slot_name_trinket"] = "Trinket"
 gm.L["slot_name_cloak"] = "Cloak"
 gm.L["slot_name_mainhand"] = "MainHand"
 gm.L["slot_name_offhand"] = "OffHand"
+gm.L["slot_name_ranged"] = "Ranged"
 
 -- user errors
 gm.L["unequip_failed"] = "Unable to find empty bagspace"

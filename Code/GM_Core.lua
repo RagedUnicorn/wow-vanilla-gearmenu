@@ -259,4 +259,12 @@ function me.RegisterItems()
     7,
     false
   )
+
+  me.itemManager.RegisterItem(
+    GM_CONSTANTS.ITEMS.RANGED.name,
+    GM_CONSTANTS.ITEMS.RANGED.localizationKey,
+    GM_CONSTANTS.ITEMS.RANGED.slotId,
+    nil,
+    true
+  )
 end

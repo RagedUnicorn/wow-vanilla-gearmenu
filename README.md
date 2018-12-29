@@ -38,6 +38,7 @@ GearMenu is based on the popular TrinketMenu Addon and its goal is to bring this
 | BackSlot          | Back/Cloack slot slot        |
 | MainhandSlot      | Main-hand slot               |
 | SecondaryHandSlot | Secondary-hand/Off-hand slot |
+| RangedSlot        | Ranged slot                  |
 
 ## Features of GearMenu
 
