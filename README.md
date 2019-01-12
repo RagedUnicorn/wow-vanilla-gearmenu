@@ -10,7 +10,7 @@ WoW-Addons are installed directly in your WoW directory:
 
 Make sure to get the newest version of the Addon from the releases tab:
 
-[GearMenu-Releases](https://github.com/RagedUnicorn/wow-gearmenu/releases)
+[GearMenu-Releases](https://github.com/RagedUnicorn/wow-vanilla-gearmenu/releases)
 
 > Note: If the Addon is not showing up in your ingame Addonlist make sure that the Addon is named `GearMenu` in your Addons folder
 

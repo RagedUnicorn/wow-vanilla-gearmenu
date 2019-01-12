@@ -72,7 +72,7 @@
                 </goals>
                 <configuration>
                   <owner>ragedunicorn</owner>
-                  <repository>wow-gearmenu</repository>
+                  <repository>wow-vanilla-gearmenu</repository>
                   <server>github-oauth</server>
                   <tagName>${addon.tag.version}</tagName>
                   <name>${addon.tag.version}</name>

@@ -91,5 +91,5 @@ if (GetLocale() == "deDE") then
   gm.L["author"] = "Autor: Michael Wiesendanger"
   gm.L["email"] = "E-Mail: michael.wiesendanger@gmail.com"
   gm.L["version"] = "Version: " .. GM_ENVIRONMENT.ADDON_VERSION
-  gm.L["issues"] = "Probleme: https://github.com/RagedUnicorn/wow-gearmenu/issues"
+  gm.L["issues"] = "Probleme: https://github.com/RagedUnicorn/wow-vanilla-gearmenu/issues"
 end
