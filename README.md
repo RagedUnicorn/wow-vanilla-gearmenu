@@ -1,6 +1,9 @@
 # GearMenu
 
-![](/Docs/gm_raged_unicorn_logo.png)
+![](/Docs/gm_ragedunicorn_love_vanilla.png)
+
+> GearMenu aims to help the player switching between items in hectic situations by queueing
+items and doing the actual switch as soon as the player leaves combat
 
 ## Installation
 
