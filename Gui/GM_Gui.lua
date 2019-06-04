@@ -60,8 +60,6 @@ end
   OnMouseUp callback - stop dragging gearmenu mainframe
 ]]--
 function me.DragButtonOnMouseUp()
-  if mod.addonOptions.IsWindowLocked() then return end
-
   getglobal(GM_CONSTANTS.ELEMENT_MAIN_FRAME):StopMovingOrSizing()
 end
 
