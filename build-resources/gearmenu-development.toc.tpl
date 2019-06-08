@@ -1,9 +1,10 @@
 ${addon.comment.generated.toc}
 
-## Interface: 11200
-## Title: GearMenu
-## Author: Michael Wiesendanger <michael.wiesendanger@gmail.com>
+## Interface: ${addon.interface}
+## Title: ${addon.name}
+## Author: ${addon.author}
 ## Notes: Addon to manage usable gear
+## Version: ${addon.tag.version}
 ## SavedVariablesPerCharacter: GearMenuOptions
 
 # constant values

@@ -9,9 +9,11 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <addon.author>Michael Wiesendanger &lt;michael.wiesendanger@gmail.com&gt;</addon.author>
     <addon.name>GearMenu</addon.name>
     <addon.name.short>GM</addon.name.short>
     <addon.tag.version>v${project.version}</addon.tag.version>
+    <addon.interface>11200</addon.interface>
     <addon.identifier>com.ragedunicorn.wow.vanilla.gearmenu</addon.identifier>
   </properties>
 
