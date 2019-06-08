@@ -31,7 +31,7 @@ GM_ENVIRONMENT = {
   ADDON_NAME = "GearMenu",
   ADDON_NAME_SHORT = "GM",
   ADDON_VERSION = "1.2.1",
-  ADDON_IDENTIFIER = "com.ragedunicorn.vanilla.gearmenu",
+  ADDON_IDENTIFIER = "com.ragedunicorn.wow.vanilla.gearmenu",
   LOG_LEVEL = 4,
   LOG_EVENT = true
 }

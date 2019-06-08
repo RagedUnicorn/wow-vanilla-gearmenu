@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.ragedunicorn.wow</groupId>
+  <groupId>com.ragedunicorn.wow.vanilla</groupId>
   <artifactId>gearmenu-addon</artifactId>
   <version>1.2.1</version>
   <packaging>pom</packaging>
@@ -12,7 +12,7 @@
     <addon.name>GearMenu</addon.name>
     <addon.name.short>GM</addon.name.short>
     <addon.tag.version>v${project.version}</addon.tag.version>
-    <addon.identifier>com.ragedunicorn.vanilla.gearmenu</addon.identifier>
+    <addon.identifier>com.ragedunicorn.wow.vanilla.gearmenu</addon.identifier>
   </properties>
 
   <profiles>
