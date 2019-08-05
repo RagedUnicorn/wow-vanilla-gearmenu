@@ -177,7 +177,7 @@ end
   @return {table}
 ]]--
 function me.GetItemsByType(slotId, includeEquiped)
-  local idx = 1, i, j
+  local idx = 1
   local itemLink, itemId, itemName, equipSlot, itemTexture, itemQuality
   local itemTypes = GM_CONSTANTS.ITEM_CATEGORIES[slotId].type
   local items = {}
