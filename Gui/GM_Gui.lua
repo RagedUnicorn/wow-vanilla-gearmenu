@@ -250,11 +250,9 @@ function me.BuildMenu()
     getglobal(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i):Hide()
   end
 
-  local position
-
   me.baggedItems = {}
 
-  position = mod.common.ExtractPositionFromName(this:GetName())
+  local position = mod.common.ExtractPositionFromName(this:GetName())
 
   -- if buildmenu is called manualy position is retrieved from cached position
   if position == nil then
@@ -270,7 +268,7 @@ function me.BuildMenu()
   -- abort if no item could be found
   if item == nil then return end
 
-  mod.logger.LogDebug(me.tag, "building menu for slotId: " .. item.slotId)
+  mod.logger.LogDebug(me.tag, "Building menu for slotId: " .. item.slotId)
   me.baggedItems, _ = mod.itemManager.GetItemsForSlotId(item.slotId)
 
   if table.getn(me.baggedItems) < 1 then
@@ -278,10 +276,10 @@ function me.BuildMenu()
     getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):Hide()
   else
     local row = 0
-    local max_rows = 2 -- width of 2 items
+    local maxRows = 2 -- width of 2 items
     local col = 0
-    local xpos = 8
-    local ypos = 8
+    local xPos = 8
+    local yPos = 8
 
     for i = 1, table.getn(me.baggedItems) do
       local item = getglobal(GM_CONSTANTS.ELEMENT_MENU_ITEM .. i)
@@ -291,11 +289,11 @@ function me.BuildMenu()
       if math.mod(i, 2) ~= 0 then
         row = 0 -- left row
         if (mod.addonOptions.IsWindowLocked()) then
-          ypos = col * GM_CONSTANTS.INTERFACE_SLOT_SPACE + GM_CONSTANTS.INTERFACE_ZERO_MARGIN
+          yPos = col * GM_CONSTANTS.INTERFACE_SLOT_SPACE + GM_CONSTANTS.INTERFACE_ZERO_MARGIN
         else
-          ypos = col * GM_CONSTANTS.INTERFACE_SLOT_SPACE + GM_CONSTANTS.INTERFACE_DEFAULT_MARGIN
+          yPos = col * GM_CONSTANTS.INTERFACE_SLOT_SPACE + GM_CONSTANTS.INTERFACE_DEFAULT_MARGIN
         end
-        xpos = row * GM_CONSTANTS.INTERFACE_SLOT_SPACE + GM_CONSTANTS.INTERFACE_DEFAULT_MARGIN
+        xPos = row * GM_CONSTANTS.INTERFACE_SLOT_SPACE + GM_CONSTANTS.INTERFACE_DEFAULT_MARGIN
         -- special case for uneven numberOfItems, add 1 col
         if i == table.getn(me.baggedItems) then
           col = col + 1
@@ -303,15 +301,15 @@ function me.BuildMenu()
       else
         row = 1 -- right row
         if (mod.addonOptions.IsWindowLocked()) then
-          ypos = col * GM_CONSTANTS.INTERFACE_SLOT_SPACE + GM_CONSTANTS.INTERFACE_ZERO_MARGIN
+          yPos = col * GM_CONSTANTS.INTERFACE_SLOT_SPACE + GM_CONSTANTS.INTERFACE_ZERO_MARGIN
         else
-          ypos = col * GM_CONSTANTS.INTERFACE_SLOT_SPACE + GM_CONSTANTS.INTERFACE_DEFAULT_MARGIN
+          yPos = col * GM_CONSTANTS.INTERFACE_SLOT_SPACE + GM_CONSTANTS.INTERFACE_DEFAULT_MARGIN
         end
-        xpos = row * GM_CONSTANTS.INTERFACE_SLOT_SPACE + GM_CONSTANTS.INTERFACE_DEFAULT_MARGIN
+        xPos = row * GM_CONSTANTS.INTERFACE_SLOT_SPACE + GM_CONSTANTS.INTERFACE_DEFAULT_MARGIN
         col = col + 1
       end
 
-      item:SetPoint("BOTTOMLEFT", GM_CONSTANTS.ELEMENT_SLOT_FRAME, xpos, ypos)
+      item:SetPoint("BOTTOMLEFT", GM_CONSTANTS.ELEMENT_SLOT_FRAME, xPos, yPos)
       item:Show()
     end
 
@@ -326,7 +324,7 @@ function me.BuildMenu()
       col = 1
     end
 
-    getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):SetWidth(12 + (max_rows * GM_CONSTANTS.INTERFACE_SLOT_SPACE))
+    getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):SetWidth(12 + (maxRows * GM_CONSTANTS.INTERFACE_SLOT_SPACE))
     getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):SetHeight(12 + ((col) * GM_CONSTANTS.INTERFACE_SLOT_SPACE))
     getglobal(GM_CONSTANTS.ELEMENT_SLOT_FRAME):Show()
 
