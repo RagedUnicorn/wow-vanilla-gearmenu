@@ -137,7 +137,7 @@ function me.ItemButtonOnReceiveDrag()
   -- abort if no item could be found
   if item == nil then return end
 
-  validItemForSlot = CursorCanGoInSlot(item.slotId)
+  local validItemForSlot = CursorCanGoInSlot(item.slotId)
 
   if validItemForSlot == nil then
     mod.logger.LogInfo(me.tag, "Invalid item for slotId - " .. item.slotId)
