@@ -39,10 +39,10 @@ if (GetLocale() == "deDE") then
   gm.L["quick_change_rule_select_missing"] = "Es muss eine Regel gewählt werden welche gelöscht werden soll"
 
   -- gui
-  gm.L["navigationslots"] = "Slots"
-  gm.L["navigationgeneral"] = "Allgemein"
-  gm.L["navigationquickchange"] = "Schnellwechsel"
-  gm.L["navigationabout"] = "Über"
+  gm.L["navigation_slots"] = "Slots"
+  gm.L["navigation_general"] = "Allgemein"
+  gm.L["navigation_quickchange"] = "Schnellwechsel"
+  gm.L["navigation_about"] = "Über"
 
   -- slots tab
   gm.L["titleslot1"] = "Slot 1:"
@@ -58,19 +58,19 @@ if (GetLocale() == "deDE") then
   gm.L["slot_menu_slot_already_in_use"] = "Slot wird bereits benutzt"
 
   -- general tab
-  gm.L["lockwindow"] = "Sperre Fenster"
-  gm.L["lockwindowtooltip"] = "Verhindert das bewegen des GearMenu Fensters."
-  gm.L["showcooldowns"] = "Zeige Abklingzeiten an"
-  gm.L["showcooldownstooltip"] = "Zeige Abklingzeiten für alle Slots an."
-  gm.L["showkeybindings"] = "Zeige Tastaturkürzel an"
-  gm.L["showkeybindingstooltip"] = "Zeige Tastaturkürzel auf den ausgerüsteten Items an."
-  gm.L["showtooltips"] = "Deaktiviere Kurzinfo"
-  gm.L["showtooltipstooltip"] = "Deaktiviere Kurzinfo für markierte Items."
-  gm.L["smalltooltips"] = "Zeige kleine Kurzinfo"
-  gm.L["smalltooltipstooltip"] = "Zeige nur den Titel des markierten Items anstatt die ganze Kurzinfo."
-  gm.L["disabledraganddrop"] = "Deaktiviere Drag and Drop"
-  gm.L["disabledraganddroptooltip"] = "Deaktiviere Drag and Drop für Items."
-  gm.L["filteritemquality"] = "Filtere Gegenstandsqualität:"
+  gm.L["lock_window"] = "Sperre Fenster"
+  gm.L["lock_window_tooltip"] = "Verhindert das bewegen des GearMenu Fensters."
+  gm.L["show_cooldowns"] = "Zeige Abklingzeiten an"
+  gm.L["show_cooldowns_tooltip"] = "Zeige Abklingzeiten für alle Slots an."
+  gm.L["show_keybindings"] = "Zeige Tastaturkürzel an"
+  gm.L["show_keybindings_tooltip"] = "Zeige Tastaturkürzel auf den ausgerüsteten Items an."
+  gm.L["show_tooltips"] = "Deaktiviere Kurzinfo"
+  gm.L["show_tooltips_tooltip"] = "Deaktiviere Kurzinfo für markierte Items."
+  gm.L["small_tooltips"] = "Zeige kleine Kurzinfo"
+  gm.L["small_tooltips_tooltip"] = "Zeige nur den Titel des markierten Items anstatt die ganze Kurzinfo."
+  gm.L["disable_drag_and_drop"] = "Deaktiviere Drag and Drop"
+  gm.L["disable_drag_and_drop_tooltip"] = "Deaktiviere Drag and Drop für Items."
+  gm.L["filter_item_quality"] = "Filtere Gegenstandsqualität:"
   gm.L["item_quality_poor"] = "Arm (Grau)"
   gm.L["item_quality_common"] = "Gewöhnlich (Weiss)"
   gm.L["item_quality_uncommon"] = "Ungewöhnlich (Grün)"
@@ -79,13 +79,13 @@ if (GetLocale() == "deDE") then
   gm.L["item_quality_legendary"] = "Legendär (Orange)"
 
   -- quick change tab
-  gm.L["rulelistlabel"] = "Regeln:"
-  gm.L["changefromlabel"] = "Von:"
-  gm.L["changetolabel"] = "Zu:"
-  gm.L["delaylabel"] = "Verzögerung: "
-  gm.L["delayunitlabel"] = "Sek"
-  gm.L["addrule"] = "Erstelle Regel"
-  gm.L["deleterule"] = "Lösche Regel"
+  gm.L["rule_list_label"] = "Regeln:"
+  gm.L["change_from_label"] = "Von:"
+  gm.L["change_to_label"] = "Zu:"
+  gm.L["delay_label"] = "Verzögerung: "
+  gm.L["delay_unit_label"] = "Sek"
+  gm.L["add_rule"] = "Erstelle Regel"
+  gm.L["delete_rule"] = "Lösche Regel"
 
   -- about tab
   gm.L["author"] = "Autor: Michael Wiesendanger"

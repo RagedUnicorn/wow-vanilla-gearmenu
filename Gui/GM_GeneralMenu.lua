@@ -30,12 +30,12 @@ mod.generalMenu = me
 me.tag = "GeneralMenu"
 
 local options = {
-  {"LockWindow", gm.L["lockwindow"], gm.L["lockwindowtooltip"]},
-  {"ShowCooldowns", gm.L["showcooldowns"], gm.L["showcooldownstooltip"]},
-  {"ShowKeyBindings", gm.L["showkeybindings"], gm.L["showkeybindingstooltip"]},
-  {"DisableTooltips", gm.L["showtooltips"], gm.L["showtooltipstooltip"]},
-  {"SmallTooltips", gm.L["smalltooltips"], gm.L["smalltooltipstooltip"]},
-  {"DisableDragAndDrop", gm.L["disabledraganddrop"], gm.L["disabledraganddroptooltip"]}
+  {"LockWindow", gm.L["lock_window"], gm.L["lock_window_tooltip"]},
+  {"ShowCooldowns", gm.L["show_cooldowns"], gm.L["show_cooldowns_tooltip"]},
+  {"ShowKeyBindings", gm.L["show_keybindings"], gm.L["show_keybindings_tooltip"]},
+  {"DisableTooltips", gm.L["show_tooltips"], gm.L["show_tooltips_tooltip"]},
+  {"SmallTooltips", gm.L["small_tooltips"], gm.L["small_tooltips_tooltip"]},
+  {"DisableDragAndDrop", gm.L["disable_drag_and_drop"], gm.L["disable_drag_and_drop_tooltip"]}
 }
 
 function me.InitGeneralMenu()

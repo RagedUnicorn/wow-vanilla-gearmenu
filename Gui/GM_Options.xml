@@ -690,7 +690,7 @@
                         </Anchors>
                         <Scripts>
                           <OnShow>
-                            this:SetText(gm.L["deleterule"])
+                            this:SetText(gm.L["delete_rule"])
                           </OnShow>
                           <OnClick>
                             gm.quickChangeMenu.DeleteQuickChangeRuleOnClick()
@@ -1175,7 +1175,7 @@
                         </Anchors>
                         <Scripts>
                           <OnShow>
-                            this:SetText(gm.L["addrule"])
+                            this:SetText(gm.L["add_rule"])
                           </OnShow>
                           <OnClick>
                             gm.quickChangeMenu.AddQuickChangeRuleOnClick()

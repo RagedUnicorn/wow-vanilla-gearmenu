@@ -32,7 +32,7 @@ me.tag = "NavigationMenu"
 local navigationEntries = {
   [1] = {
     ["name"] = "Slots",
-    ["text"] = gm.L["navigationslots"],
+    ["text"] = gm.L["navigation_slots"],
     ["position"] = 1,
     ["active"] = true,
     ["init"] = function()
@@ -43,29 +43,29 @@ local navigationEntries = {
   },
   [2] = {
     ["name"] = "General",
-    ["text"] = gm.L["navigationgeneral"],
+    ["text"] = gm.L["navigation_general"],
     ["position"] = 2,
     ["active"] = false,
     ["init"] = function()
-      getglobal(GM_CONSTANTS.ELEMENT_FILTER_ITEM_QUALITY_TITLE):SetText(gm.L["filteritemquality"])
+      getglobal(GM_CONSTANTS.ELEMENT_FILTER_ITEM_QUALITY_TITLE):SetText(gm.L["filter_item_quality"])
     end
   },
   [3] = {
     ["name"] = "QuickChange",
-    ["text"] = gm.L["navigationquickchange"],
+    ["text"] = gm.L["navigation_quickchange"],
     ["position"] = 3,
     ["active"] = false,
     ["init"] = function()
-      getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_DELAY_LABEL):SetText(gm.L["delaylabel"])
-      getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_UNIT_DELAY_LABEL):SetText(gm.L["delayunitlabel"])
-      getglobal(GM_CONSTANTS.ELEMENT_RULE_LIST_LABEL):SetText(gm.L["rulelistlabel"])
-      getglobal(GM_CONSTANTS.ELEMENT_CHANGE_FROM_LABEL):SetText(gm.L["changefromlabel"])
-      getglobal(GM_CONSTANTS.ELEMENT_CHANGE_TO_LABEL):SetText(gm.L["changetolabel"])
+      getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_DELAY_LABEL):SetText(gm.L["delay_label"])
+      getglobal(GM_CONSTANTS.ELEMENT_QUICK_CHANGE_UNIT_DELAY_LABEL):SetText(gm.L["delay_unit_label"])
+      getglobal(GM_CONSTANTS.ELEMENT_RULE_LIST_LABEL):SetText(gm.L["rule_list_label"])
+      getglobal(GM_CONSTANTS.ELEMENT_CHANGE_FROM_LABEL):SetText(gm.L["change_from_label"])
+      getglobal(GM_CONSTANTS.ELEMENT_CHANGE_TO_LABEL):SetText(gm.L["change_to_label"])
     end
   },
   [4] = {
     ["name"] = "About",
-    ["text"] = gm.L["navigationabout"],
+    ["text"] = gm.L["navigation_about"],
     ["position"] = 4,
     ["active"] = false,
     ["init"] = function()
