@@ -25,7 +25,7 @@
 
 
 --[[
-  Itemmanager manages all items. All itemslots muss register to work properly
+  Itemmanager manages all items. All itemslots must register to work properly
 ]]--
 local mod = gm
 local me = {}
