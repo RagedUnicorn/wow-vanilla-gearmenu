@@ -65,7 +65,7 @@ function me.RemoveFromQueue(slotId)
   -- get item from queue that is about to be removed
   local itemId = CombatQueueStore[slotId]
 
-  -- if no item is registere in queue for that specific slotId
+  -- if no item is registered in queue for that specific slotId
   if itemId == nil then
     mod.logger.LogInfo(me.tag, "No item in queue for slotId - " .. slotId)
     return
