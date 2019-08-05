@@ -38,7 +38,7 @@ GearMenu is based on the popular TrinketMenu Addon and its goal is to bring this
 | Finger1Slot       | Second/Upper ring slot       |
 | Trinket0Slot      | First/Upper trinket slot     |
 | Trinket1Slot      | Second/Lower trinket slot    |
-| BackSlot          | Back/Cloak slot slot         |
+| BackSlot          | Back/Cloak slot              |
 | MainhandSlot      | Main-hand slot               |
 | SecondaryHandSlot | Secondary-hand/Off-hand slot |
 | RangedSlot        | Ranged slot                  |
