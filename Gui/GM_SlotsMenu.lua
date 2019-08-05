@@ -51,12 +51,11 @@ end
   Initialize dropdownmenus for slotpositions
 ]]--
 function me.InitializeDropdownMenu()
-  local button, position, item
+  local button
+  local position = mod.common.ExtractPositionFromName(this:GetName())
+  local item = mod.itemManager.FindItemForSlotPosition(position)
 
-  position = mod.common.ExtractPositionFromName(this:GetName())
-  item = mod.itemManager.FindItemForSlotPosition(position)
-
-  for key, item in pairs(GM_CONSTANTS.ITEMS) do
+  for _, item in pairs(GM_CONSTANTS.ITEMS) do
     button = me.CreateDropdownButton(
       gm.L[item.localizationKey],
       item.slotId,
