@@ -119,8 +119,8 @@ function me.EquipItemById(itemId, slotId, itemSlotType)
     -- if not of type weapon add it to queue
     if slotId ~=  GM_CONSTANTS.ITEMS.MAINHAND.slotId and slotId ~= GM_CONSTANTS.ITEMS.OFFHAND.slotId then
       mod.combatQueue.AddToQueue(itemId, slotId)
-    -- if type is weapon only add it to queue if the player is dead
-  elseif mod.common.IsPlayerReallyDead() then
+      -- if type is weapon only add it to queue if the player is dead
+    elseif mod.common.IsPlayerReallyDead() then
       mod.combatQueue.AddToQueue(itemId, slotId)
     else
       me.SwitchItems(itemId, slotId, itemSlotType)
