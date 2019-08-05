@@ -178,7 +178,6 @@ end
 ]]--
 function me.GetItemsByType(slotId, includeEquiped)
   local idx = 1
-  local itemLink, itemId, itemName, equipSlot, itemTexture, itemQuality
   local itemTypes = GM_CONSTANTS.ITEM_CATEGORIES[slotId].type
   local items = {}
 
@@ -189,11 +188,11 @@ function me.GetItemsByType(slotId, includeEquiped)
 
   for i = 0, 4 do
     for j = 1, GetContainerNumSlots(i) do
-      itemLink = GetContainerItemLink(i, j)
+      local itemLink = GetContainerItemLink(i, j)
 
       if itemLink then
-        _, _, itemId, itemName = strfind(GetContainerItemLink(i, j) or "", "item:(%d+).+%[(.+)%]")
-        _, _, itemQuality, _, _, _, _, equipSlot, itemTexture = GetItemInfo(itemId or "")
+        local _, _, itemId, itemName = strfind(GetContainerItemLink(i, j) or "", "item:(%d+).+%[(.+)%]")
+        local _, _, itemQuality, _, _, _, _, equipSlot, itemTexture = GetItemInfo(itemId or "")
 
         for it = 1, table.getn(itemTypes) do
           if equipSlot == itemTypes[it] then
@@ -225,11 +224,11 @@ function me.GetItemsByType(slotId, includeEquiped)
   if includeEquiped then
     for i = 1, table.getn(itemTypes) do
       for it = 1, table.getn(GM_CONSTANTS.ITEM_CATEGORIES[slotId].slotId) do
-        _, _, itemId, itemName = strfind(GetInventoryItemLink("player",
+        local _, _, itemId, itemName = strfind(GetInventoryItemLink("player",
           GM_CONSTANTS.ITEM_CATEGORIES[slotId].slotId[it]) or "", "item:(%d+).+%[(.+)%]")
 
         if itemId then
-          _, _, itemQuality, _, _, _, _, equipSlot, itemTexture = GetItemInfo(itemId or "")
+          local _, _, itemQuality, _, _, _, _, equipSlot, itemTexture = GetItemInfo(itemId or "")
 
           if itemQuality and itemQuality >= mod.addonOptions.GetFilterItemQuality() then
             if not items[idx] then
