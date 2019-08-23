@@ -5,7 +5,7 @@
 > GearMenu aims to help the player switching between items in hectic situations by queueing
 items and doing the actual switch as soon as the player leaves combat
 
-![](/docs/badge_wow_vanilla.png)
+![](/Docs/badge_wow_vanilla.png)
 
 **Note:** With the release of World of Warcraft classic this addon is entering maintenance only mode. This means that no new features will be implemented and only the most important bugs are fixed. For the classic version of this addon see [GearMenu-Classic](https://github.com/RagedUnicorn/wow-classic-gearmenu).
 
