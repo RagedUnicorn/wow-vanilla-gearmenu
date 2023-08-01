@@ -183,7 +183,7 @@ function me.SwitchItems(itemId, slotId, itemSlotType)
 
     if bagNumber then
       local _, _, isLocked = GetContainerItemInfo(bagNumber, bagPos)
-      if not isLocked and not IsInventoryItemLocked(bagPos) then
+      if not isLocked and not IsInventoryItemLocked(slotId) then
         -- neither container item nor inventory item locked, perform swap
 
         PickupContainerItem(bagNumber, bagPos)
