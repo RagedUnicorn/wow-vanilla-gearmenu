@@ -1,1 +1,3 @@
-* Add ranged slot(18) to supported slots
+# Fixes
+
+* Fix: #22 #20 Wrong usage of IsInventoryItemLocked
